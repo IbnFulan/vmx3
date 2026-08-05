@@ -1,0 +1,504 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Description: Deploys the Voicemail Express solution for Amazon Connect. Updated for 2025.09.13.
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: 1. Environment Configuration
+        Parameters:
+          - AWSRegion
+          - ConnectInstanceAlias
+          - ConnectInstanceARN
+          - ConnectRecordingsBucketArn
+          - ConnectCTRStreamARN
+          - LambdaLoggingLevel
+      - Label:
+          default: 2. Voicemail Express AWS Delivery Modes
+        Parameters:
+          - EnableVMToConnectGuidedTask
+          - EnableVMToConnectTask
+          - EnableVMToEmail
+          - VMDefaultMode
+      - Label:
+          default: 3. Voicemail Express AI Option and Recording Retention Settings
+        Parameters:
+          - EnableGenAISummary
+          - EnableBucketVersioning
+          - RecordingsExpireInXDays
+          - ExpiredRecordingBehavior
+      - Label:
+          default: 4. Amazon Connect Guided Task Parameters  (Only required for guided task delivery)
+        Parameters:
+          - GuidedTaskRecordingLinksExpireInXMinutes
+      - Label:
+          default: 5. Amazon Connect Task Parameters (Only required for standard task delivery)
+        Parameters:
+          - TaskRecordingLinksExpireInXDays
+      - Label:
+          default: 6. Amazon Connect Email Parameters (Only required for email delivery)
+        Parameters:
+          - VMToEmailDefaultFrom
+          - VMToEmailDefaultTo
+          - VMAgentAddressKey
+          - EmailRecordingLinksExpireInXDays
+      - Label:
+          default: 7. Voicemail Express Test Parameters
+        Parameters:
+          - VMTestAgentId
+          - VMTestQueueARN
+      - Label:
+          default: 7. Advanced Settings - Use only in customized deployments
+        Parameters:
+          - EXPDevBucketPrefix
+          - EXPTemplateVersion
+    ParameterLabels:
+      AWSRegion:
+        default: Which AWS region is your Amazon Connect Instance deployed to?
+      ConnectCTRStreamARN:
+        default: What is the ARN for the Kinesis Data Stream that is configured for Contact Record streaming.
+      ConnectInstanceAlias:
+        default: What is your Amazon Connect instance alias?
+      ConnectInstanceARN:
+        default: What is your Amazon Connect instance ARN (Amazon Resource Name)?
+      EmailRecordingLinksExpireInXDays:
+        default: How long should the presigned recording URL be valid for? (# of days)
+      EnableGenAISummary:
+        default: Do you want to generate an summary of the voicemail using generative AI?
+      EnableBucketVersioning:
+        default: Do you want to enable S3 Versioning for the recordings and transcription buckets?
+      EnableVMToConnectTask:
+        default: Enable Voicemail delivery as an Amazon Connect Task?
+      EnableVMToConnectGuidedTask:
+        default: Enable Voicemail delivery as an Amazon Connect Guided Task? (DEFAULT MODE)
+      EnableVMToEmail:
+        default: Enable Voicemail delivery as an Email using Amazon Simple Email Service?
+      EXPDevBucketPrefix:
+        default: (ADVANCED USE ONLY) What is the bucket prefix for your custom code S3 bucket?
+      ExpiredRecordingBehavior:
+        default: When the recording reaches its lifecycle, what action should be taken?
+      EXPTemplateVersion:
+        default: (ADVANCED USE ONLY) What is version you wish to deploy?
+      GuidedTaskRecordingLinksExpireInXMinutes:
+        default: How long should the presigned recording URL be valid for? (# of minutes)
+      ConnectRecordingsBucketArn:
+        default: What is the ARN for the S3 bucket used to store Amazon Connect recordings?
+      LambdaLoggingLevel:
+        default: For the included AWS Lambda functions, what should the default logging level be set to?
+      RecordingsExpireInXDays:
+        default: How long should we keep your voicemail recordings before deleting or archiving? (# of days)
+      TaskRecordingLinksExpireInXDays:
+        default: How long should the presigned recording URL be valid for? (# of days)
+      VMAgentAddressKey:
+        default: Do you store agent email addresses in the Email, Secondary Email, or Username field?
+      VMDefaultMode:
+        default: What is your default delivery mode?
+      VMToEmailDefaultTo:
+        default: Fallback TO email for voicemails if no address is provided?
+      VMToEmailDefaultFrom:
+        default: Fallback FROM email for voicemails if no address is provided?
+      VMTestAgentId:
+        default: Which agent ID will you use for testing?
+      VMTestQueueARN:
+        default: Which queue will you use for testing?
+
+Parameters:
+  AWSRegion:
+    Type: String
+    Default: us-east-1
+    AllowedValues:
+      - us-east-1
+      - us-west-2
+      - af-south-1
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-northeast-1
+      - ap-northeast-2
+      - ca-central-1
+      - eu-central-1
+      - eu-west-2
+      - us-gov-west-1
+    Description: |
+      All resources for this template must reside in the same region.
+      Validate which region your Amazon Connect instance is deployed in and select the corresponding region.
+  ConnectCTRStreamARN:
+    Type: String
+    Default: Looks like - arn:aws:kinesis:REGION:ACCOUNT:stream/REPLACEME
+    Description: Provide the ARN for the Kinesis Data Stream that receives your contact records.
+  ConnectInstanceAlias:
+    Type: String
+    Default: REPLACEME
+    Description: Provide the instance alias for your Amazon Connect instance (lowercase only).
+  ConnectInstanceARN:
+    Type: String
+    Default: Looks like - arn:aws:connect:REGION:ACCOUNT:instance/REPLACEME
+    Description: Provide the instance ARN for your Amazon Connect instance.
+  EXPDevBucketPrefix:
+    Type: String
+    Default: ''
+    Description: Not required and only used for development purposes.
+  ConnectRecordingsBucketArn:
+    Type: String
+    Default: 'Looks like - arn:aws:s3:::YOURBUCKETNAME'
+    Description: The full ARN for the S3 bucket listed in Connect Console → Data Storage → Call recordings.
+  EmailRecordingLinksExpireInXDays:
+    Type: String
+    Default: '1'
+    AllowedValues: [ '1','2','3','4','5','6','7' ]
+    Description: Set the number of days.
+  TaskRecordingLinksExpireInXDays:
+    Type: String
+    Default: '1'
+    AllowedValues: [ '1','2','3','4','5','6','7' ]
+    Description: Select the number of days.
+  EnableBucketVersioning:
+    Type: String
+    Default: 'no'
+    AllowedValues: [ 'yes','no' ]
+    Description: Enable versioning on both buckets.
+  EnableVMToConnectTask:
+    Type: String
+    Default: 'no'
+    AllowedValues: [ 'yes','no' ]
+    Description: Deliver voicemails to agents as Amazon Connect Tasks.
+  EnableGenAISummary:
+    Type: String
+    Default: 'no'
+    AllowedValues: [ 'yes','no' ]
+    Description: Generate an AI summary for the voicemail.
+  EnableVMToConnectGuidedTask:
+    Type: String
+    Default: 'yes'
+    AllowedValues: [ 'yes','no' ]
+    Description: Deliver voicemails as Guided Tasks (media player UI).
+  EnableVMToEmail:
+    Type: String
+    Default: 'no'
+    AllowedValues: [ 'yes','no' ]
+    Description: Deliver voicemails via external Email.
+  ExpiredRecordingBehavior:
+    Type: String
+    Default: delete
+    AllowedValues: [ delete, keep, glacier ]
+    Description: Action when recordings reach lifecycle.
+  EXPTemplateVersion:
+    Type: String
+    Default: 2025.09.17
+    Description: VMX3 template version (matches artifacts folder).
+  GuidedTaskRecordingLinksExpireInXMinutes:
+    Type: String
+    Default: '2'
+    AllowedValues: [ '2','5','10' ]
+    Description: Minutes recordings are accessible via link for Guided Task.
+  LambdaLoggingLevel:
+    Type: String
+    Default: INFO
+    AllowedValues: [ ERROR, WARN, INFO, DEBUG ]
+    Description: Default Lambda logging level.
+  RecordingsExpireInXDays:
+    Type: String
+    Default: '7'
+    Description: Days to retain voicemail recordings before lifecycle.
+  VMAgentAddressKey:
+    Type: String
+    Default: Email
+    AllowedValues: [ Email, SecondaryEmail, Username ]
+    Description: Field storing agent email addresses.
+  VMDefaultMode:
+    Type: String
+    Default: AmazonConnectGuidedTask
+    AllowedValues:
+      - AmazonConnectGuidedTask
+      - AmazonConnectTask
+      - AmazonSimpleEmailService
+    Description: Fallback delivery mode.
+  VMToEmailDefaultFrom:
+    Type: String
+    Default: voicemail_from@test.com
+    Description: Fallback FROM address for email delivery.
+  VMToEmailDefaultTo:
+    Type: String
+    Default: voicemail_to@test.com
+    Description: Fallback TO address for email delivery.
+  VMTestAgentId:
+    Type: String
+    Default: Looks like - jdoe or jdoe@test.com
+    Description: Agent ID to use for the voicemail test function.
+  VMTestQueueARN:
+    Type: String
+    Default: Looks like - arn:aws:connect:REGION:ACCOUNT:instance/INSTANCEID/queue/QUEUEID
+    Description: ARN of the test queue from Connect console.
+  PresignerSecretArn:
+    Type: String
+    Default: ''
+    Description: ARN of Secrets Manager secret with {AccessKeyId, SecretAccessKey} for VMX3 Presigner
+  UseExternalPresignerSecret:
+    Type: String
+    AllowedValues: [ "true","false" ]
+    Default: "true"
+    Description: Set to "true" to skip creating VMX presigner IAM user, access key, and internal secret.
+
+Conditions:
+  ConnectTasksEnabled: !Equals [ !Ref EnableVMToConnectTask, 'yes' ]
+  ConnectGuidedTasksEnabled: !Equals [ !Ref EnableVMToConnectGuidedTask, 'yes' ]
+  AWSEmailEnabled: !Equals [ !Ref EnableVMToEmail, 'yes' ]
+  NonGuidedOptions: !Or
+    - !Equals [ !Ref EnableVMToConnectTask, 'yes' ]
+    - !Equals [ !Ref EnableVMToEmail, 'yes' ]
+  GenAIEnabled: !Equals [ !Ref EnableGenAISummary, 'yes' ]
+  GenAIRegionUS: !Or
+    - !Equals [ !Ref AWSRegion, 'us-east-1' ]
+    - !Equals [ !Ref AWSRegion, 'us-west-2' ]
+    - !Equals [ !Ref AWSRegion, 'us-gov-west-1' ]
+  GenAIRegionEU: !Equals [ !Ref AWSRegion, 'eu-central-1' ]
+  GenAIRegionUK: !Equals [ !Ref AWSRegion, 'eu-west-2' ]
+  GenAIRegionAPAC: !Or
+    - !Equals [ !Ref AWSRegion, 'ap-southeast-1' ]
+    - !Equals [ !Ref AWSRegion, 'ap-northeast-1' ]
+    - !Equals [ !Ref AWSRegion, 'ap-northeast-2' ]
+  GenAIRegionNone: !Or
+    - !Equals [ !Ref AWSRegion, 'ca-central-1' ]
+    - !Equals [ !Ref AWSRegion, 'af-south-1' ]
+  ExternalPresignerSecretProvided:
+    Fn::Not:
+      - Fn::Equals:
+          - !Ref PresignerSecretArn
+          - ''
+
+Mappings:
+  VMModes:
+    AmazonConnectTask:
+      mode: task
+    AmazonSimpleEmailService:
+      mode: email
+    AmazonConnectGuidedTask:
+      mode: guided_task
+
+Resources:
+
+  VMXCoreStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      Parameters:
+        ConnectInstanceAlias: !Ref ConnectInstanceAlias
+        ExpiredRecordingBehavior: !Ref ExpiredRecordingBehavior
+        RecordingsExpireInXDays: !Ref RecordingsExpireInXDays
+        EnableVMToConnectTask: !Ref EnableVMToConnectTask
+        EnableVMToConnectGuidedTask: !Ref EnableVMToConnectGuidedTask
+        EnableVMToEmail: !Ref EnableVMToEmail
+        EnableBucketVersioning: !Ref EnableBucketVersioning
+        UseExternalPresignerSecret: !Ref UseExternalPresignerSecret
+      TemplateURL: !Join
+        - ''
+        - [
+            'https://vmx3-artifacts-code-prd.s3.us-east-1.amazonaws.com/',
+            'vmx3-2025-09-17/cloudformation/vmx3-core.yaml'
+          ]
+      TimeoutInMinutes: 5
+
+  VMXContactFlowStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn:
+      - VMXCoreStack
+    Properties:
+      Parameters:
+        EXPTemplateVersion: !Ref EXPTemplateVersion
+        EXPDevBucketPrefix: !Ref EXPDevBucketPrefix
+        AWSRegion: !Ref AWSRegion
+        ConnectInstanceAlias: !Ref ConnectInstanceAlias
+        ConnectInstanceARN: !Ref ConnectInstanceARN
+        EnableVMToConnectTask: !Ref EnableVMToConnectTask
+        EnableVMToConnectGuidedTask: !Ref EnableVMToConnectGuidedTask
+        EnableVMToEmail: !Ref EnableVMToEmail
+        VMToEmailDefaultFrom: !Ref VMToEmailDefaultFrom
+        VMToEmailDefaultTo: !Ref VMToEmailDefaultTo
+        VMTestAgentId: !Ref VMTestAgentId
+        VMTestQueueARN: !Ref VMTestQueueARN
+        VMXS3RecordingsBucket: !GetAtt VMXCoreStack.Outputs.VMXS3RecordingsBucket
+        GuidedTaskRecordingLinksExpireInXMinutes: !Ref GuidedTaskRecordingLinksExpireInXMinutes
+        VMXGuidedFlowPresignerRoleArn: !If
+          - ConnectGuidedTasksEnabled
+          - !GetAtt VMXCoreStack.Outputs.VMXGuidedFlowPresignerRoleArn
+          - AWS::NoValue
+        VMXGuidedFlowPresignerRole: !If
+          - ConnectGuidedTasksEnabled
+          - !GetAtt VMXCoreStack.Outputs.VMXGuidedFlowPresignerRole
+          - AWS::NoValue
+        LambdaLoggingLevel: !Ref LambdaLoggingLevel
+        VMXTimestamperRoleArn: !GetAtt VMXCoreStack.Outputs.VMXTimestamperRoleArn
+        VMXTimestamperRole: !GetAtt VMXCoreStack.Outputs.VMXTimestamperRole
+      TemplateURL: !Join
+        - ''
+        - [
+            'https://vmx3-artifacts-code-prd.s3.us-east-1.amazonaws.com/',
+            'vmx3-2025-09-17/cloudformation/vmx3-contactflows.yaml'
+          ]
+      TimeoutInMinutes: 5
+
+  VMXSESSetupStack:
+    Type: AWS::CloudFormation::Stack
+    Condition: AWSEmailEnabled
+    DependsOn:
+      - VMXCoreStack
+    Properties:
+      Parameters:
+        AWSRegion: !Ref AWSRegion
+        ConnectInstanceAlias: !Ref ConnectInstanceAlias
+        EXPDevBucketPrefix: !Ref EXPDevBucketPrefix
+        EXPTemplateVersion: !Ref EXPTemplateVersion
+        LambdaLoggingLevel: !Ref LambdaLoggingLevel
+        VMXSESTemplateRoleArn: !GetAtt VMXCoreStack.Outputs.VMXSESTemplateRoleArn
+      TemplateURL: !Join
+        - ''
+        - [
+            'https://vmx3-artifacts-code-prd.s3.us-east-1.amazonaws.com/',
+            'vmx3-2025-09-17/cloudformation/vmx3-ses-setup.yaml'
+          ]
+      TimeoutInMinutes: 5
+
+  VMXLambdaStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn:
+      - VMXCoreStack
+      - VMXContactFlowStack
+    Properties:
+      Parameters:
+        EXPTemplateVersion: !Ref EXPTemplateVersion
+        AWSRegion: !Ref AWSRegion
+        ConnectInstanceAlias: !Ref ConnectInstanceAlias
+        EnableVMToConnectTask: !Ref EnableVMToConnectTask
+        EnableVMToConnectGuidedTask: !Ref EnableVMToConnectGuidedTask
+        EnableVMToEmail: !Ref EnableVMToEmail
+        EnableGenAISummary: !If [ GenAIEnabled, 'true', 'false' ]
+        EXPDevBucketPrefix: !Ref EXPDevBucketPrefix
+        LambdaLoggingLevel: !Ref LambdaLoggingLevel
+        VMEmailDefaultAgentTemplate: !If
+          - AWSEmailEnabled
+          - !GetAtt VMXSESSetupStack.Outputs.VMEmailDefaultAgentTemplate
+          - AWS::NoValue
+        VMEmailDefaultQueueTemplate: !If
+          - AWSEmailEnabled
+          - !GetAtt VMXSESSetupStack.Outputs.VMEmailDefaultQueueTemplate
+          - AWS::NoValue
+        VMDefaultMode: !Ref VMDefaultMode
+        VMToEmailDefaultFrom: !Ref VMToEmailDefaultFrom
+        VMToEmailDefaultTo: !Ref VMToEmailDefaultTo
+        VMXDefaultTaskFlow: !If
+          - ConnectTasksEnabled
+          - !GetAtt VMXContactFlowStack.Outputs.VMXExampleTaskFlowID
+          - AWS::NoValue
+        VMXDefaultGuidedTaskFlow: !If
+          - ConnectGuidedTasksEnabled
+          - !GetAtt VMXContactFlowStack.Outputs.VMXExampleGuidedTaskFlowID
+          - AWS::NoValue
+        VMXSecrets: !If
+          - NonGuidedOptions
+          - !If [ ExternalPresignerSecretProvided, !Ref PresignerSecretArn, !GetAtt VMXCoreStack.Outputs.VMXSecrets ]
+          - AWS::NoValue
+        VMXS3RecordingsBucket: !GetAtt VMXCoreStack.Outputs.VMXS3RecordingsBucket
+        VMXS3TranscriptsBucket: !GetAtt VMXCoreStack.Outputs.VMXS3TranscriptsBucket
+        VMAgentAddressKey: !Ref VMAgentAddressKey
+        VMXRecordingProcessorRoleArn: !GetAtt VMXCoreStack.Outputs.VMXRecordingProcessorRoleArn
+        VMXRecordingProcessorRole: !GetAtt VMXCoreStack.Outputs.VMXRecordingProcessorRole
+        VMXPackagerRoleArn: !GetAtt VMXCoreStack.Outputs.VMXPackagerRoleArn
+        VMXPackagerRole: !GetAtt VMXCoreStack.Outputs.VMXPackagerRole
+        VMXPresignerRole: !If
+          - NonGuidedOptions
+          - !GetAtt VMXCoreStack.Outputs.VMXPresignerRole
+          - AWS::NoValue
+        VMXPresignerRoleArn: !If
+          - NonGuidedOptions
+          - !GetAtt VMXCoreStack.Outputs.VMXPresignerRoleArn
+          - AWS::NoValue
+        VMXTranscriberRole: !GetAtt VMXCoreStack.Outputs.VMXTranscriberRole
+        VMXTranscriberRoleArn: !GetAtt VMXCoreStack.Outputs.VMXTranscriberRoleArn
+        VMXTranscriberErrorRole: !GetAtt VMXCoreStack.Outputs.VMXTranscriberErrorRole
+        VMXTranscriberErrorRoleArn: !GetAtt VMXCoreStack.Outputs.VMXTranscriberErrorRoleArn
+        VMXTimestamperRole: !GetAtt VMXCoreStack.Outputs.VMXTimestamperRole
+        VMXTimestamperRoleArn: !GetAtt VMXCoreStack.Outputs.VMXTimestamperRoleArn
+        TaskRecordingLinksExpireInXDays: !Ref TaskRecordingLinksExpireInXDays
+        EmailRecordingLinksExpireInXDays: !Ref EmailRecordingLinksExpireInXDays
+      TemplateURL: !Join
+        - ''
+        - [
+            'https://vmx3-artifacts-code-prd.s3.us-east-1.amazonaws.com/',
+            'vmx3-2025-09-17/cloudformation/vmx3-lambda-functions.yaml'
+          ]
+      TimeoutInMinutes: 10
+
+  VMXPolicyStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn:
+      - VMXLambdaStack
+    Properties:
+      Parameters:
+        ConnectInstanceAlias: !Ref ConnectInstanceAlias
+        ConnectInstanceARN: !Ref ConnectInstanceARN
+        VMXGuidedFlowPresignerRole: !If
+          - ConnectGuidedTasksEnabled
+          - !GetAtt VMXCoreStack.Outputs.VMXGuidedFlowPresignerRole
+          - AWS::NoValue
+        VMXRecordingProcessorRole: !GetAtt VMXCoreStack.Outputs.VMXRecordingProcessorRole
+        VMXPackagerRole: !GetAtt VMXCoreStack.Outputs.VMXPackagerRole
+        VMXPresignerRole: !If
+          - NonGuidedOptions
+          - !GetAtt VMXCoreStack.Outputs.VMXPresignerRole
+          - AWS::NoValue
+        VMXSESTemplateRole: !If
+          - AWSEmailEnabled
+          - !GetAtt VMXCoreStack.Outputs.VMXSESTemplateRole
+          - AWS::NoValue
+        VMXTranscriberRole: !GetAtt VMXCoreStack.Outputs.VMXTranscriberRole
+        VMXTranscriberErrorRole: !GetAtt VMXCoreStack.Outputs.VMXTranscriberErrorRole
+        VMXS3RecordingsBucketArn: !GetAtt VMXCoreStack.Outputs.VMXS3RecordingsBucketArn
+        VMXS3TranscriptsBucketArn: !GetAtt VMXCoreStack.Outputs.VMXS3TranscriptsBucketArn
+        ConnectRecordingsBucketArn: !Ref ConnectRecordingsBucketArn
+        ConnectCTRStreamARN: !Ref ConnectCTRStreamARN
+        AWSRegion: !Ref AWSRegion
+        VMXPresignerArn: !If
+          - NonGuidedOptions
+          - !GetAtt VMXLambdaStack.Outputs.VMXPresignerArn
+          - AWS::NoValue
+        EnableVMToEmail: !Ref EnableVMToEmail
+        EnableVMToConnectTask: !Ref EnableVMToConnectTask
+        EnableVMToConnectGuidedTask: !Ref EnableVMToConnectGuidedTask
+      TemplateURL: !Join
+        - ''
+        - [
+            'https://vmx3-artifacts-code-prd.s3.us-east-1.amazonaws.com/',
+            'vmx3-2025-09-17/cloudformation/vmx3-policy-builder.yaml'
+          ]
+      TimeoutInMinutes: 10
+
+  VMXTriggersStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn:
+      - VMXPolicyStack
+    Properties:
+      Parameters:
+        ConnectInstanceARN: !Ref ConnectInstanceARN
+        EXPTemplateVersion: !Ref EXPTemplateVersion
+        ConnectCTRStreamARN: !Ref ConnectCTRStreamARN
+        VMXS3RecordingsBucket: !GetAtt VMXCoreStack.Outputs.VMXS3RecordingsBucket
+        VMXS3TranscriptsBucket: !GetAtt VMXCoreStack.Outputs.VMXS3TranscriptsBucket
+        VMXS3RecordingsBucketArn: !GetAtt VMXCoreStack.Outputs.VMXS3RecordingsBucketArn
+        VMXPackagerArn: !GetAtt VMXLambdaStack.Outputs.VMXPackagerArn
+        VMXS3TranscriptsBucketArn: !GetAtt VMXCoreStack.Outputs.VMXS3TranscriptsBucketArn
+        VMXTranscriberArn: !GetAtt VMXLambdaStack.Outputs.VMXTranscriberArn
+        VMXRecordingProcessor: !GetAtt VMXLambdaStack.Outputs.VMXRecordingProcessor
+        ConnectInstanceAlias: !Ref ConnectInstanceAlias
+        VMXTranscribeErrorArn: !GetAtt VMXLambdaStack.Outputs.VMXTranscribeErrorArn
+        VMXGuidedFlowPresignerArn: !If
+          - ConnectGuidedTasksEnabled
+          - !GetAtt VMXContactFlowStack.Outputs.VMXGuidedFlowPresignerArn
+          - AWS::NoValue
+        EnableVMToConnectGuidedTask: !Ref EnableVMToConnectGuidedTask
+        VMXTimeStamperArn: !GetAtt VMXContactFlowStack.Outputs.VMXTimeStamperArn
+      TemplateURL: !Join
+        - ''
+        - [
+            'https://vmx3-artifacts-code-prd.s3.us-east-1.amazonaws.com/',
+            'vmx3-2025-09-17/cloudformation/vmx3-triggers.yaml'
+          ]
+      TimeoutInMinutes: 10
