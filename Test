@@ -1,0 +1,321 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  Deploys the OIEA VMX3 voicemail notifier Lambda with SNS delivery and
+  CloudFront-signed WAV URLs (30 days). Includes CloudFront OAC, PublicKey, KeyGroup,
+  and Distribution. Adds Secrets Manager permission so Lambda can sign URLs.
+
+Parameters:
+  FunctionName:
+    Type: String
+    Default: VMX3-OIEA-Voicemail-Notifier
+    Description: Lambda function name.
+
+  CodeBucket:
+    Type: String
+    Default: vmx3-artifacts-code-prd
+    Description: S3 bucket containing the Lambda deployment ZIP.
+
+  CodeKey:
+    Type: String
+    Default: lambda/vmx3-oiea-voicemail-notifier.zip
+    Description: S3 object key for the Lambda deployment ZIP.
+
+  ConnectInstanceId:
+    Type: String
+    Description: Amazon Connect instance ID UUID.
+
+  SnsTopicArn:
+    Type: String
+    Description: Existing SNS topic ARN for OIEA voicemail notifications.
+
+  TranscriptionBucket:
+    Type: String
+    Description: Existing VMX3 transcription bucket name.
+
+  RecordingBucket:
+    Type: String
+    Description: Existing private VMX3 recording bucket name.
+
+  RecordingPrefix:
+    Type: String
+    Default: ''
+    Description: Optional key prefix in the recording bucket (used by Lambda only).
+
+  QueueName:
+    Type: String
+    Default: OIEA
+    Description: Exact Amazon Connect queue name to process.
+
+  CloudFrontPublicKeyPem:
+    Type: String
+    NoEcho: true
+    Description: PEM-encoded RSA public key corresponding to the private signing key.
+
+  CloudFrontPrivateKeySecretArn:
+    Type: String
+    Description: Secrets Manager ARN containing the matching PEM-encoded RSA private key.
+
+  CloudFrontUrlExpirationSeconds:
+    Type: Number
+    Default: 2592000  # 30 days
+    MinValue: 60
+    MaxValue: 31536000
+    Description: CloudFront signed URL expiration in seconds (default 30 days).
+
+  LambdaTimeout:
+    Type: Number
+    Default: 120
+    MinValue: 10
+    MaxValue: 900
+    Description: Lambda timeout in seconds.
+
+  LogRetentionDays:
+    Type: Number
+    Default: 30
+    AllowedValues:
+      - 1
+      - 3
+      - 5
+      - 7
+      - 14
+      - 30
+      - 60
+      - 90
+      - 120
+      - 150
+      - 180
+      - 365
+      - 400
+      - 545
+      - 731
+      - 1096
+      - 1827
+      - 2192
+      - 2557
+      - 2922
+      - 3288
+      - 3653
+    Description: CloudWatch log retention in days.
+
+Resources:
+  # --- CloudFront private origin access (OAC) ---
+  CloudFrontOriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub '${FunctionName}-CF-OAC'
+        Description: OAC for private VMX3 recording bucket
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  # --- CloudFront public key + key group for signed URLs ---
+  CloudFrontPublicKey:
+    Type: AWS::CloudFront::PublicKey
+    Properties:
+      Name: !Sub '${FunctionName}-CF-PublicKey'
+      Comment: OIEA VMX3 signed URL public key
+      EncodedKey: !Ref CloudFrontPublicKeyPem
+
+  CloudFrontKeyGroup:
+    Type: AWS::CloudFront::KeyGroup
+    Properties:
+      Name: !Sub '${FunctionName}-CF-KeyGroup'
+      Comment: OIEA VMX3 signed URL key group
+      Items:
+        - !GetAtt CloudFrontPublicKey.Id
+
+  # --- Minimal cache policy (no query strings/cookies) ---
+  RecordingCachePolicy:
+    Type: AWS::CloudFront::CachePolicy
+    Properties:
+      CachePolicyConfig:
+        Name: !Sub '${FunctionName}-CF-CachePolicy'
+        DefaultTTL: 86400
+        MaxTTL: 31536000
+        MinTTL: 0
+        ParametersInCacheKeyAndForwardedToOrigin:
+          EnableAcceptEncodingGzip: true
+          EnableAcceptEncodingBrotli: true
+          CookiesConfig:
+            CookieBehavior: none
+          HeadersConfig:
+            HeaderBehavior: none
+          QueryStringsConfig:
+            QueryStringBehavior: none
+
+  # --- CloudFront distribution in front of the S3 recordings bucket ---
+  RecordingDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: OIEA VMX3 private voicemail recording distribution
+        HttpVersion: http2
+        IPV6Enabled: true
+        PriceClass: PriceClass_100
+        Origins:
+          - Id: RecordingBucketOrigin
+            DomainName: !Sub '${RecordingBucket}.s3.${AWS::Region}.amazonaws.com'
+            OriginAccessControlId: !GetAtt CloudFrontOriginAccessControl.Id
+            S3OriginConfig: {}
+        DefaultCacheBehavior:
+          TargetOriginId: RecordingBucketOrigin
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD]
+          CachedMethods: [GET, HEAD]
+          CachePolicyId: !Ref RecordingCachePolicy
+          TrustedKeyGroups:
+            - !GetAtt CloudFrontKeyGroup.Id
+          Compress: true
+
+  # --- Bucket policy: allow CloudFront to read via OAC ---
+  RecordingBucketPolicyForCloudFront:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref RecordingBucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: AllowCloudFrontReadViaOAC
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: ['s3:GetObject']
+            Resource: !Sub 'arn:${AWS::Partition}:s3:::${RecordingBucket}/*'
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub 'arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${RecordingDistribution}'
+
+  # --- IAM role for Lambda ---
+  NotifierExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub '${FunctionName}-Role'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: [lambda.amazonaws.com]
+            Action: [sts:AssumeRole]
+      Policies:
+        - PolicyName: !Sub '${FunctionName}-Policy'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: CloudWatchLogs
+                Effect: Allow
+                Action: [logs:CreateLogStream, logs:PutLogEvents]
+                Resource: !Sub 'arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${FunctionName}:*'
+              - Sid: ReadTranscriptObjects
+                Effect: Allow
+                Action: [s3:GetObject]
+                Resource: !Sub 'arn:${AWS::Partition}:s3:::${TranscriptionBucket}/*'
+              - Sid: ReadRecordingObjects
+                Effect: Allow
+                Action: [s3:GetObject]
+                Resource: !Sub 'arn:${AWS::Partition}:s3:::${RecordingBucket}/*'
+              - Sid: ListRecordingBucket
+                Effect: Allow
+                Action: [s3:ListBucket]
+                Resource: !Sub 'arn:${AWS::Partition}:s3:::${RecordingBucket}'
+              - Sid: PublishNotification
+                Effect: Allow
+                Action: [sns:Publish]
+                Resource: !Ref SnsTopicArn
+              - Sid: ReadConnectContactData
+                Effect: Allow
+                Action: [connect:DescribeContact, connect:DescribeQueue, connect:GetContactAttributes]
+                Resource: '*'
+              - Sid: ReadCloudFrontPrivateKey
+                Effect: Allow
+                Action: ['secretsmanager:GetSecretValue']
+                Resource: !Ref CloudFrontPrivateKeySecretArn
+
+  # --- Log group ---
+  NotifierLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/aws/lambda/${FunctionName}'
+      RetentionInDays: !Ref LogRetentionDays
+
+  # --- Lambda function ---
+  NotifierFunction:
+    Type: AWS::Lambda::Function
+    DependsOn:
+      - NotifierLogGroup
+      - RecordingDistribution
+    Properties:
+      FunctionName: !Ref FunctionName
+      Description: Sends OIEA voicemail transcripts and CloudFront-signed WAV URLs (30 days) through SNS.
+      Runtime: python3.12
+      Handler: lambda_function.lambda_handler
+      Architectures: [x86_64]
+      Role: !GetAtt NotifierExecutionRole.Arn
+      Timeout: !Ref LambdaTimeout
+      MemorySize: 256
+      Code:
+        S3Bucket: !Ref CodeBucket
+        S3Key: !Ref CodeKey
+      Environment:
+        Variables:
+          CONNECT_INSTANCE_ID: !Ref ConnectInstanceId
+          SNS_TOPIC_ARN: !Ref SnsTopicArn
+          TRANSCRIPTION_BUCKET: !Ref TranscriptionBucket
+          RECORDING_BUCKET: !Ref RecordingBucket
+          RECORDING_PREFIX: !Ref RecordingPrefix
+          QUEUE_NAME_FILTER: !Ref QueueName
+          TIME_ZONE: America/New_York
+          VMX3_PREFIX: vmx3_
+          # CloudFront signed URL settings
+          CLOUDFRONT_DOMAIN: !GetAtt RecordingDistribution.DomainName
+          CLOUDFRONT_PUBLIC_KEY_ID: !GetAtt CloudFrontPublicKey.Id
+          CF_PRIVATE_KEY_SECRET_ARN: !Ref CloudFrontPrivateKeySecretArn
+          LINK_EXPIRATION_SECONDS: !Ref CloudFrontUrlExpirationSeconds
+      Tags:
+        - Key: Application
+          Value: VMX3
+        - Key: Department
+          Value: OIEA
+        - Key: Environment
+          Value: Production
+
+  # --- Allow S3 to invoke the Lambda (transcription trigger) ---
+  AllowTranscriptionBucketInvoke:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref NotifierFunction
+      Action: lambda:InvokeFunction
+      Principal: s3.amazonaws.com
+      SourceAccount: !Ref AWS::AccountId
+      SourceArn: !Sub 'arn:${AWS::Partition}:s3:::${TranscriptionBucket}'
+
+Outputs:
+  LambdaFunctionName:
+    Description: Deployed Lambda function name.
+    Value: !Ref NotifierFunction
+
+  LambdaFunctionArn:
+    Description: Deployed Lambda function ARN.
+    Value: !GetAtt NotifierFunction.Arn
+
+  LambdaExecutionRoleArn:
+    Description: Lambda execution role ARN.
+    Value: !GetAtt NotifierExecutionRole.Arn
+
+  CloudFrontDistributionId:
+    Description: CloudFront distribution ID.
+    Value: !Ref RecordingDistribution
+
+  CloudFrontDomainName:
+    Description: CloudFront domain name for recordings.
+    Value: !GetAtt RecordingDistribution.DomainName
+
+  CloudFrontKeyGroupId:
+    Description: Key group used for signed URLs.
+    Value: !GetAtt CloudFrontKeyGroup.Id
+
+  ManualNextStep:
+    Description: Required manual step after deployment.
+    Value: Add an S3 ObjectCreated event notification with suffix .json on the transcription bucket targeting this Lambda.
