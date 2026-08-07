@@ -1,1 +1,126 @@
-{"jobName":"vmx3_836b2c37-d969-4c82-a54d-7f10ef9b39b0","accountId":"218627316675","status":"COMPLETED","results":{"transcripts":[{"transcript":"Hello, this is a test of the OIEA voicemail transcription to email service."}],"items":[{"id":0,"type":"pronunciation","alternatives":[{"confidence":"0.999","content":"Hello"}],"start_time":"1.879","end_time":"2.2"},{"id":1,"type":"punctuation","alternatives":[{"confidence":"0.0","content":","}]},{"id":2,"type":"pronunciation","alternatives":[{"confidence":"0.996","content":"this"}],"start_time":"2.329","end_time":"2.49"},{"id":3,"type":"pronunciation","alternatives":[{"confidence":"0.999","content":"is"}],"start_time":"2.49","end_time":"2.769"},{"id":4,"type":"pronunciation","alternatives":[{"confidence":"0.998","content":"a"}],"start_time":"2.769","end_time":"3.13"},{"id":5,"type":"pronunciation","alternatives":[{"confidence":"0.999","content":"test"}],"start_time":"3.13","end_time":"3.369"},{"id":6,"type":"pronunciation","alternatives":[{"confidence":"0.998","content":"of"}],"start_time":"3.369","end_time":"3.609"},{"id":7,"type":"pronunciation","alternatives":[{"confidence":"0.998","content":"the"}],"start_time":"3.609","end_time":"3.809"},{"id":8,"type":"pronunciation","alternatives":[{"confidence":"0.895","content":"OIEA"}],"start_time":"3.809","end_time":"4.639"},{"id":9,"type":"pronunciation","alternatives":[{"confidence":"0.992","content":"voicemail"}],"start_time":"4.639","end_time":"5.09"},{"id":10,"type":"pronunciation","alternatives":[{"confidence":"0.994","content":"transcription"}],"start_time":"5.09","end_time":"5.809"},{"id":11,"type":"pronunciation","alternatives":[{"confidence":"0.999","content":"to"}],"start_time":"5.809","end_time":"6.05"},{"id":12,"type":"pronunciation","alternatives":[{"confidence":"0.998","content":"email"}],"start_time":"6.05","end_time":"6.25"},{"id":13,"type":"pronunciation","alternatives":[{"confidence":"0.996","content":"service"}],"start_time":"6.25","end_time":"6.75"},{"id":14,"type":"punctuation","alternatives":[{"confidence":"0.0","content":"."}]}],"audio_segments":[{"id":0,"transcript":"Hello, this is a test of the OIEA voicemail transcription to email service.","start_time":"1.799","end_time":"6.869","items":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]}]}}
+import json
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
+import boto3
+
+CONNECT_INSTANCE_ID = "72df7bd8-0288-45a0-8889-975a0b6f7074"
+SNS_TOPIC_ARN       = "arn:aws:sns:us-east-1:874244581006:vmx3-oiea-transcripts"
+QUEUE_NAME_FILTER   = "OIEA"
+VMX3_PREFIX         = "vmx3_"
+
+s3   = boto3.client("s3")
+sns  = boto3.client("sns")
+conn = boto3.client("connect")
+
+
+def _get_contact_id_from_job_name(job_name: str) -> str:
+    return job_name[len(VMX3_PREFIX):] if job_name.startswith(VMX3_PREFIX) else job_name
+
+
+def _get_queue_name_via_describe(instance_id: str, contact_id: str) -> str | None:
+    try:
+        dc = conn.describe_contact(InstanceId=instance_id, ContactId=contact_id)
+        queue_id = dc.get("Contact", {}).get("QueueInfo", {}).get("Id")
+        if not queue_id:
+            return None
+        dq = conn.describe_queue(InstanceId=instance_id, QueueId=queue_id)
+        return dq.get("Queue", {}).get("Name")
+    except Exception as e:
+        print(f"Describe queue error for {contact_id}: {e}")
+        return None
+
+
+def _get_attributes(instance_id: str, contact_id: str) -> dict:
+    try:
+        dc = conn.describe_contact(InstanceId=instance_id, ContactId=contact_id)
+        initial_id = dc.get("Contact", {}).get("InitialContactId") or contact_id
+        resp = conn.get_contact_attributes(InstanceId=instance_id, InitialContactId=initial_id)
+        return resp.get("Attributes", {}) or {}
+    except Exception as e:
+        print(f"GetContactAttributes error for {contact_id}: {e}")
+        return {}
+
+
+def _extract_transcript_text(data: dict) -> str:
+    try:
+        return data["results"]["transcripts"][0]["transcript"]
+    except Exception:
+        return ""
+
+
+def lambda_handler(event, context):
+
+    for rec in event.get("Records", []):
+        if rec.get("eventSource") != "aws:s3":
+            continue
+
+        bucket = rec["s3"]["bucket"]["name"]
+        key    = rec["s3"]["object"]["key"]
+
+        if not key.lower().endswith(".json"):
+            print(f"Skipping non-JSON object: s3://{bucket}/{key}")
+            continue
+
+        try:
+            obj  = s3.get_object(Bucket=bucket, Key=key)
+            body = obj["Body"].read()
+            data = json.loads(body.decode("utf-8"))
+        except Exception as e:
+            print(f"Failed to load/parse JSON {key}: {e}")
+            continue
+
+        job_name   = data.get("jobName", "")
+        contact_id = _get_contact_id_from_job_name(job_name)
+        transcript = _extract_transcript_text(data).strip()
+
+        if transcript.lower().startswith("transcription failed"):
+            print(f"Skipping failed transcript for {contact_id}")
+            continue
+
+        # Resolve queue + attributes
+        queue_name = _get_queue_name_via_describe(CONNECT_INSTANCE_ID, contact_id)
+        attrs = _get_attributes(CONNECT_INSTANCE_ID, contact_id)
+
+        if not queue_name:
+            queue_name = attrs.get("QueueName")
+
+        if queue_name != QUEUE_NAME_FILTER:
+            print(f"Skipping non-target queue '{queue_name}'")
+            continue
+
+        # Timestamp (ET + UTC)
+        ts_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+        ts_et  = datetime.now(ZoneInfo("America/New_York")).strftime("%Y-%m-%d %I:%M:%S %p ET")
+
+        # Caller number (flow-set attribute)
+        caller = attrs.get("CallerNumber", "Unknown")
+
+        # CLEAN + PROFESSIONAL message — no Contact ID, no S3 path
+        message = (
+            "===========================================\n"
+            " OIEA Voicemail Notification\n"
+            "===========================================\n\n"
+            f"Queue: {queue_name}\n"
+            f"Caller: {caller}\n"
+            f"Timestamp: {ts_et}  ({ts_utc})\n\n"
+            "-------------------------------------------\n"
+            " Transcript\n"
+            "-------------------------------------------\n"
+            f"{transcript}\n\n"
+            "-------------------------------------------\n"
+            " This automated message was generated by the\n"
+            " OIEA VMX3 Voicemail Transcription System.\n"
+            "-------------------------------------------\n"
+        )
+
+        try:
+            sns.publish(
+                TopicArn=SNS_TOPIC_ARN,
+                Subject="New OIEA Voicemail Transcript",
+                Message=message,
+            )
+            print(f"SNS publish OK for contact {contact_id}")
+        except Exception as e:
+            print(f"SNS publish failed for contact {contact_id}: {e}")
+
+    return {"status": "ok"}
