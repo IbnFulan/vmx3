@@ -1,0 +1,90 @@
+2026-08-07T00:53:30.911-04:00
+INIT_START Runtime Version: python:3.12.mainlinev2.v27	Runtime Version ARN: arn:aws:lambda:us-east-1::runtime:fb4a5cbb4aeb1909cf946882192e0e708d8756b3a866c3ab89a3cfcfffeca7bc
+
+INIT_START Runtime Version: python:3.12.mainlinev2.v27 Runtime Version ARN: arn:aws:lambda:us-east-1::runtime:fb4a5cbb4aeb1909cf946882192e0e708d8756b3a866c3ab89a3cfcfffeca7bc
+2026-08-07T00:53:30.991-04:00
+[WARNING]	2026-08-07T04:53:30.990Z		LAMBDA_WARNING: Unhandled exception. The most likely cause is an issue in the function code. However, in rare cases, a Lambda runtime update can cause unexpected function behavior. For functions using managed runtimes, runtime updates can be triggered by a function change, or can be applied automatically. To determine if the runtime has been updated, check the runtime version in the INIT_START log entry. If this error correlates with a change in the runtime version, you may be able to mitigate this error by temporarily rolling back to the previous runtime version. For more information, see https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html
+
+[WARNING] 2026-08-07T04:53:30.990Z LAMBDA_WARNING: Unhandled exception. The most likely cause is an issue in the function code. However, in rare cases, a Lambda runtime update can cause unexpected function behavior. For functions using managed runtimes, runtime updates can be triggered by a function change, or can be applied automatically. To determine if the runtime has been updated, check the runtime version in the INIT_START log entry. If this error correlates with a change in the runtime version, you may be able to mitigate this error by temporarily rolling back to the previous runtime version. For more information, see https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html
+2026-08-07T00:53:30.991-04:00
+[ERROR] Runtime.ImportModuleError: Unable to import module 'lambda_function': No module named 'lambda_function'
+Traceback (most recent call last):
+
+[ERROR] Runtime.ImportModuleError: Unable to import module 'lambda_function': No module named 'lambda_function' Traceback (most recent call last):
+2026-08-07T00:53:31.045-04:00
+INIT_REPORT Init Duration: 133.73 ms	Phase: init	Status: error	Error Type: Runtime.ImportModuleError
+
+INIT_REPORT Init Duration: 133.73 ms Phase: init Status: error Error Type: Runtime.ImportModuleError
+2026-08-07T00:53:31.105-04:00
+[WARNING]	2026-08-07T04:53:31.105Z		LAMBDA_WARNING: Unhandled exception. The most likely cause is an issue in the function code. However, in rare cases, a Lambda runtime update can cause unexpected function behavior. For functions using managed runtimes, runtime updates can be triggered by a function change, or can be applied automatically. To determine if the runtime has been updated, check the runtime version in the INIT_START log entry. If this error correlates with a change in the runtime version, you may be able to mitigate this error by temporarily rolling back to the previous runtime version. For more information, see https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html
+
+[WARNING] 2026-08-07T04:53:31.105Z LAMBDA_WARNING: Unhandled exception. The most likely cause is an issue in the function code. However, in rare cases, a Lambda runtime update can cause unexpected function behavior. For functions using managed runtimes, runtime updates can be triggered by a function change, or can be applied automatically. To determine if the runtime has been updated, check the runtime version in the INIT_START log entry. If this error correlates with a change in the runtime version, you may be able to mitigate this error by temporarily rolling back to the previous runtime version. For more information, see https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html
+2026-08-07T00:53:31.105-04:00
+[ERROR] Runtime.ImportModuleError: Unable to import module 'lambda_function': No module named 'lambda_function'
+Traceback (most recent call last):
+
+[ERROR] Runtime.ImportModuleError: Unable to import module 'lambda_function': No module named 'lambda_function' Traceback (most recent call last):
+2026-08-07T00:53:31.144-04:00
+INIT_REPORT Init Duration: 84.04 ms	Phase: invoke	Status: error	Error Type: Runtime.ImportModuleError
+
+INIT_REPORT Init Duration: 84.04 ms Phase: invoke Status: error Error Type: Runtime.ImportModuleError
+2026-08-07T00:53:31.144-04:00
+START RequestId: 207f87fd-305c-4b3f-877e-72794e7a5a9c Version: $LATEST
+
+START RequestId: 207f87fd-305c-4b3f-877e-72794e7a5a9c Version: $LATEST
+2026-08-07T00:53:31.149-04:00
+END RequestId: 207f87fd-305c-4b3f-877e-72794e7a5a9c
+
+END RequestId: 207f87fd-305c-4b3f-877e-72794e7a5a9c
+2026-08-07T00:53:31.149-04:00
+REPORT RequestId: 207f87fd-305c-4b3f-877e-72794e7a5a9c	Duration: 95.56 ms	Billed Duration: 96 ms	Memory Size: 256 MB	Max Memory Used: 47 MB	Status: error	Error Type: Runtime.ImportModuleError
+
+REPORT RequestId: 207f87fd-305c-4b3f-877e-72794e7a5a9c Duration: 95.56 ms Billed Duration: 96 ms Memory Size: 256 MB Max Memory Used: 47 MB Status: error Error Type: Runtime.ImportModuleError
+2026-08-07T00:54:49.819-04:00
+[WARNING]	2026-08-07T04:54:49.819Z		LAMBDA_WARNING: Unhandled exception. The most likely cause is an issue in the function code. However, in rare cases, a Lambda runtime update can cause unexpected function behavior. For functions using managed runtimes, runtime updates can be triggered by a function change, or can be applied automatically. To determine if the runtime has been updated, check the runtime version in the INIT_START log entry. If this error correlates with a change in the runtime version, you may be able to mitigate this error by temporarily rolling back to the previous runtime version. For more information, see https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html
+
+[WARNING] 2026-08-07T04:54:49.819Z LAMBDA_WARNING: Unhandled exception. The most likely cause is an issue in the function code. However, in rare cases, a Lambda runtime update can cause unexpected function behavior. For functions using managed runtimes, runtime updates can be triggered by a function change, or can be applied automatically. To determine if the runtime has been updated, check the runtime version in the INIT_START log entry. If this error correlates with a change in the runtime version, you may be able to mitigate this error by temporarily rolling back to the previous runtime version. For more information, see https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html
+2026-08-07T00:54:49.819-04:00
+[ERROR] Runtime.ImportModuleError: Unable to import module 'lambda_function': No module named 'lambda_function'
+Traceback (most recent call last):
+
+[ERROR] Runtime.ImportModuleError: Unable to import module 'lambda_function': No module named 'lambda_function' Traceback (most recent call last):
+2026-08-07T00:54:49.859-04:00
+INIT_REPORT Init Duration: 87.33 ms	Phase: invoke	Status: error	Error Type: Runtime.ImportModuleError
+
+INIT_REPORT Init Duration: 87.33 ms Phase: invoke Status: error Error Type: Runtime.ImportModuleError
+2026-08-07T00:54:49.859-04:00
+START RequestId: dae48a2f-83af-4bfb-8aaa-76bb20bc9230 Version: $LATEST
+
+START RequestId: dae48a2f-83af-4bfb-8aaa-76bb20bc9230 Version: $LATEST
+2026-08-07T00:54:49.864-04:00
+END RequestId: dae48a2f-83af-4bfb-8aaa-76bb20bc9230
+
+END RequestId: dae48a2f-83af-4bfb-8aaa-76bb20bc9230
+2026-08-07T00:54:49.864-04:00
+REPORT RequestId: dae48a2f-83af-4bfb-8aaa-76bb20bc9230	Duration: 98.02 ms	Billed Duration: 99 ms	Memory Size: 256 MB	Max Memory Used: 47 MB	Status: error	Error Type: Runtime.ImportModuleError
+
+REPORT RequestId: dae48a2f-83af-4bfb-8aaa-76bb20bc9230 Duration: 98.02 ms Billed Duration: 99 ms Memory Size: 256 MB Max Memory Used: 47 MB Status: error Error Type: Runtime.ImportModuleError
+2026-08-07T00:55:43.063-04:00
+[WARNING]	2026-08-07T04:55:43.063Z		LAMBDA_WARNING: Unhandled exception. The most likely cause is an issue in the function code. However, in rare cases, a Lambda runtime update can cause unexpected function behavior. For functions using managed runtimes, runtime updates can be triggered by a function change, or can be applied automatically. To determine if the runtime has been updated, check the runtime version in the INIT_START log entry. If this error correlates with a change in the runtime version, you may be able to mitigate this error by temporarily rolling back to the previous runtime version. For more information, see https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html
+
+[WARNING] 2026-08-07T04:55:43.063Z LAMBDA_WARNING: Unhandled exception. The most likely cause is an issue in the function code. However, in rare cases, a Lambda runtime update can cause unexpected function behavior. For functions using managed runtimes, runtime updates can be triggered by a function change, or can be applied automatically. To determine if the runtime has been updated, check the runtime version in the INIT_START log entry. If this error correlates with a change in the runtime version, you may be able to mitigate this error by temporarily rolling back to the previous runtime version. For more information, see https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html
+2026-08-07T00:55:43.064-04:00
+[ERROR] Runtime.ImportModuleError: Unable to import module 'lambda_function': No module named 'lambda_function'
+Traceback (most recent call last):
+
+[ERROR] Runtime.ImportModuleError: Unable to import module 'lambda_function': No module named 'lambda_function' Traceback (most recent call last):
+2026-08-07T00:55:43.103-04:00
+INIT_REPORT Init Duration: 84.98 ms	Phase: invoke	Status: error	Error Type: Runtime.ImportModuleError
+
+INIT_REPORT Init Duration: 84.98 ms Phase: invoke Status: error Error Type: Runtime.ImportModuleError
+2026-08-07T00:55:43.103-04:00
+START RequestId: dae48a2f-83af-4bfb-8aaa-76bb20bc9230 Version: $LATEST
+
+START RequestId: dae48a2f-83af-4bfb-8aaa-76bb20bc9230 Version: $LATEST
+2026-08-07T00:55:43.108-04:00
+END RequestId: dae48a2f-83af-4bfb-8aaa-76bb20bc9230
+
+END RequestId: dae48a2f-83af-4bfb-8aaa-76bb20bc9230
+2026-08-07T00:55:43.108-04:00
+REPORT RequestId: dae48a2f-83af-4bfb-8aaa-76bb20bc9230	Duration: 97.32 ms	Billed Duration: 98 ms	Memory Size: 256 MB	Max Memory Used: 47 MB	Status: error	Error Type: Runtime.ImportModuleError
