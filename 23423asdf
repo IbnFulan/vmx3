@@ -1,18 +1,18 @@
 import json
 import os
-import time
 from datetime import datetime, timezone
 from urllib.parse import unquote_plus
 from zoneinfo import ZoneInfo
 
 import boto3
-from botocore.exceptions import ClientError
 
 
+# Required environment variables
 CONNECT_INSTANCE_ID = os.environ["CONNECT_INSTANCE_ID"]
 SNS_TOPIC_ARN = os.environ["SNS_TOPIC_ARN"]
 RECORDING_BUCKET = os.environ["RECORDING_BUCKET"]
 
+# Optional environment variables
 QUEUE_NAME_FILTER = os.environ.get("QUEUE_NAME_FILTER", "OIEA")
 RECORDING_PREFIX = os.environ.get("RECORDING_PREFIX", "")
 PRESIGNED_URL_EXPIRATION = int(
@@ -21,61 +21,29 @@ PRESIGNED_URL_EXPIRATION = int(
 VMX3_PREFIX = os.environ.get("VMX3_PREFIX", "vmx3_")
 TIME_ZONE = os.environ.get("TIME_ZONE", "America/New_York")
 
+
 s3 = boto3.client("s3")
 sns = boto3.client("sns")
 connect = boto3.client("connect")
 
 
-RETRY_DELAYS = [2, 4, 8, 12, 15]
-
-
 def _get_contact_id_from_job_name(job_name: str) -> str:
     if job_name.startswith(VMX3_PREFIX):
         return job_name[len(VMX3_PREFIX):]
+
     return job_name
 
 
-def _describe_contact_with_retry(
-    instance_id: str,
-    contact_id: str,
-) -> dict:
-    for attempt, delay in enumerate(RETRY_DELAYS, start=1):
-        try:
-            response = connect.describe_contact(
-                InstanceId=instance_id,
-                ContactId=contact_id,
-            )
-            return response.get("Contact", {}) or {}
-
-        except ClientError as exc:
-            error_code = exc.response.get(
-                "Error", {}
-            ).get("Code", "")
-
-            print(
-                f"DescribeContact attempt {attempt} "
-                f"failed for {contact_id}: "
-                f"{error_code} - {exc}"
-            )
-
-            if error_code != "ResourceNotFoundException":
-                return {}
-
-            if attempt < len(RETRY_DELAYS):
-                print(
-                    f"Retrying DescribeContact in "
-                    f"{delay} seconds..."
-                )
-                time.sleep(delay)
-
-        except Exception as exc:
-            print(
-                f"DescribeContact unexpected error "
-                f"for {contact_id}: {exc}"
-            )
-            return {}
-
-    return {}
+def _get_contact(instance_id: str, contact_id: str) -> dict:
+    try:
+        response = connect.describe_contact(
+            InstanceId=instance_id,
+            ContactId=contact_id,
+        )
+        return response.get("Contact", {}) or {}
+    except Exception as exc:
+        print(f"DescribeContact error for {contact_id}: {exc}")
+        return {}
 
 
 def _get_queue_name(
@@ -84,9 +52,7 @@ def _get_queue_name(
     contact_id: str,
 ) -> str | None:
     try:
-        queue_id = contact.get(
-            "QueueInfo", {}
-        ).get("Id")
+        queue_id = contact.get("QueueInfo", {}).get("Id")
 
         if not queue_id:
             return None
@@ -96,88 +62,43 @@ def _get_queue_name(
             QueueId=queue_id,
         )
 
-        return response.get(
-            "Queue", {}
-        ).get("Name")
+        return response.get("Queue", {}).get("Name")
 
     except Exception as exc:
-        print(
-            f"DescribeQueue error for "
-            f"{contact_id}: {exc}"
-        )
+        print(f"DescribeQueue error for {contact_id}: {exc}")
         return None
 
 
-def _get_attributes_with_retry(
+def _get_attributes(
     instance_id: str,
     contact: dict,
     contact_id: str,
 ) -> dict:
-    initial_contact_id = (
-        contact.get("InitialContactId")
-        or contact_id
-    )
+    try:
+        initial_contact_id = (
+            contact.get("InitialContactId")
+            or contact_id
+        )
 
-    for attempt, delay in enumerate(
-        RETRY_DELAYS,
-        start=1,
-    ):
-        try:
-            response = connect.get_contact_attributes(
-                InstanceId=instance_id,
-                InitialContactId=initial_contact_id,
-            )
+        response = connect.get_contact_attributes(
+            InstanceId=instance_id,
+            InitialContactId=initial_contact_id,
+        )
 
-            return response.get(
-                "Attributes", {}
-            ) or {}
+        return response.get("Attributes", {}) or {}
 
-        except ClientError as exc:
-            error_code = exc.response.get(
-                "Error", {}
-            ).get("Code", "")
-
-            print(
-                f"GetContactAttributes attempt "
-                f"{attempt} failed for "
-                f"{contact_id}: "
-                f"{error_code} - {exc}"
-            )
-
-            if error_code != "ResourceNotFoundException":
-                return {}
-
-            if attempt < len(RETRY_DELAYS):
-                print(
-                    f"Retrying GetContactAttributes "
-                    f"in {delay} seconds..."
-                )
-                time.sleep(delay)
-
-        except Exception as exc:
-            print(
-                f"GetContactAttributes unexpected "
-                f"error for {contact_id}: {exc}"
-            )
-            return {}
-
-    return {}
+    except Exception as exc:
+        print(
+            f"GetContactAttributes error for "
+            f"{contact_id}: {exc}"
+        )
+        return {}
 
 
 def _extract_transcript_text(data: dict) -> str:
     try:
-        return data[
-            "results"
-        ][
-            "transcripts"
-        ][0][
-            "transcript"
-        ]
-    except (
-        KeyError,
-        IndexError,
-        TypeError,
-    ):
+        return data["results"]["transcripts"][0]["transcript"]
+    except (KeyError, IndexError, TypeError):
         return ""
 
 
@@ -185,74 +106,60 @@ def _find_recording_key(
     bucket: str,
     contact_id: str,
 ) -> str | None:
-    paginator = s3.get_paginator(
-        "list_objects_v2"
-    )
+    """
+    Searches the configured recording bucket and optional prefix
+    for a WAV file whose key contains the Connect contact ID.
+    """
+
+    paginator = s3.get_paginator("list_objects_v2")
 
     pagination_config = {
         "Bucket": bucket,
     }
 
     if RECORDING_PREFIX:
-        pagination_config[
-            "Prefix"
-        ] = RECORDING_PREFIX
+        pagination_config["Prefix"] = RECORDING_PREFIX
 
     try:
         matching_objects = []
 
-        for page in paginator.paginate(
-            **pagination_config
-        ):
-            for item in page.get(
-                "Contents", []
-            ):
-                key = item.get(
-                    "Key", ""
-                )
+        for page in paginator.paginate(**pagination_config):
+            for item in page.get("Contents", []):
+                key = item.get("Key", "")
 
                 if (
                     contact_id in key
-                    and key.lower().endswith(
-                        ".wav"
-                    )
+                    and key.lower().endswith(".wav")
                 ):
-                    matching_objects.append(
-                        item
-                    )
+                    matching_objects.append(item)
 
         if not matching_objects:
             print(
-                f"No WAV recording found "
-                f"for contact {contact_id}"
+                f"No WAV recording found for contact "
+                f"{contact_id} in s3://{bucket}/"
+                f"{RECORDING_PREFIX}"
             )
             return None
 
+        # Use the newest matching recording if multiple exist.
         newest_object = max(
             matching_objects,
-            key=lambda item: item[
-                "LastModified"
-            ],
+            key=lambda item: item["LastModified"],
         )
 
-        recording_key = newest_object[
-            "Key"
-        ]
+        recording_key = newest_object["Key"]
 
         print(
-            f"Recording located for "
-            f"{contact_id}: "
-            f"s3://{bucket}/"
-            f"{recording_key}"
+            f"Recording located for {contact_id}: "
+            f"s3://{bucket}/{recording_key}"
         )
 
         return recording_key
 
     except Exception as exc:
         print(
-            f"Failed searching for "
-            f"recording {contact_id}: "
-            f"{exc}"
+            f"Failed searching for recording "
+            f"{contact_id}: {exc}"
         )
         return None
 
@@ -277,23 +184,17 @@ def _generate_recording_url(
                 "Key": recording_key,
                 "ResponseContentDisposition": (
                     "attachment; "
-                    f'filename="OIEA-Voicemail-'
-                    f'{contact_id}.wav"'
+                    f'filename="OIEA-Voicemail-{contact_id}.wav"'
                 ),
-                "ResponseContentType": (
-                    "audio/wav"
-                ),
+                "ResponseContentType": "audio/wav",
             },
-            ExpiresIn=(
-                PRESIGNED_URL_EXPIRATION
-            ),
+            ExpiresIn=PRESIGNED_URL_EXPIRATION,
         )
 
     except Exception as exc:
         print(
-            f"Failed generating recording "
-            f"URL for {contact_id}: "
-            f"{exc}"
+            f"Failed generating recording URL for "
+            f"{contact_id}: {exc}"
         )
         return None
 
@@ -307,16 +208,14 @@ def _build_recording_section(
             " Recording Download\n"
             "-------------------------------------------\n"
             f"{recording_url}\n\n"
-            "The recording link expires "
-            "in seven days.\n\n"
+            "The recording link expires in seven days.\n\n"
         )
 
     return (
         "-------------------------------------------\n"
         " Recording Download\n"
         "-------------------------------------------\n"
-        "The recording link could not "
-        "be generated.\n\n"
+        "The recording link could not be generated.\n\n"
     )
 
 
@@ -326,45 +225,20 @@ def lambda_handler(event, context):
     skipped = 0
     failed = 0
 
-    for record in event.get(
-        "Records", []
-    ):
+    for record in event.get("Records", []):
         processed += 1
 
-        if record.get(
-            "eventSource"
-        ) != "aws:s3":
-            print(
-                "Skipping record that "
-                "is not from S3"
-            )
+        if record.get("eventSource") != "aws:s3":
+            print("Skipping record that is not from S3")
             skipped += 1
             continue
 
-        bucket = record[
-            "s3"
-        ][
-            "bucket"
-        ][
-            "name"
-        ]
+        bucket = record["s3"]["bucket"]["name"]
+        key = unquote_plus(record["s3"]["object"]["key"])
 
-        key = unquote_plus(
-            record[
-                "s3"
-            ][
-                "object"
-            ][
-                "key"
-            ]
-        )
-
-        if not key.lower().endswith(
-            ".json"
-        ):
+        if not key.lower().endswith(".json"):
             print(
-                f"Skipping non-JSON "
-                f"object: "
+                f"Skipping non-JSON object: "
                 f"s3://{bucket}/{key}"
             )
             skipped += 1
@@ -376,53 +250,37 @@ def lambda_handler(event, context):
                 Key=key,
             )
 
-            body = response[
-                "Body"
-            ].read()
-
-            data = json.loads(
-                body.decode("utf-8")
-            )
+            body = response["Body"].read()
+            data = json.loads(body.decode("utf-8"))
 
         except Exception as exc:
             print(
-                f"Failed to load or parse "
-                f"JSON "
-                f"s3://{bucket}/{key}: "
-                f"{exc}"
+                f"Failed to load or parse JSON "
+                f"s3://{bucket}/{key}: {exc}"
             )
             failed += 1
             continue
 
-        job_name = data.get(
-            "jobName", ""
-        )
-
-        contact_id = (
-            _get_contact_id_from_job_name(
-                job_name
-            )
+        job_name = data.get("jobName", "")
+        contact_id = _get_contact_id_from_job_name(
+            job_name
         )
 
         if not contact_id:
             print(
-                f"No contact ID could "
-                f"be resolved from "
+                f"No contact ID could be resolved from "
                 f"jobName '{job_name}'"
             )
             skipped += 1
             continue
 
-        transcript = (
-            _extract_transcript_text(
-                data
-            ).strip()
-        )
+        transcript = _extract_transcript_text(
+            data
+        ).strip()
 
         if not transcript:
             print(
-                f"Skipping empty "
-                f"transcript for "
+                f"Skipping empty transcript for "
                 f"{contact_id}"
             )
             skipped += 1
@@ -432,18 +290,15 @@ def lambda_handler(event, context):
             "transcription failed"
         ):
             print(
-                f"Skipping failed "
-                f"transcript for "
+                f"Skipping failed transcript for "
                 f"{contact_id}"
             )
             skipped += 1
             continue
 
-        contact = (
-            _describe_contact_with_retry(
-                CONNECT_INSTANCE_ID,
-                contact_id,
-            )
+        contact = _get_contact(
+            CONNECT_INSTANCE_ID,
+            contact_id,
         )
 
         queue_name = _get_queue_name(
@@ -452,39 +307,27 @@ def lambda_handler(event, context):
             contact_id,
         )
 
-        attributes = (
-            _get_attributes_with_retry(
-                CONNECT_INSTANCE_ID,
-                contact,
-                contact_id,
-            )
+        attributes = _get_attributes(
+            CONNECT_INSTANCE_ID,
+            contact,
+            contact_id,
         )
 
         if not queue_name:
-            queue_name = (
-                attributes.get(
-                    "QueueName"
-                )
-            )
+            queue_name = attributes.get("QueueName")
 
-        if (
-            queue_name
-            != QUEUE_NAME_FILTER
-        ):
+        if queue_name != QUEUE_NAME_FILTER:
             print(
-                f"Skipping non-target "
-                f"queue '{queue_name}' "
-                f"for contact "
+                f"Skipping non-target queue "
+                f"'{queue_name}' for contact "
                 f"{contact_id}"
             )
             skipped += 1
             continue
 
-        recording_url = (
-            _generate_recording_url(
-                bucket=RECORDING_BUCKET,
-                contact_id=contact_id,
-            )
+        recording_url = _generate_recording_url(
+            bucket=RECORDING_BUCKET,
+            contact_id=contact_id,
         )
 
         timestamp_utc = datetime.now(
@@ -504,10 +347,8 @@ def lambda_handler(event, context):
             "Unknown",
         )
 
-        recording_section = (
-            _build_recording_section(
-                recording_url
-            )
+        recording_section = _build_recording_section(
+            recording_url
         )
 
         message = (
@@ -516,8 +357,7 @@ def lambda_handler(event, context):
             "===========================================\n\n"
             f"Queue: {queue_name}\n"
             f"Caller: {caller}\n"
-            f"Timestamp: "
-            f"{timestamp_local}  "
+            f"Timestamp: {timestamp_local}  "
             f"({timestamp_utc})\n\n"
             f"{recording_section}"
             "-------------------------------------------\n"
@@ -525,38 +365,31 @@ def lambda_handler(event, context):
             "-------------------------------------------\n"
             f"{transcript}\n\n"
             "-------------------------------------------\n"
-            " This automated message was "
-            "generated by the\n"
-            " OIEA VMX3 Voicemail "
-            "Transcription System.\n"
+            " This automated message was generated by the\n"
+            " OIEA VMX3 Voicemail Transcription System.\n"
             "-------------------------------------------\n"
         )
 
         try:
             sns.publish(
                 TopicArn=SNS_TOPIC_ARN,
-                Subject=(
-                    "New OIEA Voicemail"
-                ),
+                Subject="New OIEA Voicemail",
                 Message=message,
             )
 
             published += 1
 
             print(
-                f"SNS publish successful "
-                f"for contact "
-                f"{contact_id}"
+                f"SNS publish successful for "
+                f"contact {contact_id}"
             )
 
         except Exception as exc:
             failed += 1
 
             print(
-                f"SNS publish failed "
-                f"for contact "
-                f"{contact_id}: "
-                f"{exc}"
+                f"SNS publish failed for "
+                f"contact {contact_id}: {exc}"
             )
 
     result = {
@@ -567,8 +400,6 @@ def lambda_handler(event, context):
         "failed": failed,
     }
 
-    print(
-        json.dumps(result)
-    )
+    print(json.dumps(result))
 
     return result
