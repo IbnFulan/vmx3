@@ -1,0 +1,246 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creates an AWS Lambda function for Amazon Connect queue email notifications
+
+Metadata:
+  'AWS::CloudFormation::Interface':
+    ParameterGroups:
+      - Label:
+          default: Lambda Name Parameters (name will be "project-application-purpose")
+        Parameters:
+          - pProject
+          - pApplicationName
+          - pPurpose
+      - Label:
+          default: Lambda Parameters
+        Parameters:
+          - pSnsTopicArn
+          - pMemorySize
+          - pTimeout
+      - Label:
+          default: Static Parameters (DO NOT CHANGE)
+        Parameters:
+          - pSsmSupportGroup
+          - pSsmAppGroup
+          - pSsmLifeCycle
+          - pSsmBusiness
+          - pSsmTeam
+
+    ParameterLabels:
+      pProject:
+        default: Project
+      pApplicationName:
+        default: Application
+      pPurpose:
+        default: Purpose
+      pSnsTopicArn:
+        default: SNS Topic ARN
+      pMemorySize:
+        default: Lambda Memory (MB)
+      pTimeout:
+        default: Lambda Timeout (seconds)
+      pSsmSupportGroup:
+        default: Support Group
+      pSsmAppGroup:
+        default: Application Group
+      pSsmLifeCycle:
+        default: Lifecycle
+      pSsmBusiness:
+        default: Business
+      pSsmTeam:
+        default: Team
+
+Parameters:
+  # Tags for naming objects
+  pProject:
+    Type: String
+    Description: Enter the Project abbreviation, no spaces allowed.
+
+  pApplicationName:
+    Type: String
+    Description: Enter the application abbreviation, no spaces allowed. If you are not sure then use the value from the project name in GitHub.
+
+  pPurpose:
+    Type: String
+    Description: Enter the general purpose of the resource, no spaces allowed.
+    ConstraintDescription: Must specify value
+    AllowedPattern: '(^[a-zA-Z0-9]+$)'
+
+  # Lambda configuration parameters
+  pSnsTopicArn:
+    Type: String
+    Description: ARN of the SNS topic used for Amazon Connect queue alert emails.
+    AllowedPattern: '^arn:aws[a-zA-Z-]*:sns:[a-z0-9-]+:[0-9]{12}:.+$'
+
+  pMemorySize:
+    Type: Number
+    Description: Memory allocated to the Lambda function in MB.
+    Default: 128
+    MinValue: 128
+    MaxValue: 10240
+
+  pTimeout:
+    Type: Number
+    Description: Lambda timeout in seconds. Keep this below the Amazon Connect flow Lambda timeout.
+    Default: 5
+    MinValue: 1
+    MaxValue: 8
+
+  # Tagging parameters from Systems Manager
+  pSsmSupportGroup:
+    Type: AWS::SSM::Parameter::Value<String>
+    Description: Support Group conveys email distribution list of the group that is supporting the resource (DO NOT MODIFY)
+    Default: /account/config/SupportGroup
+    AllowedValues:
+      - /account/config/SupportGroup
+
+  pSsmAppGroup:
+    Type: AWS::SSM::Parameter::Value<String>
+    Description: App Group conveys the application group the resource belongs to (DO NOT MODIFY)
+    Default: /account/config/AppGroup
+    AllowedValues:
+      - /account/config/AppGroup
+
+  pSsmLifeCycle:
+    Type: AWS::SSM::Parameter::Value<String>
+    Description: LifeCycle conveys the lifecycle of the resource (DO NOT MODIFY)
+    Default: /account/config/LifeCycle
+    AllowedValues:
+      - /account/config/LifeCycle
+
+  pSsmBusiness:
+    Type: AWS::SSM::Parameter::Value<String>
+    Description: Business conveys the division or office associated with the resource (DO NOT MODIFY)
+    Default: /account/config/Business
+    AllowedValues:
+      - /account/config/Business
+
+  pSsmTeam:
+    Type: AWS::SSM::Parameter::Value<String>
+    Description: Team conveys the team or branch associated with the resource (DO NOT MODIFY)
+    Default: /account/config/Team
+    AllowedValues:
+      - /account/config/Team
+
+Resources:
+  rLambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Description: Execution role for the Amazon Connect queue alert Lambda function
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      ManagedPolicyArns:
+        - !Sub 'arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+      Policies:
+        - PolicyName: PublishQueueAlertsToSns
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - sns:Publish
+                Resource: !Ref pSnsTopicArn
+      Tags:
+        - Key: LifeCycle
+          Value: !Ref pSsmLifeCycle
+        - Key: Business
+          Value: !Ref pSsmBusiness
+        - Key: SupportGroup
+          Value: !Ref pSsmSupportGroup
+        - Key: AppGroup
+          Value: !Ref pSsmAppGroup
+        - Key: ApplicationName
+          Value: !Ref pApplicationName
+        - Key: Team
+          Value: !Ref pSsmTeam
+        - Key: CloudFormationStack
+          Value: !Ref AWS::StackId
+
+  rLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub '${pProject}-${pApplicationName}-${pPurpose}'
+      Description: Publishes Amazon Connect queue notifications to an SNS email topic
+      Runtime: python3.13
+      Handler: index.lambda_handler
+      Architectures:
+        - x86_64
+      MemorySize: !Ref pMemorySize
+      Timeout: !Ref pTimeout
+      Role: !GetAtt rLambdaExecutionRole.Arn
+      Environment:
+        Variables:
+          SNS_TOPIC_ARN: !Ref pSnsTopicArn
+      Code:
+        ZipFile: |
+          import os
+          import boto3
+
+          sns = boto3.client("sns")
+          TOPIC_ARN = os.environ["SNS_TOPIC_ARN"]
+
+          def lambda_handler(event, context):
+              details = event.get("Details", {})
+              contact_data = details.get("ContactData", {})
+              parameters = details.get("Parameters", {})
+
+              queue_data = contact_data.get("Queue") or {}
+              queue_name = queue_data.get("Name", "UnknownQueue")
+              contact_id = contact_data.get("ContactId", "Unknown")
+              alert_type = parameters.get("alertType", "QueueAlert")
+
+              subject = f"Connect Queue Alert - {queue_name}"
+
+              message = (
+                  "Amazon Connect queue notification\n\n"
+                  f"Queue: {queue_name}\n"
+                  f"Alert: {alert_type}\n"
+                  f"Contact ID: {contact_id}\n"
+              )
+
+              response = sns.publish(
+                  TopicArn=TOPIC_ARN,
+                  Subject=subject,
+                  Message=message
+              )
+
+              return {
+                  "status": "SUCCESS",
+                  "messageId": response["MessageId"]
+              }
+      Tags:
+        - Key: Name
+          Value: !Sub '${pProject}-${pApplicationName}-${pPurpose}'
+        - Key: LifeCycle
+          Value: !Ref pSsmLifeCycle
+        - Key: Business
+          Value: !Ref pSsmBusiness
+        - Key: SupportGroup
+          Value: !Ref pSsmSupportGroup
+        - Key: AppGroup
+          Value: !Ref pSsmAppGroup
+        - Key: ApplicationName
+          Value: !Ref pApplicationName
+        - Key: Team
+          Value: !Ref pSsmTeam
+        - Key: CloudFormationStack
+          Value: !Ref AWS::StackId
+
+Outputs:
+  oLambdaFunctionName:
+    Description: Name of the Lambda function
+    Value: !Ref rLambda
+
+  oLambdaFunctionArn:
+    Description: ARN of the Lambda function
+    Value: !GetAtt rLambda.Arn
+
+  oLambdaExecutionRoleArn:
+    Description: ARN of the Lambda execution role
+    Value: !GetAtt rLambdaExecutionRole.Arn
