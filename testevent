@@ -1,0 +1,13 @@
+{
+  "Details": {
+    "ContactData": {
+      "ContactId": "test-contact-123",
+      "Queue": {
+        "Name": "Help Desk"
+      }
+    },
+    "Parameters": {
+      "alertType": "3Minute"
+    }
+  }
+}
