@@ -1,0 +1,390 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creates an AWS Lambda function that writes ACW form results to the original Amazon Connect voice contact
+
+Metadata:
+  'AWS::CloudFormation::Interface':
+    ParameterGroups:
+      - Label:
+          default: Lambda Name Parameters (name will be "project-application-purpose")
+        Parameters:
+          - pProject
+          - pApplicationName
+          - pPurpose
+      - Label:
+          default: Amazon Connect Parameters
+        Parameters:
+          - pConnectInstanceArn
+      - Label:
+          default: Lambda Parameters
+        Parameters:
+          - pMemorySize
+          - pTimeout
+      - Label:
+          default: Static Parameters (DO NOT CHANGE)
+        Parameters:
+          - pSsmSupportGroup
+          - pSsmAppGroup
+          - pSsmLifeCycle
+          - pSsmBusiness
+          - pSsmTeam
+
+    ParameterLabels:
+      pProject:
+        default: Project
+      pApplicationName:
+        default: Application
+      pPurpose:
+        default: Purpose
+      pConnectInstanceArn:
+        default: Amazon Connect Instance ARN
+      pMemorySize:
+        default: Lambda Memory (MB)
+      pTimeout:
+        default: Lambda Timeout (seconds)
+      pSsmSupportGroup:
+        default: Support Group
+      pSsmAppGroup:
+        default: Application Group
+      pSsmLifeCycle:
+        default: Lifecycle
+      pSsmBusiness:
+        default: Business
+      pSsmTeam:
+        default: Team
+
+Parameters:
+  pProject:
+    Type: String
+    Description: Enter the Project abbreviation, no spaces allowed.
+
+  pApplicationName:
+    Type: String
+    Description: Enter the application abbreviation, no spaces allowed. If you are not sure then use the value from the project name in GitHub.
+
+  pPurpose:
+    Type: String
+    Description: Enter the general purpose of the resource, no spaces allowed.
+    ConstraintDescription: Must specify value
+    AllowedPattern: '(^[a-zA-Z0-9]+$)'
+
+  pConnectInstanceArn:
+    Type: String
+    Description: ARN of the Amazon Connect instance that will invoke this Lambda function.
+    AllowedPattern: '^arn:aws[a-zA-Z-]*:connect:[a-z0-9-]+:[0-9]{12}:instance/[a-zA-Z0-9-]+$'
+
+  pMemorySize:
+    Type: Number
+    Description: Memory allocated to the Lambda function in MB.
+    Default: 128
+    MinValue: 128
+    MaxValue: 10240
+
+  pTimeout:
+    Type: Number
+    Description: Lambda timeout in seconds. Keep this below the Amazon Connect synchronous flow Lambda timeout.
+    Default: 5
+    MinValue: 1
+    MaxValue: 8
+
+  pSsmSupportGroup:
+    Type: AWS::SSM::Parameter::Value<String>
+    Description: Support Group conveys email distribution list of the group that is supporting the resource (DO NOT MODIFY)
+    Default: /account/config/SupportGroup
+    AllowedValues:
+      - /account/config/SupportGroup
+
+  pSsmAppGroup:
+    Type: AWS::SSM::Parameter::Value<String>
+    Description: App Group conveys the application group the resource belongs to (DO NOT MODIFY)
+    Default: /account/config/AppGroup
+    AllowedValues:
+      - /account/config/AppGroup
+
+  pSsmLifeCycle:
+    Type: AWS::SSM::Parameter::Value<String>
+    Description: LifeCycle conveys the lifecycle of the resource (DO NOT MODIFY)
+    Default: /account/config/LifeCycle
+    AllowedValues:
+      - /account/config/LifeCycle
+
+  pSsmBusiness:
+    Type: AWS::SSM::Parameter::Value<String>
+    Description: Business conveys the division or office associated with the resource (DO NOT MODIFY)
+    Default: /account/config/Business
+    AllowedValues:
+      - /account/config/Business
+
+  pSsmTeam:
+    Type: AWS::SSM::Parameter::Value<String>
+    Description: Team conveys the team or branch associated with the resource (DO NOT MODIFY)
+    Default: /account/config/Team
+    AllowedValues:
+      - /account/config/Team
+
+Resources:
+  rLambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Description: Execution role for the Amazon Connect ACW contact attribute Lambda function
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      ManagedPolicyArns:
+        - !Sub 'arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+      Policies:
+        - PolicyName: UpdateConnectContactAttributes
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - connect:UpdateContactAttributes
+                Resource: !Sub '${pConnectInstanceArn}/contact/*'
+      Tags:
+        - Key: LifeCycle
+          Value: !Ref pSsmLifeCycle
+        - Key: Business
+          Value: !Ref pSsmBusiness
+        - Key: SupportGroup
+          Value: !Ref pSsmSupportGroup
+        - Key: AppGroup
+          Value: !Ref pSsmAppGroup
+        - Key: ApplicationName
+          Value: !Ref pApplicationName
+        - Key: Team
+          Value: !Ref pSsmTeam
+        - Key: CloudFormationStack
+          Value: !Ref AWS::StackId
+
+  rLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub '${pProject}-${pApplicationName}-${pPurpose}'
+      Description: Writes Amazon Connect ACW form results to the original voice contact
+      Runtime: python3.13
+      Handler: index.lambda_handler
+      Architectures:
+        - x86_64
+      MemorySize: !Ref pMemorySize
+      Timeout: !Ref pTimeout
+      Role: !GetAtt rLambdaExecutionRole.Arn
+      Environment:
+        Variables:
+          CONNECT_INSTANCE_ARN: !Ref pConnectInstanceArn
+      Code:
+        ZipFile: |
+          import os
+          import re
+          from datetime import datetime, timezone
+
+          import boto3
+
+          connect = boto3.client("connect")
+          CONNECT_INSTANCE_ARN = os.environ["CONNECT_INSTANCE_ARN"]
+
+          RESERVED_PARAMETER_KEYS = {
+              "originalContactId",
+              "targetContactId",
+              "OriginalContactId",
+              "TargetContactId",
+          }
+
+          def _first_nonempty(*values):
+              for value in values:
+                  if value is not None and str(value).strip() != "":
+                      return str(value)
+              return None
+
+          def _safe_attribute_key(value):
+              key = re.sub(r"[^A-Za-z0-9_-]", "_", str(value))
+              return key[:32767]
+
+          def _resolve_target_contact_id(contact_data, parameters, contact_attributes):
+              explicit_target = _first_nonempty(
+                  parameters.get("originalContactId"),
+                  parameters.get("targetContactId"),
+                  parameters.get("OriginalContactId"),
+                  parameters.get("TargetContactId"),
+                  contact_attributes.get("OriginalVoiceContactId"),
+                  contact_attributes.get("OriginalContactId"),
+              )
+
+              if explicit_target:
+                  return explicit_target
+
+              current_contact_id = contact_data.get("ContactId")
+              initial_contact_id = contact_data.get("InitialContactId")
+              channel = str(contact_data.get("Channel", "")).upper()
+
+              # For a voice contact, the InitialContactId is the correct target.
+              if channel == "VOICE" and initial_contact_id:
+                  return initial_contact_id
+
+              # For a related ACW contact, Connect may preserve the original
+              # InitialContactId. Only use it automatically when it differs
+              # from the current contact so we do not accidentally update an
+              # unrelated standalone chat contact.
+              if (
+                  initial_contact_id
+                  and current_contact_id
+                  and initial_contact_id != current_contact_id
+              ):
+                  return initial_contact_id
+
+              return None
+
+          def _build_acw_attributes(parameters, contact_attributes, source_contact_id, source_channel):
+              output = {}
+
+              category = _first_nonempty(
+                  parameters.get("category"),
+                  parameters.get("Category"),
+                  parameters.get("acwCategory"),
+                  parameters.get("ACW_Category"),
+                  contact_attributes.get("Category"),
+                  contact_attributes.get("ACW_Category"),
+              )
+              if category is not None:
+                  output["ACW_Category"] = category
+
+              satisfaction = _first_nonempty(
+                  parameters.get("customerSatisfaction"),
+                  parameters.get("CustomerSatisfaction"),
+                  parameters.get("acwCustomerSatisfaction"),
+                  parameters.get("ACW_CustomerSatisfaction"),
+                  contact_attributes.get("CustomerSatisfaction"),
+                  contact_attributes.get("ACW_CustomerSatisfaction"),
+              )
+              if satisfaction is not None:
+                  output["ACW_CustomerSatisfaction"] = satisfaction
+
+              # Support additional ACW fields without changing the function.
+              # Any Lambda input parameter named acw_<field> or ACW_<field>
+              # is persisted as an ACW_ contact attribute.
+              for key, value in parameters.items():
+                  if key in RESERVED_PARAMETER_KEYS or value is None:
+                      continue
+
+                  key_text = str(key)
+                  if key_text.startswith("acw_"):
+                      suffix = _safe_attribute_key(key_text[4:])
+                      if suffix:
+                          output[f"ACW_{suffix}"] = str(value)
+                  elif key_text.startswith("ACW_"):
+                      output[_safe_attribute_key(key_text)] = str(value)
+
+              # Preserve any ACW_ attributes already present on the ACW contact.
+              for key, value in contact_attributes.items():
+                  if str(key).startswith("ACW_") and value is not None:
+                      output[_safe_attribute_key(key)] = str(value)
+
+              output["ACW_SubmittedAt"] = datetime.now(timezone.utc).isoformat()
+              if source_contact_id:
+                  output["ACW_SourceContactId"] = str(source_contact_id)
+              if source_channel:
+                  output["ACW_SourceChannel"] = str(source_channel)
+
+              return output
+
+          def lambda_handler(event, context):
+              details = event.get("Details", {})
+              contact_data = details.get("ContactData", {}) or {}
+              parameters = details.get("Parameters", {}) or {}
+              contact_attributes = contact_data.get("Attributes", {}) or {}
+
+              instance_arn = contact_data.get("InstanceARN") or CONNECT_INSTANCE_ARN
+              if not instance_arn:
+                  raise ValueError("Amazon Connect instance ARN was not provided.")
+
+              instance_id = instance_arn.rsplit("/", 1)[-1]
+              source_contact_id = contact_data.get("ContactId")
+              source_channel = contact_data.get("Channel", "")
+
+              target_contact_id = _resolve_target_contact_id(
+                  contact_data,
+                  parameters,
+                  contact_attributes,
+              )
+
+              if not target_contact_id:
+                  raise ValueError(
+                      "Unable to determine the original voice contact ID. "
+                      "Pass it to the Lambda block as originalContactId."
+                  )
+
+              acw_attributes = _build_acw_attributes(
+                  parameters,
+                  contact_attributes,
+                  source_contact_id,
+                  source_channel,
+              )
+
+              connect.update_contact_attributes(
+                  InstanceId=instance_id,
+                  InitialContactId=target_contact_id,
+                  Attributes=acw_attributes,
+              )
+
+              return {
+                  "status": "SUCCESS",
+                  "targetContactId": target_contact_id,
+                  "updatedAttributeCount": str(len(acw_attributes)),
+              }
+      Tags:
+        - Key: Name
+          Value: !Sub '${pProject}-${pApplicationName}-${pPurpose}'
+        - Key: LifeCycle
+          Value: !Ref pSsmLifeCycle
+        - Key: Business
+          Value: !Ref pSsmBusiness
+        - Key: SupportGroup
+          Value: !Ref pSsmSupportGroup
+        - Key: AppGroup
+          Value: !Ref pSsmAppGroup
+        - Key: ApplicationName
+          Value: !Ref pApplicationName
+        - Key: Team
+          Value: !Ref pSsmTeam
+        - Key: CloudFormationStack
+          Value: !Ref AWS::StackId
+
+  rLambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref rLambda
+      Principal: connect.amazonaws.com
+      SourceAccount: !Ref AWS::AccountId
+      SourceArn: !Ref pConnectInstanceArn
+
+  rConnectLambdaAssociation:
+    Type: AWS::Connect::IntegrationAssociation
+    DependsOn:
+      - rLambdaInvokePermission
+    Properties:
+      InstanceId: !Ref pConnectInstanceArn
+      IntegrationArn: !GetAtt rLambda.Arn
+      IntegrationType: LAMBDA_FUNCTION
+
+Outputs:
+  oLambdaFunctionName:
+    Description: Name of the Lambda function
+    Value: !Ref rLambda
+
+  oLambdaFunctionArn:
+    Description: ARN of the Lambda function
+    Value: !GetAtt rLambda.Arn
+
+  oLambdaExecutionRoleArn:
+    Description: ARN of the Lambda execution role
+    Value: !GetAtt rLambdaExecutionRole.Arn
+
+  oConnectIntegrationAssociationId:
+    Description: Amazon Connect integration association ID
+    Value: !GetAtt rConnectLambdaAssociation.IntegrationAssociationId
