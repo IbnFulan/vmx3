@@ -1,0 +1,12 @@
+{
+    "pName": "Lambda-ACW-Contact-Attributes",
+    "pVersion": "v0.1",
+    "pTemplate": "lambda-acw-contact-attributes.yaml",
+    "pCFNResoureName": "rLambda",
+    "pDescription": "Lambda Function for writing Amazon Connect ACW results to the original voice contact",
+    "pDistributor": "SEC",
+    "pOwner": "VoIP Team",
+    "pSupportDescription": "Contact the VoIP Team",
+    "pSupportEmail": "oit-iss_voip_team@sec.gov",
+    "pSupportUrl": "https://seceamsprod.servicenowservices.com/secsp?id=home"
+}
