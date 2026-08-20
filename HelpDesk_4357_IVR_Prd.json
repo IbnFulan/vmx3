@@ -1,0 +1,1288 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "Inbound Flow Initialization Module",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": 40,
+      "y": 40
+    },
+    "ActionMetadata": {
+      "Transfer App": {
+        "position": {
+          "x": 1120,
+          "y": 780
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "ThirdPartyPhoneNumber": {
+            "countryCode": "US"
+          }
+        },
+        "CountryCode": "us"
+      },
+      "Delphi": {
+        "position": {
+          "x": 840,
+          "y": 1040
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "ThirdPartyPhoneNumber": {
+            "countryCode": "US"
+          }
+        },
+        "CountryCode": "us"
+      },
+      "No Input Selected Prompt": {
+        "position": {
+          "x": 280,
+          "y": 1040
+        },
+        "isFriendlyName": true
+      },
+      "7a49fc65-424d-448a-898b-e30c0f4b3eb2": {
+        "position": {
+          "x": 280,
+          "y": 1300
+        }
+      },
+      "f6fab1f9-e3a3-4ff4-af3b-962ef8c80c2b": {
+        "position": {
+          "x": -8,
+          "y": 328.8
+        },
+        "parameters": {
+          "TextToSpeechVoice": {
+            "languageCode": "en-US"
+          }
+        },
+        "overrideConsoleVoice": true
+      },
+      "Inbound Flow Initialization Module": {
+        "position": {
+          "x": -206.4,
+          "y": 81.6
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "FlowModuleId": {
+            "displayName": "Inbound_Flow_Initialization_Module",
+            "Alias": {
+              "displayName": "$LATEST"
+            }
+          }
+        },
+        "contactFlowModuleName": "Inbound_Flow_Initialization_Module"
+      },
+      "Holiday Hours": {
+        "position": {
+          "x": -431.2,
+          "y": 649.6
+        },
+        "isFriendlyName": true
+      },
+      "Metric Report Opt 5": {
+        "position": {
+          "x": 560,
+          "y": 520
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Metric Report Opt 6": {
+        "position": {
+          "x": 560,
+          "y": 780
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "7b9e1c5e-e84e-4703-8c70-fb036fe59e48": {
+        "position": {
+          "x": 280,
+          "y": 780
+        }
+      },
+      "Help Desk Hours of Operation": {
+        "position": {
+          "x": 279.2,
+          "y": 259.2
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "HoursOfOperationId": {
+            "displayName": "Help Desk"
+          }
+        },
+        "Hours": {
+          "id": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/operating-hours/521fefce-6aa5-4a59-b90f-a5bc3a352c2c",
+          "text": "Help Desk"
+        }
+      },
+      "Metrics Report Opt 3": {
+        "position": {
+          "x": 840,
+          "y": 520
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Help Desk Queue": {
+        "position": {
+          "x": 1005.6,
+          "y": -330.4
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "QueueId": {
+            "displayName": "Help Desk"
+          }
+        },
+        "queue": {
+          "text": "Help Desk"
+        }
+      },
+      "Error Prompt": {
+        "position": {
+          "x": 590.4,
+          "y": 1037.6
+        },
+        "isFriendlyName": true
+      },
+      "Metric Report Opt 2": {
+        "position": {
+          "x": 840,
+          "y": 260
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Metrics Report Opt 4": {
+        "position": {
+          "x": 840,
+          "y": 780
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Metric Report Opt 1": {
+        "position": {
+          "x": 766.4,
+          "y": -13.6
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "070a24d8-d373-46db-ba26-60a1f54ac083": {
+        "position": {
+          "x": 499.2,
+          "y": -4
+        },
+        "conditionMetadata": [
+          {
+            "id": "2329467d-6ace-4636-a916-79e26b490543",
+            "value": "1"
+          },
+          {
+            "id": "b29faa04-1153-4896-a255-1b5358d4ecb1",
+            "value": "2"
+          },
+          {
+            "id": "3bc08a82-9af7-4c3e-90d5-ae891f92808e",
+            "value": "3"
+          },
+          {
+            "id": "e12e796f-ed92-4c91-ac22-3c09d33f4fe3",
+            "value": "4"
+          },
+          {
+            "id": "ea32037f-df0a-47e7-8f06-fe82e2e9db4b",
+            "value": "5"
+          },
+          {
+            "id": "39685761-7ab4-4570-bb0f-dd5a62c23ef3",
+            "value": "6"
+          },
+          {
+            "id": "20943853-b216-482d-9cdd-c2b9b46e42ac",
+            "value": "9"
+          }
+        ]
+      },
+      "f9e414d3-35ce-471c-bf3d-b6a08fec2784": {
+        "position": {
+          "x": 465.6,
+          "y": -281.6
+        },
+        "parameters": {
+          "HoursOfOperationId": {
+            "displayName": "Help Desk"
+          }
+        },
+        "Hours": {
+          "id": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/operating-hours/521fefce-6aa5-4a59-b90f-a5bc3a352c2c",
+          "text": "Help Desk"
+        }
+      },
+      "Help Desk At Capacity": {
+        "position": {
+          "x": -277.6,
+          "y": 320.8
+        },
+        "isFriendlyName": true
+      },
+      "Transfer Error Prompt": {
+        "position": {
+          "x": 839.2,
+          "y": 1300
+        },
+        "isFriendlyName": true
+      },
+      "d79e5401-817c-4e0c-8d9f-d4692a063ba9": {
+        "position": {
+          "x": 2186.4,
+          "y": -252.8
+        }
+      },
+      "e74de1a0-7f2f-4bbf-ba9e-0db28226a64e": {
+        "position": {
+          "x": 1398.4,
+          "y": -260.8
+        },
+        "parameters": {
+          "Attributes": {
+            "vmx3_from": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicParams": [
+          "vmx3_from"
+        ]
+      },
+      "c7b73778-2724-44b5-a2cc-3bcc50a4ecb0": {
+        "position": {
+          "x": 1927.2,
+          "y": -270.4
+        },
+        "parameters": {
+          "EventHooks": {
+            "DefaultAgentUI": {
+              "displayName": "ACW-Disposition-Codes",
+              "useSetEventHook": true
+            }
+          }
+        }
+      },
+      "fba157f4-f29b-461e-be10-b6adfa96b8c3": {
+        "position": {
+          "x": 1680,
+          "y": -260
+        },
+        "parameters": {
+          "EventHooks": {
+            "CustomerQueue": {
+              "displayName": "HelpDesk_4357_InQueue_Opt2"
+            }
+          }
+        },
+        "contactFlow": {
+          "text": "HelpDesk_4357_InQueue_Opt2",
+          "id": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/contact-flow/64f91ef9-71ae-4582-a190-fc694c2bf854"
+        },
+        "customerOrAgent": true
+      },
+      "Help Desk Queue VMX": {
+        "position": {
+          "x": -168.8,
+          "y": 653.6
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "QueueId": {
+            "displayName": "Help Desk"
+          }
+        },
+        "queue": {
+          "text": "Help Desk"
+        }
+      },
+      "HelpDesk VMX Module": {
+        "position": {
+          "x": 36,
+          "y": 1004
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "FlowModuleId": {
+            "displayName": "HelpDesk_VMX3_VM_Module",
+            "Alias": {
+              "displayName": "$LATEST"
+            }
+          }
+        },
+        "contactFlowModuleName": "HelpDesk_VMX3_VM_Module"
+      },
+      "532aab75-8946-4c66-be80-e14f43c6d567": {
+        "position": {
+          "x": -352.8,
+          "y": 932.8
+        },
+        "parameters": {
+          "Attributes": {
+            "vmx3_from": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicParams": [
+          "vmx3_from"
+        ]
+      },
+      "Opt 3 Video Team": {
+        "position": {
+          "x": 1120,
+          "y": 260
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "QueueId": {
+            "displayName": "Video"
+          }
+        },
+        "queue": {
+          "text": "Video"
+        }
+      },
+      "6ef42463-cce1-4d71-842a-004b6c6b5091": {
+        "position": {
+          "x": 1116.8,
+          "y": 518.4
+        },
+        "parameters": {
+          "Attributes": {
+            "vmx3_from": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicParams": [
+          "vmx3_from"
+        ]
+      },
+      "Vidoe Queue VMX Module": {
+        "position": {
+          "x": 1417.6,
+          "y": 741.6
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "FlowModuleId": {
+            "displayName": "Video_VMX3_VM_Module",
+            "Alias": {
+              "displayName": "$LATEST"
+            }
+          }
+        },
+        "contactFlowModuleName": "Video_VMX3_VM_Module"
+      },
+      "Queue At Capacity Prompt": {
+        "position": {
+          "x": 2100.8,
+          "y": 271.2
+        },
+        "isFriendlyName": true
+      },
+      "0a71ffd5-7b97-4f6d-8d85-a067a90b1d46": {
+        "position": {
+          "x": 1366.4,
+          "y": 258.4
+        },
+        "parameters": {
+          "EventHooks": {
+            "CustomerQueue": {
+              "displayName": "HelpDesk_4357_InQueue_Opt2"
+            }
+          }
+        },
+        "contactFlow": {
+          "text": "HelpDesk_4357_InQueue_Opt2",
+          "id": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/contact-flow/64f91ef9-71ae-4582-a190-fc694c2bf854"
+        },
+        "customerOrAgent": true
+      },
+      "69bcdcd6-4a66-41bb-97ed-fa7c376a92cd": {
+        "position": {
+          "x": 1680,
+          "y": 0
+        }
+      },
+      "874b2770-0681-46db-a595-12bcce95cd6b": {
+        "position": {
+          "x": 1382.4,
+          "y": 497.6
+        },
+        "parameters": {
+          "EventHooks": {
+            "DefaultAgentUI": {
+              "displayName": "ACW-Disposition-Codes",
+              "useSetEventHook": true
+            }
+          }
+        }
+      },
+      "8b2f4e9d-85a9-46c1-82ce-3b16cdf42b3b": {
+        "position": {
+          "x": 1623.2,
+          "y": 264.8
+        },
+        "parameters": {
+          "LambdaFunctionARN": {
+            "displayName": "connect-helpdeskqueue-QueueAlert"
+          }
+        },
+        "dynamicMetadata": {
+          "alertType": false
+        }
+      }
+    },
+    "Annotations": [
+      {
+        "type": "default",
+        "id": "3c5542d1-1e55-4ff9-baad-451d18261689",
+        "content": "To Do:\n\n1. Email notification feature\n4. Complete Options 1,2 & 4\n5. Add Attributes for metric reports\n\n\nComplete:\n\n1. Opt 3, 5, 6, 9\n2. Metric attributes for caller input options\n\n\nNot Needed:\n\n1. Call back feature: deprecated",
+        "actionId": "",
+        "isFolded": false,
+        "position": {
+          "x": 251,
+          "y": -215
+        },
+        "size": {
+          "height": 295,
+          "width": 300
+        }
+      }
+    ],
+    "name": "HelpDesk_4357_IVR_Prd",
+    "description": "",
+    "type": "contactFlow",
+    "status": "published",
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {
+        "ThirdPartyPhoneNumber": "+12025518727",
+        "ThirdPartyConnectionTimeLimitSeconds": "30",
+        "ContinueFlowExecution": "False"
+      },
+      "Identifier": "Transfer App",
+      "Type": "TransferParticipantToThirdParty",
+      "Transitions": {
+        "NextAction": "Transfer Error Prompt",
+        "Errors": [
+          {
+            "NextAction": "Transfer Error Prompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ThirdPartyPhoneNumber": "+12025514402",
+        "ThirdPartyConnectionTimeLimitSeconds": "30",
+        "ContinueFlowExecution": "False"
+      },
+      "Identifier": "Delphi",
+      "Type": "TransferParticipantToThirdParty",
+      "Transitions": {
+        "NextAction": "Transfer Error Prompt",
+        "Errors": [
+          {
+            "NextAction": "Transfer Error Prompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "Text": "We did not receive a response, please call back later. Thank you. Good bye."
+      },
+      "Identifier": "No Input Selected Prompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "7a49fc65-424d-448a-898b-e30c0f4b3eb2",
+        "Errors": [
+          {
+            "NextAction": "7a49fc65-424d-448a-898b-e30c0f4b3eb2",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "7a49fc65-424d-448a-898b-e30c0f4b3eb2",
+      "Type": "DisconnectParticipant",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "TextToSpeechVoice": "Stephen",
+        "TextToSpeechEngine": "Generative",
+        "TextToSpeechStyle": "None"
+      },
+      "Identifier": "f6fab1f9-e3a3-4ff4-af3b-962ef8c80c2b",
+      "Type": "UpdateContactTextToSpeechVoice",
+      "Transitions": {
+        "NextAction": "Help Desk Hours of Operation",
+        "Errors": [
+          {
+            "NextAction": "Help Desk Hours of Operation",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "FlowModuleId": "fec4b543-58f9-4435-899b-6c5d471def32:$LATEST"
+      },
+      "Identifier": "Inbound Flow Initialization Module",
+      "Type": "InvokeFlowModule",
+      "Transitions": {
+        "NextAction": "f6fab1f9-e3a3-4ff4-af3b-962ef8c80c2b",
+        "Errors": [
+          {
+            "NextAction": "f6fab1f9-e3a3-4ff4-af3b-962ef8c80c2b",
+            "ErrorType": "NoMatchingCondition"
+          },
+          {
+            "NextAction": "f6fab1f9-e3a3-4ff4-af3b-962ef8c80c2b",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "SSML": "<speak>\nYou have reached the Securities and Exchange Commission Service Desk.\n\n<break time=\"400ms\"/>\n\nIn observance of the federal holiday, the Service Desk is closed.\n\n<break time=\"300ms\"/>\n\nOur normal business hours are Monday through Friday, from six A.M. to eleven P.M. Eastern Time.\n\n<break time=\"400ms\"/>\n\nPlease leave a voicemail after the tone, and a representative will respond as soon as possible.\n</speak>"
+      },
+      "Identifier": "Holiday Hours",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "Help Desk Queue VMX",
+        "Errors": [
+          {
+            "NextAction": "Help Desk Queue VMX",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "MainMenuSelection": "5",
+          "MainMenuSelectionName": "Mun_Advisor"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Metric Report Opt 5",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Transfer App",
+        "Errors": [
+          {
+            "NextAction": "Transfer App",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "MainMenuSelection": "6",
+          "MainMenuSelectionName": "Delphi_Prism"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Metric Report Opt 6",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Delphi",
+        "Errors": [
+          {
+            "NextAction": "Delphi",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LoopCount": "3"
+      },
+      "Identifier": "7b9e1c5e-e84e-4703-8c70-fb036fe59e48",
+      "Type": "Loop",
+      "Transitions": {
+        "NextAction": "No Input Selected Prompt",
+        "Conditions": [
+          {
+            "NextAction": "Help Desk Hours of Operation",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "ContinueLooping"
+              ]
+            }
+          },
+          {
+            "NextAction": "No Input Selected Prompt",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "DoneLooping"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "Error Prompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "HoursOfOperationId": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/operating-hours/521fefce-6aa5-4a59-b90f-a5bc3a352c2c",
+        "CheckOverride": "True"
+      },
+      "Identifier": "Help Desk Hours of Operation",
+      "Type": "CheckHoursOfOperation",
+      "Transitions": {
+        "NextAction": "Transfer Error Prompt",
+        "Conditions": [
+          {
+            "NextAction": "070a24d8-d373-46db-ba26-60a1f54ac083",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "OpenedByOverride"
+              ]
+            }
+          },
+          {
+            "NextAction": "070a24d8-d373-46db-ba26-60a1f54ac083",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "True"
+              ]
+            }
+          },
+          {
+            "NextAction": "Holiday Hours",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "ClosedByOverride"
+              ]
+            }
+          },
+          {
+            "NextAction": "070a24d8-d373-46db-ba26-60a1f54ac083",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "False"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "Transfer Error Prompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "MainMenuSelection": "3",
+          "MainMenuSelectionName": "AV_Assistance"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Metrics Report Opt 3",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Opt 3 Video Team",
+        "Errors": [
+          {
+            "NextAction": "Opt 3 Video Team",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "QueueId": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/queue/e603c9f5-533d-4d48-99c8-af5c98aff6c1"
+      },
+      "Identifier": "Help Desk Queue",
+      "Type": "UpdateContactTargetQueue",
+      "Transitions": {
+        "NextAction": "e74de1a0-7f2f-4bbf-ba9e-0db28226a64e",
+        "Errors": [
+          {
+            "NextAction": "Transfer Error Prompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "Text": "We are experiencing a technical issue. Please try your call again later. Goodbye."
+      },
+      "Identifier": "Error Prompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "7a49fc65-424d-448a-898b-e30c0f4b3eb2",
+        "Errors": [
+          {
+            "NextAction": "7a49fc65-424d-448a-898b-e30c0f4b3eb2",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "MainMenuSelection": "2",
+          "MainMenuSelectionName": "HelpDesk"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Metric Report Opt 2",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "f9e414d3-35ce-471c-bf3d-b6a08fec2784",
+        "Errors": [
+          {
+            "NextAction": "f9e414d3-35ce-471c-bf3d-b6a08fec2784",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "MainMenuSelection": "4",
+          "MainMenuSelectionName": "Application_Assistance"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Metrics Report Opt 4",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "f9e414d3-35ce-471c-bf3d-b6a08fec2784",
+        "Errors": [
+          {
+            "NextAction": "f9e414d3-35ce-471c-bf3d-b6a08fec2784",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "MainMenuSelection": "1",
+          "MainMenuSelectionName": "Telework_Issue"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Metric Report Opt 1",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "f9e414d3-35ce-471c-bf3d-b6a08fec2784",
+        "Errors": [
+          {
+            "NextAction": "f9e414d3-35ce-471c-bf3d-b6a08fec2784",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "StoreInput": "False",
+        "InputTimeLimitSeconds": "5",
+        "SSML": "<speak>\nYou have reached the Securities and Exchange Commission Service Desk.\n\n<break time=\"400ms\"/>\n\nIf you are experiencing a telework-related issue, press one.\n\n<break time=\"250ms\"/>\n\nTo report a computer or telephone problem, request a service, or reset your password, press two.\n\n<break time=\"250ms\"/>\n\nIf you need audio, video, or other technical assistance in a conference room, press three.\n\n<break time=\"250ms\"/>\n\nIf your computer is working properly, but you need how to assistance with applications such as Word, Excel, or PowerPoint, press four.\n\n<break time=\"250ms\"/>\n\nIf you need assistance using the Municipal Advisor Registration Form, press five.\n\n<break time=\"250ms\"/>\n\nFor assistance with the Delphi Prism financial system, press six.\n\n<break time=\"350ms\"/>\n\nYou can also report a computer problem or request a service by browsing to\n<say-as interpret-as=\"characters\">OIT</say-as>\nHelp.\n\n<break time=\"350ms\"/>\n\nTo repeat these menu options, press nine.\n</speak>"
+      },
+      "Identifier": "070a24d8-d373-46db-ba26-60a1f54ac083",
+      "Type": "GetParticipantInput",
+      "Transitions": {
+        "NextAction": "7b9e1c5e-e84e-4703-8c70-fb036fe59e48",
+        "Conditions": [
+          {
+            "NextAction": "Metric Report Opt 1",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "1"
+              ]
+            }
+          },
+          {
+            "NextAction": "Metric Report Opt 2",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "2"
+              ]
+            }
+          },
+          {
+            "NextAction": "Metrics Report Opt 3",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "3"
+              ]
+            }
+          },
+          {
+            "NextAction": "Metrics Report Opt 4",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "4"
+              ]
+            }
+          },
+          {
+            "NextAction": "Metric Report Opt 5",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "5"
+              ]
+            }
+          },
+          {
+            "NextAction": "Metric Report Opt 6",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "6"
+              ]
+            }
+          },
+          {
+            "NextAction": "Help Desk Hours of Operation",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "9"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "7b9e1c5e-e84e-4703-8c70-fb036fe59e48",
+            "ErrorType": "InputTimeLimitExceeded"
+          },
+          {
+            "NextAction": "7b9e1c5e-e84e-4703-8c70-fb036fe59e48",
+            "ErrorType": "NoMatchingCondition"
+          },
+          {
+            "NextAction": "Transfer Error Prompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "HoursOfOperationId": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/operating-hours/521fefce-6aa5-4a59-b90f-a5bc3a352c2c"
+      },
+      "Identifier": "f9e414d3-35ce-471c-bf3d-b6a08fec2784",
+      "Type": "CheckHoursOfOperation",
+      "Transitions": {
+        "NextAction": "Error Prompt",
+        "Conditions": [
+          {
+            "NextAction": "Help Desk Queue",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "True"
+              ]
+            }
+          },
+          {
+            "NextAction": "070a24d8-d373-46db-ba26-60a1f54ac083",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "False"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "Error Prompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "SSML": "<speak>\nAll of our representatives are currently assisting other callers.\n\n<break time=\"300ms\"/>\n\nPlease leave a voicemail after the tone, and a representative will return your call as soon as possible.\n</speak>"
+      },
+      "Identifier": "Help Desk At Capacity",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "Help Desk Queue VMX",
+        "Errors": [
+          {
+            "NextAction": "Help Desk Queue VMX",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "Text": "We are experiencing a technical issue and are unable to transfer your call at this time. Please try your call again later. Goodbye."
+      },
+      "Identifier": "Transfer Error Prompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "7a49fc65-424d-448a-898b-e30c0f4b3eb2",
+        "Errors": [
+          {
+            "NextAction": "7a49fc65-424d-448a-898b-e30c0f4b3eb2",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "d79e5401-817c-4e0c-8d9f-d4692a063ba9",
+      "Type": "TransferContactToQueue",
+      "Transitions": {
+        "NextAction": "Transfer Error Prompt",
+        "Errors": [
+          {
+            "NextAction": "Help Desk At Capacity",
+            "ErrorType": "QueueAtCapacity"
+          },
+          {
+            "NextAction": "Transfer Error Prompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "vmx3_mode": "guided_task",
+          "vmx3_target": "queue",
+          "vmx3_do_genai_summary": "true",
+          "vmx3_flag": "1",
+          "vmx3_queue_arn": "$.Queue.ARN",
+          "vmx3_lang": "en-US",
+          "vmx3_from": "$.CustomerEndpoint.Address",
+          "vmx3_task_flow": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/contact-flow/20cabb57-2194-4d10-9cd8-bd8f451895f2"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "e74de1a0-7f2f-4bbf-ba9e-0db28226a64e",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "fba157f4-f29b-461e-be10-b6adfa96b8c3",
+        "Errors": [
+          {
+            "NextAction": "fba157f4-f29b-461e-be10-b6adfa96b8c3",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "EventHooks": {
+          "DefaultAgentUI": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/contact-flow/a206bd9a-acd4-4dfa-ab76-82adefb0be79"
+        }
+      },
+      "Identifier": "c7b73778-2724-44b5-a2cc-3bcc50a4ecb0",
+      "Type": "UpdateContactEventHooks",
+      "Transitions": {
+        "NextAction": "d79e5401-817c-4e0c-8d9f-d4692a063ba9",
+        "Errors": [
+          {
+            "NextAction": "d79e5401-817c-4e0c-8d9f-d4692a063ba9",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "EventHooks": {
+          "CustomerQueue": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/contact-flow/64f91ef9-71ae-4582-a190-fc694c2bf854"
+        }
+      },
+      "Identifier": "fba157f4-f29b-461e-be10-b6adfa96b8c3",
+      "Type": "UpdateContactEventHooks",
+      "Transitions": {
+        "NextAction": "c7b73778-2724-44b5-a2cc-3bcc50a4ecb0",
+        "Errors": [
+          {
+            "NextAction": "c7b73778-2724-44b5-a2cc-3bcc50a4ecb0",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "QueueId": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/queue/e603c9f5-533d-4d48-99c8-af5c98aff6c1"
+      },
+      "Identifier": "Help Desk Queue VMX",
+      "Type": "UpdateContactTargetQueue",
+      "Transitions": {
+        "NextAction": "532aab75-8946-4c66-be80-e14f43c6d567",
+        "Errors": [
+          {
+            "NextAction": "Error Prompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "FlowModuleId": "e53482de-600e-420a-b810-3057469a0683:$LATEST"
+      },
+      "Identifier": "HelpDesk VMX Module",
+      "Type": "InvokeFlowModule",
+      "Transitions": {
+        "NextAction": "Error Prompt",
+        "Errors": [
+          {
+            "NextAction": "Error Prompt",
+            "ErrorType": "NoMatchingCondition"
+          },
+          {
+            "NextAction": "Error Prompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "vmx3_mode": "guided_task",
+          "vmx3_target": "queue",
+          "vmx3_queue_arn": "$.Queue.ARN",
+          "vmx3_lang": "en-US",
+          "vmx3_from": "$.CustomerEndpoint.Address"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "532aab75-8946-4c66-be80-e14f43c6d567",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "HelpDesk VMX Module",
+        "Errors": [
+          {
+            "NextAction": "HelpDesk VMX Module",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "QueueId": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/queue/99e93572-3302-4b76-8faa-832aec31cb77"
+      },
+      "Identifier": "Opt 3 Video Team",
+      "Type": "UpdateContactTargetQueue",
+      "Transitions": {
+        "NextAction": "6ef42463-cce1-4d71-842a-004b6c6b5091",
+        "Errors": [
+          {
+            "NextAction": "Transfer Error Prompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "vmx3_from": "$.CustomerEndpoint.Address",
+          "vmx3_task_flow": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/contact-flow/20cabb57-2194-4d10-9cd8-bd8f451895f2",
+          "vmx3_queue_arn": "$.Queue.ARN",
+          "vmx3_lang": "en-US",
+          "vmx3_do_genai_summary": "true",
+          "vmx3_mode": "guided_task",
+          "vmx3_target": "queue"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "6ef42463-cce1-4d71-842a-004b6c6b5091",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "0a71ffd5-7b97-4f6d-8d85-a067a90b1d46",
+        "Errors": [
+          {
+            "NextAction": "0a71ffd5-7b97-4f6d-8d85-a067a90b1d46",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "FlowModuleId": "f41a8aad-a49c-4ab4-98c8-059a0d4f9806:$LATEST"
+      },
+      "Identifier": "Vidoe Queue VMX Module",
+      "Type": "InvokeFlowModule",
+      "Transitions": {
+        "NextAction": "Error Prompt",
+        "Errors": [
+          {
+            "NextAction": "Error Prompt",
+            "ErrorType": "NoMatchingCondition"
+          },
+          {
+            "NextAction": "Error Prompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "SSML": "<speak>\nAll of our representatives are currently assisting other callers.\n\n<break time=\"300ms\"/>\n\nPlease leave a voicemail after the tone, and a representative will return your call as soon as possible.\n</speak>"
+      },
+      "Identifier": "Queue At Capacity Prompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "Vidoe Queue VMX Module",
+        "Errors": [
+          {
+            "NextAction": "Vidoe Queue VMX Module",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "EventHooks": {
+          "CustomerQueue": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/contact-flow/64f91ef9-71ae-4582-a190-fc694c2bf854"
+        }
+      },
+      "Identifier": "0a71ffd5-7b97-4f6d-8d85-a067a90b1d46",
+      "Type": "UpdateContactEventHooks",
+      "Transitions": {
+        "NextAction": "874b2770-0681-46db-a595-12bcce95cd6b",
+        "Errors": [
+          {
+            "NextAction": "874b2770-0681-46db-a595-12bcce95cd6b",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "69bcdcd6-4a66-41bb-97ed-fa7c376a92cd",
+      "Type": "TransferContactToQueue",
+      "Transitions": {
+        "NextAction": "Transfer Error Prompt",
+        "Errors": [
+          {
+            "NextAction": "Queue At Capacity Prompt",
+            "ErrorType": "QueueAtCapacity"
+          },
+          {
+            "NextAction": "Transfer Error Prompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "EventHooks": {
+          "DefaultAgentUI": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/contact-flow/a206bd9a-acd4-4dfa-ab76-82adefb0be79"
+        }
+      },
+      "Identifier": "874b2770-0681-46db-a595-12bcce95cd6b",
+      "Type": "UpdateContactEventHooks",
+      "Transitions": {
+        "NextAction": "8b2f4e9d-85a9-46c1-82ce-3b16cdf42b3b",
+        "Errors": [
+          {
+            "NextAction": "8b2f4e9d-85a9-46c1-82ce-3b16cdf42b3b",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:us-east-1:218627316675:function:connect-helpdeskqueue-QueueAlert",
+        "InvocationTimeLimitSeconds": "5",
+        "InvocationType": "SYNCHRONOUS",
+        "LambdaInvocationAttributes": {
+          "alertType": "EnteredQueue"
+        },
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "8b2f4e9d-85a9-46c1-82ce-3b16cdf42b3b",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "69bcdcd6-4a66-41bb-97ed-fa7c376a92cd",
+        "Errors": [
+          {
+            "NextAction": "69bcdcd6-4a66-41bb-97ed-fa7c376a92cd",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    }
+  ]
+}
