@@ -1,0 +1,2159 @@
+﻿2026-08-20T17:12:57.3604705Z Current runner version: '2.336.0'
+2026-08-20T17:12:57.3635649Z Runner name: 'azure-vnet-5-1000223890'
+2026-08-20T17:12:57.3636968Z Runner group name: 'azure-vnet'
+2026-08-20T17:12:57.3686490Z ##[group]Runner Image Provisioner
+2026-08-20T17:12:57.3687802Z Hosted Compute Agent
+2026-08-20T17:12:57.3688700Z Version: 20260616.556
+2026-08-20T17:12:57.3689661Z Commit: 05ea73cc53e342fdbf317d04a1569da09bda004e
+2026-08-20T17:12:57.3709146Z Build Date: 2026-06-16T16:57:21Z
+2026-08-20T17:12:57.3710209Z ##[endgroup]
+2026-08-20T17:12:57.3712788Z ##[group]Operating System
+2026-08-20T17:12:57.3713796Z Ubuntu
+2026-08-20T17:12:57.3714594Z 24.04.4
+2026-08-20T17:12:57.3715543Z LTS
+2026-08-20T17:12:57.3716316Z ##[endgroup]
+2026-08-20T17:12:57.3717270Z ##[group]Runner Image
+2026-08-20T17:12:57.3718202Z Image: ubuntu-24.04
+2026-08-20T17:12:57.3719054Z Version: 20260810.271.1
+2026-08-20T17:12:57.3721414Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260810.271/images/ubuntu/Ubuntu2404-Readme.md
+2026-08-20T17:12:57.3724024Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260810.271
+2026-08-20T17:12:57.3725591Z ##[endgroup]
+2026-08-20T17:12:57.3727259Z ##[group]GITHUB_TOKEN Permissions
+2026-08-20T17:12:57.3730054Z Contents: read
+2026-08-20T17:12:57.3731299Z Metadata: read
+2026-08-20T17:12:57.3732286Z ##[endgroup]
+2026-08-20T17:12:57.3735268Z Secret source: Actions
+2026-08-20T17:12:57.3737360Z Prepare workflow directory
+2026-08-20T17:12:57.4871509Z Prepare all required actions
+2026-08-20T17:12:57.5024641Z Getting action download info
+2026-08-20T17:12:57.9223690Z Download action repository 'actions/checkout@v6' (SHA:d23441a48e516b6c34aea4fa41551a30e30af803)
+2026-08-20T17:12:58.0781952Z Download action repository 'actions/download-artifact@v8' (SHA:3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c)
+2026-08-20T17:12:58.3926070Z Download action repository 'SEC-OIT-ACES-ACTIONS/pipeline-setup@main' (SHA:c8f4516387f0d008b170898bcc00bc0bcd8f0775)
+2026-08-20T17:12:58.5422168Z Download action repository 'SEC-OIT-ACES-ACTIONS/get-em-api-creds@main' (SHA:96276663851ebd35d1e2d3eb1241538aee3ddb8d)
+2026-08-20T17:12:58.6735001Z Download action repository 'SEC-OIT-ACES-ACTIONS/get-clone-bot-data@main' (SHA:e0ba70f72168e5f4253caf056464f9f1a775aabe)
+2026-08-20T17:12:58.8119383Z Download action repository 'actions/create-github-app-token@v3' (SHA:bcd2ba49218906704ab6c1aa796996da409d3eb1)
+2026-08-20T17:12:59.0384166Z Download action repository 'SEC-OIT-ACES-ACTIONS/target-aws-account@main' (SHA:66506ce2fa8150293e46a4fd678167dabc4ea19a)
+2026-08-20T17:12:59.1657803Z Download action repository 'SEC-OIT-ACES-ACTIONS/download-cfn-guard-rules@main' (SHA:20177d45fe68ba021c332a6d0181e3f20639222f)
+2026-08-20T17:12:59.3242098Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+2026-08-20T17:12:59.6825235Z Download action repository 'actions/setup-python@v6' (SHA:ece7cb06caefa5fff74198d8649806c4678c61a1)
+2026-08-20T17:12:59.7713366Z Download action repository 'actions/upload-artifact@v7' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-08-20T17:13:00.0295317Z Getting action download info
+2026-08-20T17:13:00.1594908Z Download action repository 'SEC-OIT-ACES-ACTIONS/enterprise-pipeline-environment-variable-setup@main' (SHA:384f7ee2f37aa34365c32bacc9e4ec5a650735c8)
+2026-08-20T17:13:00.2815045Z Download action repository 'SEC-OIT-ACES-ACTIONS/install-sec-certs@main' (SHA:7a6701eb6a9506b10410fe5d1c787a0970dceab5)
+2026-08-20T17:13:00.4690828Z Getting action download info
+2026-08-20T17:13:00.5877230Z Download action repository 'SEC-OIT-ACES-ACTIONS/get-secret-from-cyberark@main' (SHA:f769c086dd2fe74da52c2bb9a935f4d5217bca6c)
+2026-08-20T17:13:00.8139327Z Getting action download info
+2026-08-20T17:13:00.9910035Z Getting action download info
+2026-08-20T17:13:01.1089364Z Download action repository 'aws-actions/configure-aws-credentials@v6' (SHA:e6de054238d6b7531b4efff3b6587d9aade6a06c)
+2026-08-20T17:13:01.4691850Z Uses: SEC-OIT-ACES/Enterprise-Workflows/.github/workflows/template-validation.yml@refs/heads/main (1ff74b0f61b6d17784a7242b1d278837888dd344)
+2026-08-20T17:13:01.4696309Z ##[group] Inputs
+2026-08-20T17:13:01.4696641Z   AWS_DEFAULT_REGION: us-east-1
+2026-08-20T17:13:01.4697466Z   CDK_SYNTH: false
+2026-08-20T17:13:01.4697724Z ##[endgroup]
+2026-08-20T17:13:01.4698078Z Complete job name: call-workflow-template-validation / ValidateSTG
+2026-08-20T17:13:01.5393595Z ##[group]Run if [ "" == "*" ] || \
+2026-08-20T17:13:01.5394019Z [36;1mif [ "" == "*" ] || \[0m
+2026-08-20T17:13:01.5394313Z [36;1m   ([ -n "" ] && \[0m
+2026-08-20T17:13:01.5394694Z [36;1m    [[ "SEC-OIT-CONNECT/connect-core-infra" == * ]]); then[0m
+2026-08-20T17:13:01.5395124Z [36;1m  echo "enabled=true" >> $GITHUB_OUTPUT[0m
+2026-08-20T17:13:01.5395473Z [36;1melse[0m
+2026-08-20T17:13:01.5395755Z [36;1m  echo "enabled=false" >> $GITHUB_OUTPUT[0m
+2026-08-20T17:13:01.5396105Z [36;1mfi[0m
+2026-08-20T17:13:01.5439872Z shell: /usr/bin/bash -e {0}
+2026-08-20T17:13:01.5440408Z env:
+2026-08-20T17:13:01.5440820Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:01.5441192Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:01.5441580Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:01.5441879Z ##[endgroup]
+2026-08-20T17:13:01.5781129Z ##[group]Run actions/checkout@v6
+2026-08-20T17:13:01.5781472Z with:
+2026-08-20T17:13:01.5781758Z   repository: SEC-OIT-CONNECT/connect-core-infra
+2026-08-20T17:13:01.5784723Z   token: ***
+2026-08-20T17:13:01.5784974Z   ssh-strict: true
+2026-08-20T17:13:01.5785224Z   ssh-user: git
+2026-08-20T17:13:01.5785467Z   persist-credentials: true
+2026-08-20T17:13:01.5785737Z   clean: true
+2026-08-20T17:13:01.5785980Z   sparse-checkout-cone-mode: true
+2026-08-20T17:13:01.5786268Z   fetch-depth: 1
+2026-08-20T17:13:01.5786499Z   fetch-tags: false
+2026-08-20T17:13:01.5786748Z   show-progress: true
+2026-08-20T17:13:01.5786987Z   lfs: false
+2026-08-20T17:13:01.5787213Z   submodules: false
+2026-08-20T17:13:01.5787455Z   set-safe-directory: true
+2026-08-20T17:13:01.5787746Z   allow-unsafe-pr-checkout: false
+2026-08-20T17:13:01.5788040Z env:
+2026-08-20T17:13:01.5788270Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:01.5788589Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:01.5789142Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:01.5789437Z ##[endgroup]
+2026-08-20T17:13:01.6894712Z Syncing repository: SEC-OIT-CONNECT/connect-core-infra
+2026-08-20T17:13:01.6896945Z ##[group]Getting Git version info
+2026-08-20T17:13:01.6897964Z Working directory is '/home/runner/work/connect-core-infra/connect-core-infra'
+2026-08-20T17:13:01.6900452Z [command]/usr/bin/git version
+2026-08-20T17:13:01.6941703Z git version 2.54.0
+2026-08-20T17:13:01.6961809Z ##[endgroup]
+2026-08-20T17:13:01.6978511Z Temporarily overriding HOME='/home/runner/work/_temp/51f752b1-3470-408d-91b2-1e60989c01b1' before making global git config changes
+2026-08-20T17:13:01.6980272Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-20T17:13:01.6986386Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/connect-core-infra/connect-core-infra
+2026-08-20T17:13:01.7040069Z Deleting the contents of '/home/runner/work/connect-core-infra/connect-core-infra'
+2026-08-20T17:13:01.7045675Z ##[group]Determining repository object format
+2026-08-20T17:13:01.7049089Z ##[endgroup]
+2026-08-20T17:13:01.7050268Z ##[group]Initializing the repository
+2026-08-20T17:13:01.7055174Z [command]/usr/bin/git init /home/runner/work/connect-core-infra/connect-core-infra
+2026-08-20T17:13:01.7142526Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-08-20T17:13:01.7144172Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-08-20T17:13:01.7145923Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-08-20T17:13:01.7146999Z hint: call:
+2026-08-20T17:13:01.7147960Z hint:
+2026-08-20T17:13:01.7148787Z hint: 	git config --global init.defaultBranch <name>
+2026-08-20T17:13:01.7150145Z hint:
+2026-08-20T17:13:01.7151882Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-08-20T17:13:01.7153658Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-08-20T17:13:01.7154967Z hint:
+2026-08-20T17:13:01.7156177Z hint: 	git branch -m <name>
+2026-08-20T17:13:01.7157066Z hint:
+2026-08-20T17:13:01.7158309Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-08-20T17:13:01.7162108Z Initialized empty Git repository in /home/runner/work/connect-core-infra/connect-core-infra/.git/
+2026-08-20T17:13:01.7165301Z [command]/usr/bin/git remote add origin https://github.com/SEC-OIT-CONNECT/connect-core-infra
+2026-08-20T17:13:01.7211480Z ##[endgroup]
+2026-08-20T17:13:01.7213090Z ##[group]Disabling automatic garbage collection
+2026-08-20T17:13:01.7214880Z [command]/usr/bin/git config --local gc.auto 0
+2026-08-20T17:13:01.7249660Z ##[endgroup]
+2026-08-20T17:13:01.7251202Z ##[group]Setting up auth
+2026-08-20T17:13:01.7252694Z Removing SSH command configuration
+2026-08-20T17:13:01.7258709Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-20T17:13:01.7297449Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-20T17:13:01.7660565Z Removing HTTP extra header
+2026-08-20T17:13:01.7668868Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-20T17:13:01.7708423Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-20T17:13:01.7974728Z Removing includeIf entries pointing to credentials config files
+2026-08-20T17:13:01.7976084Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-20T17:13:01.8013002Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-20T17:13:01.8288357Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-9d041055-2f93-4a13-a91d-c3aebeccd4f9.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-08-20T17:13:01.8321888Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/.git.path /home/runner/work/_temp/git-credentials-9d041055-2f93-4a13-a91d-c3aebeccd4f9.config
+2026-08-20T17:13:01.8363338Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-9d041055-2f93-4a13-a91d-c3aebeccd4f9.config
+2026-08-20T17:13:01.8394074Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-9d041055-2f93-4a13-a91d-c3aebeccd4f9.config
+2026-08-20T17:13:01.8439933Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-9d041055-2f93-4a13-a91d-c3aebeccd4f9.config
+2026-08-20T17:13:01.8470616Z ##[endgroup]
+2026-08-20T17:13:01.8472156Z ##[group]Fetching the repository
+2026-08-20T17:13:01.8479986Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +5c9ea0cf61f19469beff877ce9a3aa44b04a0c1a:refs/remotes/origin/release-queue-notifications
+2026-08-20T17:13:02.3033727Z From https://github.com/SEC-OIT-CONNECT/connect-core-infra
+2026-08-20T17:13:02.3198290Z  * [new ref]         5c9ea0cf61f19469beff877ce9a3aa44b04a0c1a -> origin/release-queue-notifications
+2026-08-20T17:13:02.3204392Z [command]/usr/bin/git branch --list --remote origin/release-queue-notifications
+2026-08-20T17:13:02.3205661Z   origin/release-queue-notifications
+2026-08-20T17:13:02.3209042Z [command]/usr/bin/git rev-parse refs/remotes/origin/release-queue-notifications
+2026-08-20T17:13:02.3210559Z 5c9ea0cf61f19469beff877ce9a3aa44b04a0c1a
+2026-08-20T17:13:02.3213730Z ##[endgroup]
+2026-08-20T17:13:02.3216028Z ##[group]Determining the checkout info
+2026-08-20T17:13:02.3217130Z ##[endgroup]
+2026-08-20T17:13:02.3218173Z [command]/usr/bin/git sparse-checkout disable
+2026-08-20T17:13:02.3221849Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-08-20T17:13:02.3247837Z ##[group]Checking out the ref
+2026-08-20T17:13:02.3249163Z [command]/usr/bin/git checkout --progress --force -B release-queue-notifications refs/remotes/origin/release-queue-notifications
+2026-08-20T17:13:02.3324660Z Switched to a new branch 'release-queue-notifications'
+2026-08-20T17:13:02.3339536Z branch 'release-queue-notifications' set up to track 'origin/release-queue-notifications'.
+2026-08-20T17:13:02.3351695Z ##[endgroup]
+2026-08-20T17:13:02.3404992Z [command]/usr/bin/git log -1 --format=%H
+2026-08-20T17:13:02.3419165Z 5c9ea0cf61f19469beff877ce9a3aa44b04a0c1a
+2026-08-20T17:13:02.3638591Z ##[group]Run SEC-OIT-ACES-ACTIONS/pipeline-setup@main
+2026-08-20T17:13:02.3638986Z with:
+2026-08-20T17:13:02.3639221Z   aws_account_id: 416153530692
+2026-08-20T17:13:02.3639506Z   target_lifecycle: stg
+2026-08-20T17:13:02.3639758Z   aws_region: us-east-1
+2026-08-20T17:13:02.3640010Z env:
+2026-08-20T17:13:02.3640236Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:02.3640562Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:02.3641296Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:02.3641597Z ##[endgroup]
+2026-08-20T17:13:02.3700560Z ##[start-action display=Extend environment variables;id=setup-pipeline.set-vars]
+2026-08-20T17:13:02.3928104Z ##[group]Run SEC-OIT-ACES-ACTIONS/enterprise-pipeline-environment-variable-setup@main
+2026-08-20T17:13:02.3928895Z with:
+2026-08-20T17:13:02.3929248Z   aws_account_id: 416153530692
+2026-08-20T17:13:02.3929681Z   target_lifecycle: stg
+2026-08-20T17:13:02.3930066Z env:
+2026-08-20T17:13:02.3930479Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:02.3931239Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:02.3931838Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:02.3932289Z ##[endgroup]
+2026-08-20T17:13:02.3937557Z ##[start-action display=Set and export in vars;id=setup-pipeline.set-vars.set-vars]
+2026-08-20T17:13:02.3968540Z ##[group]Run # Declare values only in the BELOW area
+2026-08-20T17:13:02.3969274Z [36;1m# Declare values only in the BELOW area[0m
+2026-08-20T17:13:02.3969819Z [36;1mexport AWS_REGION=us-east-1[0m
+2026-08-20T17:13:02.3970510Z [36;1mexport CCOE_ROLE_NAME_TO_ASSUME=ccoe-github-SEC-OIT-CONNECT-stg[0m
+2026-08-20T17:13:02.3974346Z [36;1mexport CERTS_DEPOY_KEY="-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW\nQyNTUxOQAAACCfREY7Mj8NALNdWYsa0+q9oINufp0yboMeHZXLm3zrXgAAAJhG1YxTRtWM\nUwAAAAtzc2gtZWQyNTUxOQAAACCfREY7Mj8NALNdWYsa0+q9oINufp0yboMeHZXLm3zrXg\nAAAEDuZXrQRuJ2C9zmrYSelwmM0BqecXc6n+GNMNMVsJ4yPp9ERjsyPw0As11ZixrT6r2g\ng25+nTJugx4dlcubfOteAAAAFXJvYmluc21ASFEtT0lULUw0MTMyOQ==\n-----END OPENSSH PRIVATE KEY-----"[0m
+2026-08-20T17:13:02.3977868Z [36;1mexport CLONE_BOT_ID=947806[0m
+2026-08-20T17:13:02.3978373Z [36;1mexport SHARED_SVCS_ACCT_ID=891376964242[0m
+2026-08-20T17:13:02.3979424Z [36;1mexport EXCEPTIONS_API_URL="https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod"[0m
+2026-08-20T17:13:02.3980442Z [36;1mexport EXCEPTIONS_LOG_LEVEL=info[0m
+2026-08-20T17:13:02.3981400Z [36;1mexport ROLE_NAME_TO_ASSUME=ccoe-github-connect-core-infra-stg[0m
+2026-08-20T17:13:02.3982225Z [36;1mexport ROLE_SESSION_NAME=GitHub_to_AWS_via_Federated_Pipeline[0m
+2026-08-20T17:13:02.3982912Z [36;1m# Declare values only in the ABOVE area[0m
+2026-08-20T17:13:02.3983448Z [36;1m[0m
+2026-08-20T17:13:02.3984045Z [36;1m# The following area is where we export variables into the GitHub environment context[0m
+2026-08-20T17:13:02.3985423Z [36;1mecho "AWS_REGION=${AWS_REGION}" >> $GITHUB_ENV[0m
+2026-08-20T17:13:02.3986595Z [36;1mecho "CCOE_ROLE_NAME_TO_ASSUME=${CCOE_ROLE_NAME_TO_ASSUME}" >> $GITHUB_ENV[0m
+2026-08-20T17:13:02.3987439Z [36;1mecho "CERTS_DEPLOY_KEY=${CERTS_DEPLOY_KEY}" >> $GITHUB_ENV[0m
+2026-08-20T17:13:02.3988121Z [36;1mecho "CLONE_BOT_ID=${CLONE_BOT_ID}" >> $GITHUB_ENV[0m
+2026-08-20T17:13:02.3989049Z [36;1mecho "DATA_ACCT_ARN"="arn:aws:iam::${SHARED_SVCS_ACCT_ID}:role/AWSGitHubPipelineRole" >> $GITHUB_ENV[0m
+2026-08-20T17:13:02.3990035Z [36;1mecho "EXCEPTIONS_API_URL=${EXCEPTIONS_API_URL}" >> $GITHUB_ENV[0m
+2026-08-20T17:13:02.3991158Z [36;1mecho "EXCEPTIONS_LOG_LEVEL=${EXCEPTIONS_LOG_LEVEL}" >> $GITHUB_ENV[0m
+2026-08-20T17:13:02.3991984Z [36;1mecho "ROLE_NAME_TO_ASSUME=${ROLE_NAME_TO_ASSUME}" >> $GITHUB_ENV[0m
+2026-08-20T17:13:02.3992751Z [36;1mecho "ROLE_SESSION_NAME=${ROLE_SESSION_NAME}" >> $GITHUB_ENV[0m
+2026-08-20T17:13:02.3994115Z [36;1mecho "TARGET_CCOE_ACCT_ARN"="arn:aws:iam::416153530692:role/${CCOE_ROLE_NAME_TO_ASSUME}" >> $GITHUB_ENV[0m
+2026-08-20T17:13:02.3996673Z [36;1mecho "TARGET_CUSTOMER_ACCT_ARN=arn:aws:iam::416153530692:role/${ROLE_NAME_TO_ASSUME}" >> $GITHUB_ENV[0m
+2026-08-20T17:13:02.3997803Z [36;1m[0m
+2026-08-20T17:13:02.3998494Z [36;1m# The following area is where we export variables into the GitHub output context[0m
+2026-08-20T17:13:02.3999371Z [36;1mecho "AWS_REGION=${AWS_REGION}" >> $GITHUB_OUTPUT[0m
+2026-08-20T17:13:02.4000136Z [36;1mecho "CCOE_ROLE_NAME_TO_ASSUME=${CCOE_ROLE_NAME_TO_ASSUME}" >> $GITHUB_OUTPUT[0m
+2026-08-20T17:13:02.4001215Z [36;1mecho "CLONE_BOT_ID=${CLONE_BOT_ID}" >> $GITHUB_OUTPUT[0m
+2026-08-20T17:13:02.4002103Z [36;1mecho "DATA_ACCT_ARN"="arn:aws:iam::${SHARED_SVCS_ACCT_ID}:role/${ROLE_NAME_TO_ASSUME}" >> $GITHUB_OUTPUT[0m
+2026-08-20T17:13:02.4003107Z [36;1mecho "EXCEPTIONS_API_URL=${EXCEPTIONS_API_URL}" >> $GITHUB_OUTPUT[0m
+2026-08-20T17:13:02.4003927Z [36;1mecho "EXCEPTIONS_LOG_LEVEL=${EXCEPTIONS_LOG_LEVEL}" >> $GITHUB_OUTPUT[0m
+2026-08-20T17:13:02.4004748Z [36;1mecho "ROLE_NAME_TO_ASSUME=${ROLE_NAME_TO_ASSUME}" >> $GITHUB_OUTPUT[0m
+2026-08-20T17:13:02.4005563Z [36;1mecho "ROLE_SESSION_NAME=${ROLE_SESSION_NAME}" >> $GITHUB_OUTPUT[0m
+2026-08-20T17:13:02.4006579Z [36;1mecho "TARGET_CCOE_ACCT_ARN"="arn:aws:iam::416153530692:role/${CCOE_ROLE_NAME_TO_ASSUME}" >> $GITHUB_OUTPUT[0m
+2026-08-20T17:13:02.4007774Z [36;1mecho "TARGET_CUSTOMER_ACCT_ARN"="arn:aws:iam::416153530692:role/${ROLE_NAME_TO_ASSUME}" >> $GITHUB_OUTPUT[0m
+2026-08-20T17:13:02.4067522Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-20T17:13:02.4068135Z env:
+2026-08-20T17:13:02.4068512Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:02.4069053Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:02.4069663Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:02.4070146Z ##[endgroup]
+2026-08-20T17:13:02.4204219Z ##[end-action id=setup-pipeline.set-vars.set-vars;outcome=success;conclusion=success;duration_ms=26]
+2026-08-20T17:13:02.4250971Z ##[end-action id=setup-pipeline.set-vars;outcome=success;conclusion=success;duration_ms=54]
+2026-08-20T17:13:02.4254910Z ##[start-action display=Install SEC certs [repo bound%5D;id=setup-pipeline.customerCerts]
+2026-08-20T17:13:02.4372419Z ##[group]Run SEC-OIT-ACES-ACTIONS/install-sec-certs@main
+2026-08-20T17:13:02.4373009Z with:
+2026-08-20T17:13:02.4373384Z   cert_download_directory: ./certs
+2026-08-20T17:13:02.4373854Z   cert_file_name: sec_root.zip
+2026-08-20T17:13:02.4374283Z env:
+2026-08-20T17:13:02.4374632Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:02.4375158Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:02.4375753Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:02.4376233Z   AWS_REGION: us-east-1
+2026-08-20T17:13:02.4376747Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:02.4377334Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:02.4377736Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:02.4378283Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:02.4379408Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:02.4380927Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:02.4381475Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:02.4382122Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:02.4382898Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:02.4383864Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:02.4384599Z ##[endgroup]
+2026-08-20T17:13:02.4394804Z ##[start-action display=create the cert directory;id=setup-pipeline.customerCerts.__run]
+2026-08-20T17:13:02.4420238Z ##[group]Run mkdir -p ./certs
+2026-08-20T17:13:02.4421072Z [36;1mmkdir -p ./certs[0m
+2026-08-20T17:13:02.4477206Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-20T17:13:02.4477611Z env:
+2026-08-20T17:13:02.4477869Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:02.4478440Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:02.4478842Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:02.4479173Z   AWS_REGION: us-east-1
+2026-08-20T17:13:02.4479523Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:02.4479895Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:02.4480163Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:02.4480521Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:02.4481954Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:02.4482839Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:02.4483353Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:02.4483982Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:02.4484738Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:02.4485541Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:02.4486014Z ##[endgroup]
+2026-08-20T17:13:02.4574582Z ##[end-action id=setup-pipeline.customerCerts.__run;outcome=success;conclusion=success;duration_ms=17]
+2026-08-20T17:13:02.4577776Z ##[start-action display=Unsecure get of the cert package;id=setup-pipeline.customerCerts.__run_2]
+2026-08-20T17:13:02.4599234Z ##[group]Run cd ./certs 
+2026-08-20T17:13:02.4599635Z [36;1mcd ./certs [0m
+2026-08-20T17:13:02.4599896Z [36;1mset +e[0m
+2026-08-20T17:13:02.4600608Z [36;1mcurl -f -k -o sec_root.zip https://nexus-repo.cicd.prdoit-cuse1.aces.sec.gov/repository/ccoe-sharedservices-raw-prd/sec_root.zip [0m
+2026-08-20T17:13:02.4601562Z [36;1mif [[ $? -ne 0 ]]; [0m
+2026-08-20T17:13:02.4601923Z [36;1mthen[0m
+2026-08-20T17:13:02.4602321Z [36;1m  echo "::warning:: Downloading SEC certs from Nexus PRD failed, trying STG..."[0m
+2026-08-20T17:13:02.4603299Z [36;1m  curl -f -k -o sec_root.zip https://nexus-repo.cicd.stgoit-cuse1.aces.sec.gov/repository/ccoe-sharedservices-raw-prd/sec_root.zip[0m
+2026-08-20T17:13:02.4603970Z [36;1mfi[0m
+2026-08-20T17:13:02.4643384Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-20T17:13:02.4643757Z env:
+2026-08-20T17:13:02.4644001Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:02.4644335Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:02.4644713Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:02.4645014Z   AWS_REGION: us-east-1
+2026-08-20T17:13:02.4645338Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:02.4645689Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:02.4645929Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:02.4646258Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:02.4646888Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:02.4647432Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:02.4647762Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:02.4648351Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:02.4648809Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:02.4649409Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:02.4649861Z ##[endgroup]
+2026-08-20T17:13:02.4775430Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-08-20T17:13:02.4776349Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-08-20T17:13:02.4776852Z 
+2026-08-20T17:13:02.6719935Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-08-20T17:13:02.6730155Z 100  180k  100  180k    0     0   941k      0 --:--:-- --:--:-- --:--:--  946k
+2026-08-20T17:13:02.6738922Z ##[end-action id=setup-pipeline.customerCerts.__run_2;outcome=success;conclusion=success;duration_ms=215]
+2026-08-20T17:13:02.6743742Z ##[start-action display=Unzip certs package;id=setup-pipeline.customerCerts.__run_3]
+2026-08-20T17:13:02.6771973Z ##[group]Run cd ./certs
+2026-08-20T17:13:02.6772444Z [36;1mcd ./certs[0m
+2026-08-20T17:13:02.6772848Z [36;1munzip sec_root.zip -d .[0m
+2026-08-20T17:13:02.6832214Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-20T17:13:02.6832849Z env:
+2026-08-20T17:13:02.6833209Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:02.6833756Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:02.6834368Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:02.6834869Z   AWS_REGION: us-east-1
+2026-08-20T17:13:02.6835392Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:02.6835994Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:02.6836374Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:02.6836917Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:02.6837985Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:02.6838955Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:02.6839503Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:02.6840181Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:02.6841168Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:02.6842173Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:02.6842900Z ##[endgroup]
+2026-08-20T17:13:02.7120928Z Archive:  sec_root.zip
+2026-08-20T17:13:02.7167222Z   inflating: ./sec_root.cer          
+2026-08-20T17:13:02.7169076Z   inflating: ./SEC_Root_CA_2022.cer  
+2026-08-20T17:13:02.7169953Z   inflating: ./SEC_Sub_D1CA1_2022.cer  
+2026-08-20T17:13:02.7171343Z   inflating: ./SEC_Sub_D1CA2_2022.cer  
+2026-08-20T17:13:02.7172162Z   inflating: ./SEC_Sub_D2CA1_2022.cer  
+2026-08-20T17:13:02.7174323Z   inflating: ./SEC_Sub_D2CA2_2022.cer  
+2026-08-20T17:13:02.7201288Z   inflating: ./sec_bundle.pem        
+2026-08-20T17:13:02.7218781Z ##[end-action id=setup-pipeline.customerCerts.__run_3;outcome=success;conclusion=success;duration_ms=47]
+2026-08-20T17:13:02.7222883Z ##[start-action display=Unsecure get of the cert PEMs;id=setup-pipeline.customerCerts.__run_4]
+2026-08-20T17:13:02.7242211Z ##[group]Run cd ./certs 
+2026-08-20T17:13:02.7242532Z [36;1mcd ./certs [0m
+2026-08-20T17:13:02.7242787Z [36;1mset +e[0m
+2026-08-20T17:13:02.7243399Z [36;1mcurl -f -k -o sec_root.zip https://nexus-repo.cicd.prdoit-cuse1.aces.sec.gov/repository/ccoe-sharedservices-raw-prd/sec_bundle.pem[0m
+2026-08-20T17:13:02.7244065Z [36;1mif [[ $? -ne 0 ]]; [0m
+2026-08-20T17:13:02.7244332Z [36;1mthen[0m
+2026-08-20T17:13:02.7244721Z [36;1m  echo "::warning:: Downloading SEC certs from Nexus PRD failed, trying STG..."[0m
+2026-08-20T17:13:02.7245514Z [36;1m  curl -f -k -o sec_root.zip https://nexus-repo.cicd.stgoit-cuse1.aces.sec.gov/repository/ccoe-sharedservices-raw-prd/sec_bundle.pem[0m
+2026-08-20T17:13:02.7246307Z [36;1mfi[0m
+2026-08-20T17:13:02.7301855Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-20T17:13:02.7302457Z env:
+2026-08-20T17:13:02.7302824Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:02.7303360Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:02.7303953Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:02.7304429Z   AWS_REGION: us-east-1
+2026-08-20T17:13:02.7304931Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:02.7305525Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:02.7305905Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:02.7306450Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:02.7307520Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:02.7308414Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:02.7309250Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:02.7309941Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:02.7310900Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:02.7311956Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:02.7312697Z ##[endgroup]
+2026-08-20T17:13:02.7458488Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-08-20T17:13:02.7459563Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-08-20T17:13:02.7462222Z 
+2026-08-20T17:13:02.9461316Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-08-20T17:13:02.9477499Z 100  317k  100  317k    0     0  1618k      0 --:--:-- --:--:-- --:--:-- 1620k
+2026-08-20T17:13:02.9485846Z ##[end-action id=setup-pipeline.customerCerts.__run_4;outcome=success;conclusion=success;duration_ms=226]
+2026-08-20T17:13:02.9489919Z ##[start-action display=Export the bundle PEM file out for NODE;id=setup-pipeline.customerCerts.__run_5]
+2026-08-20T17:13:02.9518375Z ##[group]Run cd ./certs
+2026-08-20T17:13:02.9518797Z [36;1mcd ./certs[0m
+2026-08-20T17:13:02.9519243Z [36;1mexport NODE_EXTRA_CA_CERTS=$(pwd)/sec_bundle.pem[0m
+2026-08-20T17:13:02.9519741Z [36;1mecho "NODE_EXTRA_CA_CERTS=${NODE_EXTRA_CA_CERTS}" >> $GITHUB_ENV[0m
+2026-08-20T17:13:02.9560553Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-20T17:13:02.9561169Z env:
+2026-08-20T17:13:02.9561408Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:02.9561748Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:02.9562125Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:02.9562425Z   AWS_REGION: us-east-1
+2026-08-20T17:13:02.9562745Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:02.9563092Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:02.9563339Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:02.9563683Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:02.9564346Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:02.9564896Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:02.9565223Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:02.9565617Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:02.9566072Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:02.9566664Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:02.9567105Z ##[endgroup]
+2026-08-20T17:13:02.9644494Z ##[end-action id=setup-pipeline.customerCerts.__run_5;outcome=success;conclusion=success;duration_ms=15]
+2026-08-20T17:13:02.9647170Z ##[start-action display=Move and install certs into runner;id=setup-pipeline.customerCerts.__run_6]
+2026-08-20T17:13:02.9664672Z ##[group]Run cd ./certs
+2026-08-20T17:13:02.9664981Z [36;1mcd ./certs[0m
+2026-08-20T17:13:02.9665386Z [36;1mfor file in *.cer; do[0m
+2026-08-20T17:13:02.9665708Z [36;1m    mv -- "$file" "${file%.cer}.crt"[0m
+2026-08-20T17:13:02.9666029Z [36;1mdone[0m
+2026-08-20T17:13:02.9666323Z [36;1msudo cp *.crt /usr/local/share/ca-certificates[0m
+2026-08-20T17:13:02.9666686Z [36;1msudo update-ca-certificates[0m
+2026-08-20T17:13:02.9705037Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-20T17:13:02.9705426Z env:
+2026-08-20T17:13:02.9705659Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:02.9706001Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:02.9706365Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:02.9706675Z   AWS_REGION: us-east-1
+2026-08-20T17:13:02.9706994Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:02.9707357Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:02.9707595Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:02.9708101Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:02.9708763Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:02.9709318Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:02.9709650Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:02.9710046Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:02.9710513Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:02.9711374Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:02.9712029Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:02.9712519Z ##[endgroup]
+2026-08-20T17:13:03.0074754Z Updating certificates in /etc/ssl/certs...
+2026-08-20T17:13:04.1726358Z rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
+2026-08-20T17:13:04.1765551Z 6 added, 0 removed; done.
+2026-08-20T17:13:04.1774901Z Running hooks in /etc/ca-certificates/update.d...
+2026-08-20T17:13:04.4389549Z /etc/ssl/certs/adoptium/cacerts successfully populated.
+2026-08-20T17:13:04.4390820Z done.
+2026-08-20T17:13:04.4431466Z ##[end-action id=setup-pipeline.customerCerts.__run_6;outcome=success;conclusion=success;duration_ms=1478]
+2026-08-20T17:13:04.4436055Z ##[end-action id=setup-pipeline.customerCerts;outcome=success;conclusion=success;duration_ms=2018]
+2026-08-20T17:13:04.4439547Z ##[start-action display=Install SEC certs [org bound%5D;id=setup-pipeline.__SEC-OIT-ACES-ACTIONS_install-sec-certs]
+2026-08-20T17:13:04.4456675Z ##[end-action id=setup-pipeline.__SEC-OIT-ACES-ACTIONS_install-sec-certs;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-08-20T17:13:04.4523321Z ##[group]Run SEC-OIT-ACES-ACTIONS/get-em-api-creds@main
+2026-08-20T17:13:04.4523702Z env:
+2026-08-20T17:13:04.4523935Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:04.4524263Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:04.4524652Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:04.4524957Z   AWS_REGION: us-east-1
+2026-08-20T17:13:04.4525278Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:04.4525631Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:04.4525898Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:04.4526244Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:04.4526902Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:04.4527472Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:04.4527823Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:04.4528269Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:04.4528747Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:04.4529339Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:04.4530196Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:04.4530892Z ##[endgroup]
+2026-08-20T17:13:04.4535068Z ##[start-action display=get oAuth ID;id=em-creds.get-oauth-id]
+2026-08-20T17:13:04.4561802Z ##[group]Run SEC-OIT-ACES-ACTIONS/get-secret-from-cyberark@main
+2026-08-20T17:13:04.4562228Z with:
+2026-08-20T17:13:04.4562518Z   cyberark_safe_name: C2-P-CICD-GitHub-RA
+2026-08-20T17:13:04.4562885Z   cyberark_object_name: exceptions-manager-api-creds
+2026-08-20T17:13:04.4563246Z   cyberark_object_attribute_name: username
+2026-08-20T17:13:04.4563567Z   enterprise_wide_secret: true
+2026-08-20T17:13:04.4563829Z env:
+2026-08-20T17:13:04.4564062Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:04.4564395Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:04.4564769Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:04.4565070Z   AWS_REGION: us-east-1
+2026-08-20T17:13:04.4565391Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:04.4565752Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:04.4565998Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:04.4566337Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:04.4566977Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:04.4567534Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:04.4567866Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:04.4568261Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:04.4568715Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:04.4569314Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:04.4569956Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:04.4570444Z ##[endgroup]
+2026-08-20T17:13:06.6328319Z Authenticating to CyberArk...
+2026-08-20T17:13:06.8601774Z The value is now available as an output called `secret_value`
+2026-08-20T17:13:06.8670383Z ##[end-action id=em-creds.get-oauth-id;outcome=success;conclusion=success;duration_ms=2413]
+2026-08-20T17:13:06.8676147Z ##[start-action display=get oAuth secret;id=em-creds.get-oauth-secret]
+2026-08-20T17:13:06.8717681Z ##[group]Run SEC-OIT-ACES-ACTIONS/get-secret-from-cyberark@main
+2026-08-20T17:13:06.8718314Z with:
+2026-08-20T17:13:06.8718734Z   cyberark_safe_name: C2-P-CICD-GitHub-RA
+2026-08-20T17:13:06.8719318Z   cyberark_object_name: exceptions-manager-api-creds
+2026-08-20T17:13:06.8719927Z   cyberark_object_attribute_name: password
+2026-08-20T17:13:06.8721002Z   enterprise_wide_secret: true
+2026-08-20T17:13:06.8721577Z env:
+2026-08-20T17:13:06.8721927Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:06.8722461Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:06.8723070Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:06.8723587Z   AWS_REGION: us-east-1
+2026-08-20T17:13:06.8724109Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:06.8724690Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:06.8725083Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:06.8725634Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:06.8726721Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:06.8727659Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:06.8728209Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:06.8728882Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:06.8729688Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:06.8731019Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:06.8732134Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:06.8733250Z ##[endgroup]
+2026-08-20T17:13:09.0577275Z Authenticating to CyberArk...
+2026-08-20T17:13:09.2165919Z The value is now available as an output called `secret_value`
+2026-08-20T17:13:09.2244395Z ##[end-action id=em-creds.get-oauth-secret;outcome=success;conclusion=success;duration_ms=2356]
+2026-08-20T17:13:09.2289728Z ##[group]Run export CLIENT_ID=***
+2026-08-20T17:13:09.2290390Z [36;1mexport CLIENT_ID=***[0m
+2026-08-20T17:13:09.2291147Z [36;1mexport CLIENT_SECRET=***[0m
+2026-08-20T17:13:09.2291479Z [36;1mecho "::add-mask::$CLIENT_ID"[0m
+2026-08-20T17:13:09.2316418Z [36;1mecho "CLIENT_ID=${CLIENT_ID}" >> "$GITHUB_ENV"[0m
+2026-08-20T17:13:09.2317118Z [36;1mecho "::add-mask::$CLIENT_SECRET"[0m
+2026-08-20T17:13:09.2317706Z [36;1mecho "CLIENT_SECRET=${CLIENT_SECRET}" >> "$GITHUB_ENV"[0m
+2026-08-20T17:13:09.2360920Z shell: /usr/bin/bash -e {0}
+2026-08-20T17:13:09.2361265Z env:
+2026-08-20T17:13:09.2361520Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:09.2361898Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:09.2362294Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:09.2362620Z   AWS_REGION: us-east-1
+2026-08-20T17:13:09.2362960Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:09.2363323Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:09.2363632Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:09.2363985Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:09.2364659Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:09.2365259Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:09.2365611Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:09.2366029Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:09.2366504Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:09.2367123Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:09.2367805Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:09.2368306Z ##[endgroup]
+2026-08-20T17:13:09.2486030Z ##[group]Run SEC-OIT-ACES-ACTIONS/get-clone-bot-data@main
+2026-08-20T17:13:09.2486411Z env:
+2026-08-20T17:13:09.2486651Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:09.2486995Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:09.2487375Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:09.2487687Z   AWS_REGION: us-east-1
+2026-08-20T17:13:09.2488004Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:09.2488368Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:09.2488616Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:09.2488952Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:09.2489601Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:09.2490173Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:09.2490507Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:09.2491146Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:09.2491613Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:09.2492208Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:09.2492856Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:09.2493476Z   CLIENT_ID: ***
+2026-08-20T17:13:09.2493852Z   CLIENT_SECRET: ***
+2026-08-20T17:13:09.2494101Z ##[endgroup]
+2026-08-20T17:13:09.2497519Z ##[start-action display=get a secret via action;id=cbk.get-secret]
+2026-08-20T17:13:09.2522945Z ##[group]Run SEC-OIT-ACES-ACTIONS/get-secret-from-cyberark@main
+2026-08-20T17:13:09.2523338Z with:
+2026-08-20T17:13:09.2523774Z   cyberark_safe_name: C2-P-CICD-GitHub-RA
+2026-08-20T17:13:09.2524129Z   cyberark_object_name: clone_bot_private_key
+2026-08-20T17:13:09.2524484Z   cyberark_object_attribute_name: password
+2026-08-20T17:13:09.2524817Z   enterprise_wide_secret: true
+2026-08-20T17:13:09.2525093Z env:
+2026-08-20T17:13:09.2525338Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:09.2525674Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:09.2526054Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:09.2526367Z   AWS_REGION: us-east-1
+2026-08-20T17:13:09.2526701Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:09.2527072Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:09.2527338Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:09.2527694Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:09.2528347Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:09.2528961Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:09.2529319Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:09.2529740Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:09.2530222Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:09.2531022Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:09.2531687Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:09.2532274Z   CLIENT_ID: ***
+2026-08-20T17:13:09.2532651Z   CLIENT_SECRET: ***
+2026-08-20T17:13:09.2532915Z ##[endgroup]
+2026-08-20T17:13:11.4576677Z Authenticating to CyberArk...
+2026-08-20T17:13:11.6066365Z The value is now available as an output called `secret_value`
+2026-08-20T17:13:11.6143708Z ##[end-action id=cbk.get-secret;outcome=success;conclusion=success;duration_ms=2364]
+2026-08-20T17:13:11.6285658Z ##[group]Run actions/create-github-app-token@v3
+2026-08-20T17:13:11.6286156Z with:
+2026-08-20T17:13:11.6286526Z   client-id: 947806
+2026-08-20T17:13:11.6294258Z   private-key: ***
+2026-08-20T17:13:11.6294647Z   owner: SEC-OIT-ACES
+2026-08-20T17:13:11.6295063Z   repositories: cloudguard-exceptions-management
+2026-08-20T17:13:11.6295532Z   skip-token-revoke: false
+2026-08-20T17:13:11.6295955Z   github-api-url: https://api.github.com
+2026-08-20T17:13:11.6308907Z env:
+2026-08-20T17:13:11.6309428Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:11.6309960Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:11.6310477Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:11.6311144Z   AWS_REGION: us-east-1
+2026-08-20T17:13:11.6311598Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:11.6312084Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:11.6312439Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:11.6312944Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:11.6313733Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:11.6314435Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:11.6314887Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:11.6315409Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:11.6316006Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:11.6316726Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:11.6317514Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:11.6318185Z   CLIENT_ID: ***
+2026-08-20T17:13:11.6318668Z   CLIENT_SECRET: ***
+2026-08-20T17:13:11.6319018Z ##[endgroup]
+2026-08-20T17:13:11.7191185Z Inputs 'owner' and 'repositories' are set. Creating token for the following repositories:
+2026-08-20T17:13:11.7211808Z - SEC-OIT-ACES/cloudguard-exceptions-management
+2026-08-20T17:13:12.3457475Z ##[group]Run actions/checkout@v6
+2026-08-20T17:13:12.3458159Z with:
+2026-08-20T17:13:12.3458838Z   repository: SEC-OIT-ACES/cloudguard-exceptions-management
+2026-08-20T17:13:12.3459633Z   ref: main
+2026-08-20T17:13:12.3460242Z   path: ./cloudguard-exceptions-management
+2026-08-20T17:13:12.3461163Z   persist-credentials: false
+2026-08-20T17:13:12.3466682Z   token: ***
+2026-08-20T17:13:12.3467253Z   ssh-strict: true
+2026-08-20T17:13:12.3467806Z   ssh-user: git
+2026-08-20T17:13:12.3468329Z   clean: true
+2026-08-20T17:13:12.3468884Z   sparse-checkout-cone-mode: true
+2026-08-20T17:13:12.3469532Z   fetch-depth: 1
+2026-08-20T17:13:12.3470068Z   fetch-tags: false
+2026-08-20T17:13:12.3470625Z   show-progress: true
+2026-08-20T17:13:12.3471542Z   lfs: false
+2026-08-20T17:13:12.3472071Z   submodules: false
+2026-08-20T17:13:12.3472642Z   set-safe-directory: true
+2026-08-20T17:13:12.3473282Z   allow-unsafe-pr-checkout: false
+2026-08-20T17:13:12.3473906Z env:
+2026-08-20T17:13:12.3474344Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:12.3474793Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:12.3475293Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:12.3475716Z   AWS_REGION: us-east-1
+2026-08-20T17:13:12.3476147Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:12.3476628Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:12.3476994Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:12.3477453Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:12.3478249Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:12.3478952Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:12.3479401Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:12.3479926Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:12.3480542Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:12.3481575Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:12.3482367Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:12.3483045Z   CLIENT_ID: ***
+2026-08-20T17:13:12.3483535Z   CLIENT_SECRET: ***
+2026-08-20T17:13:12.3483898Z ##[endgroup]
+2026-08-20T17:13:12.4457916Z Syncing repository: SEC-OIT-ACES/cloudguard-exceptions-management
+2026-08-20T17:13:12.4469533Z ##[group]Getting Git version info
+2026-08-20T17:13:12.4471514Z Working directory is '/home/runner/work/connect-core-infra/connect-core-infra/cloudguard-exceptions-management'
+2026-08-20T17:13:12.4508766Z [command]/usr/bin/git version
+2026-08-20T17:13:12.4552045Z git version 2.54.0
+2026-08-20T17:13:12.4607824Z ##[endgroup]
+2026-08-20T17:13:12.4623438Z Temporarily overriding HOME='/home/runner/work/_temp/ef3ffed8-a088-4c54-886b-a8e44edb73ec' before making global git config changes
+2026-08-20T17:13:12.4625446Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-20T17:13:12.4631135Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/connect-core-infra/connect-core-infra/cloudguard-exceptions-management
+2026-08-20T17:13:12.4676800Z ##[group]Determining repository object format
+2026-08-20T17:13:12.7129894Z ##[endgroup]
+2026-08-20T17:13:12.7146085Z ##[group]Initializing the repository
+2026-08-20T17:13:12.7159576Z [command]/usr/bin/git init /home/runner/work/connect-core-infra/connect-core-infra/cloudguard-exceptions-management
+2026-08-20T17:13:12.7198706Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-08-20T17:13:12.7199971Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-08-20T17:13:12.7201880Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-08-20T17:13:12.7203003Z hint: call:
+2026-08-20T17:13:12.7203834Z hint:
+2026-08-20T17:13:12.7205305Z hint: 	git config --global init.defaultBranch <name>
+2026-08-20T17:13:12.7206840Z hint:
+2026-08-20T17:13:12.7207842Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-08-20T17:13:12.7209552Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-08-20T17:13:12.7210935Z hint:
+2026-08-20T17:13:12.7212797Z hint: 	git branch -m <name>
+2026-08-20T17:13:12.7216231Z hint:
+2026-08-20T17:13:12.7218058Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-08-20T17:13:12.7221416Z Initialized empty Git repository in /home/runner/work/connect-core-infra/connect-core-infra/cloudguard-exceptions-management/.git/
+2026-08-20T17:13:12.7224819Z [command]/usr/bin/git remote add origin https://github.com/SEC-OIT-ACES/cloudguard-exceptions-management
+2026-08-20T17:13:12.7271134Z ##[endgroup]
+2026-08-20T17:13:12.7272765Z ##[group]Disabling automatic garbage collection
+2026-08-20T17:13:12.7273811Z [command]/usr/bin/git config --local gc.auto 0
+2026-08-20T17:13:12.7344896Z ##[endgroup]
+2026-08-20T17:13:12.7346440Z ##[group]Setting up auth
+2026-08-20T17:13:12.7347328Z Removing SSH command configuration
+2026-08-20T17:13:12.7349342Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-20T17:13:12.7475052Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-20T17:13:12.7767705Z Removing HTTP extra header
+2026-08-20T17:13:12.7772885Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-20T17:13:12.7816925Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-20T17:13:12.8082709Z Removing includeIf entries pointing to credentials config files
+2026-08-20T17:13:12.8086851Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-20T17:13:12.8131456Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-20T17:13:12.8414049Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-2cb2ad47-aa08-4a29-8a5f-2c681c8028fa.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-08-20T17:13:12.8476281Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cloudguard-exceptions-management/.git.path /home/runner/work/_temp/git-credentials-2cb2ad47-aa08-4a29-8a5f-2c681c8028fa.config
+2026-08-20T17:13:12.8515372Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cloudguard-exceptions-management/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-2cb2ad47-aa08-4a29-8a5f-2c681c8028fa.config
+2026-08-20T17:13:12.8559473Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/cloudguard-exceptions-management/.git.path /github/runner_temp/git-credentials-2cb2ad47-aa08-4a29-8a5f-2c681c8028fa.config
+2026-08-20T17:13:12.8604033Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/cloudguard-exceptions-management/.git/worktrees/*.path /github/runner_temp/git-credentials-2cb2ad47-aa08-4a29-8a5f-2c681c8028fa.config
+2026-08-20T17:13:12.8639951Z ##[endgroup]
+2026-08-20T17:13:12.8641314Z ##[group]Fetching the repository
+2026-08-20T17:13:12.8651195Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +refs/heads/main*:refs/remotes/origin/main* +refs/tags/main*:refs/tags/main*
+2026-08-20T17:13:13.4317643Z From https://github.com/SEC-OIT-ACES/cloudguard-exceptions-management
+2026-08-20T17:13:13.4318926Z  * [new branch]      main       -> origin/main
+2026-08-20T17:13:13.4348872Z ##[endgroup]
+2026-08-20T17:13:13.4350562Z ##[group]Determining the checkout info
+2026-08-20T17:13:13.4356845Z [command]/usr/bin/git branch --list --remote origin/main
+2026-08-20T17:13:13.4392572Z   origin/main
+2026-08-20T17:13:13.4397177Z ##[endgroup]
+2026-08-20T17:13:13.4402653Z [command]/usr/bin/git sparse-checkout disable
+2026-08-20T17:13:13.4451893Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-08-20T17:13:13.4489977Z ##[group]Checking out the ref
+2026-08-20T17:13:13.4494753Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-08-20T17:13:13.4563433Z Switched to a new branch 'main'
+2026-08-20T17:13:13.4564514Z branch 'main' set up to track 'origin/main'.
+2026-08-20T17:13:13.4568938Z ##[endgroup]
+2026-08-20T17:13:13.4623694Z [command]/usr/bin/git log -1 --format=%H
+2026-08-20T17:13:13.4658771Z b6f1f0068ea146d2f24099c29e9b3078003ccbfc
+2026-08-20T17:13:13.4672995Z ##[group]Removing auth
+2026-08-20T17:13:13.4673885Z Removing SSH command configuration
+2026-08-20T17:13:13.4678798Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-20T17:13:13.4733417Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-20T17:13:13.5007786Z Removing HTTP extra header
+2026-08-20T17:13:13.5013410Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-20T17:13:13.5057626Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-20T17:13:13.5341673Z Removing includeIf entries pointing to credentials config files
+2026-08-20T17:13:13.5345168Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-20T17:13:13.5380438Z includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cloudguard-exceptions-management/.git.path
+2026-08-20T17:13:13.5382444Z includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cloudguard-exceptions-management/.git/worktrees/*.path
+2026-08-20T17:13:13.5392183Z includeif.gitdir:/github/workspace/cloudguard-exceptions-management/.git.path
+2026-08-20T17:13:13.5401682Z includeif.gitdir:/github/workspace/cloudguard-exceptions-management/.git/worktrees/*.path
+2026-08-20T17:13:13.5405813Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cloudguard-exceptions-management/.git.path
+2026-08-20T17:13:13.5427860Z /home/runner/work/_temp/git-credentials-2cb2ad47-aa08-4a29-8a5f-2c681c8028fa.config
+2026-08-20T17:13:13.5449141Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cloudguard-exceptions-management/.git.path /home/runner/work/_temp/git-credentials-2cb2ad47-aa08-4a29-8a5f-2c681c8028fa.config
+2026-08-20T17:13:13.5501770Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cloudguard-exceptions-management/.git/worktrees/*.path
+2026-08-20T17:13:13.5529867Z /home/runner/work/_temp/git-credentials-2cb2ad47-aa08-4a29-8a5f-2c681c8028fa.config
+2026-08-20T17:13:13.5542028Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cloudguard-exceptions-management/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-2cb2ad47-aa08-4a29-8a5f-2c681c8028fa.config
+2026-08-20T17:13:13.5596165Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/cloudguard-exceptions-management/.git.path
+2026-08-20T17:13:13.5628244Z /github/runner_temp/git-credentials-2cb2ad47-aa08-4a29-8a5f-2c681c8028fa.config
+2026-08-20T17:13:13.5638171Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/cloudguard-exceptions-management/.git.path /github/runner_temp/git-credentials-2cb2ad47-aa08-4a29-8a5f-2c681c8028fa.config
+2026-08-20T17:13:13.5678650Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/cloudguard-exceptions-management/.git/worktrees/*.path
+2026-08-20T17:13:13.5711487Z /github/runner_temp/git-credentials-2cb2ad47-aa08-4a29-8a5f-2c681c8028fa.config
+2026-08-20T17:13:13.5719346Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/cloudguard-exceptions-management/.git/worktrees/*.path /github/runner_temp/git-credentials-2cb2ad47-aa08-4a29-8a5f-2c681c8028fa.config
+2026-08-20T17:13:13.5759718Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-20T17:13:13.6027161Z Removing credentials config '/home/runner/work/_temp/git-credentials-2cb2ad47-aa08-4a29-8a5f-2c681c8028fa.config'
+2026-08-20T17:13:13.6045076Z ##[endgroup]
+2026-08-20T17:13:13.6307031Z ##[group]Run actions/create-github-app-token@v3
+2026-08-20T17:13:13.6307519Z with:
+2026-08-20T17:13:13.6307904Z   client-id: 947806
+2026-08-20T17:13:13.6315438Z   private-key: ***
+2026-08-20T17:13:13.6315831Z   owner: SEC-OIT-ACES
+2026-08-20T17:13:13.6316235Z   repositories: cfn-template-resolver
+2026-08-20T17:13:13.6316677Z   skip-token-revoke: false
+2026-08-20T17:13:13.6317121Z   github-api-url: https://api.github.com
+2026-08-20T17:13:13.6317567Z env:
+2026-08-20T17:13:13.6317937Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:13.6318399Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:13.6318914Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:13.6319347Z   AWS_REGION: us-east-1
+2026-08-20T17:13:13.6319802Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:13.6320296Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:13.6320774Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:13.6321287Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:13.6322079Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:13.6322772Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:13.6323231Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:13.6323774Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:13.6324382Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:13.6325126Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:13.6325921Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:13.6326595Z   CLIENT_ID: ***
+2026-08-20T17:13:13.6327093Z   CLIENT_SECRET: ***
+2026-08-20T17:13:13.6327460Z ##[endgroup]
+2026-08-20T17:13:13.7173598Z Inputs 'owner' and 'repositories' are set. Creating token for the following repositories:
+2026-08-20T17:13:13.7175046Z - SEC-OIT-ACES/cfn-template-resolver
+2026-08-20T17:13:14.1900156Z ##[group]Run actions/checkout@v6
+2026-08-20T17:13:14.1901183Z with:
+2026-08-20T17:13:14.1901810Z   repository: SEC-OIT-ACES/cfn-template-resolver
+2026-08-20T17:13:14.1902544Z   ref: main
+2026-08-20T17:13:14.1903098Z   path: ./cfn-template-resolver
+2026-08-20T17:13:14.1903740Z   persist-credentials: false
+2026-08-20T17:13:14.1909232Z   token: ***
+2026-08-20T17:13:14.1909810Z   ssh-strict: true
+2026-08-20T17:13:14.1910381Z   ssh-user: git
+2026-08-20T17:13:14.1911217Z   clean: true
+2026-08-20T17:13:14.1911824Z   sparse-checkout-cone-mode: true
+2026-08-20T17:13:14.1912444Z   fetch-depth: 1
+2026-08-20T17:13:14.1912980Z   fetch-tags: false
+2026-08-20T17:13:14.1913547Z   show-progress: true
+2026-08-20T17:13:14.1914144Z   lfs: false
+2026-08-20T17:13:14.1914679Z   submodules: false
+2026-08-20T17:13:14.1915252Z   set-safe-directory: true
+2026-08-20T17:13:14.1915891Z   allow-unsafe-pr-checkout: false
+2026-08-20T17:13:14.1916515Z env:
+2026-08-20T17:13:14.1917054Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:14.1917835Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:14.1918971Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:14.1919662Z   AWS_REGION: us-east-1
+2026-08-20T17:13:14.1920388Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:14.1921508Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:14.1922083Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:14.1922854Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:14.1924147Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:14.1925285Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:14.1926011Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:14.1926902Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:14.1927926Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:14.1929172Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:14.1930551Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:14.1932046Z   CLIENT_ID: ***
+2026-08-20T17:13:14.1932852Z   CLIENT_SECRET: ***
+2026-08-20T17:13:14.1933440Z ##[endgroup]
+2026-08-20T17:13:14.3016505Z Syncing repository: SEC-OIT-ACES/cfn-template-resolver
+2026-08-20T17:13:14.3019137Z ##[group]Getting Git version info
+2026-08-20T17:13:14.3020572Z Working directory is '/home/runner/work/connect-core-infra/connect-core-infra/cfn-template-resolver'
+2026-08-20T17:13:14.3059587Z [command]/usr/bin/git version
+2026-08-20T17:13:14.3105975Z git version 2.54.0
+2026-08-20T17:13:14.3130134Z ##[endgroup]
+2026-08-20T17:13:14.3145939Z Temporarily overriding HOME='/home/runner/work/_temp/d2457fd5-e83b-4c4d-ae31-44b4066d49a4' before making global git config changes
+2026-08-20T17:13:14.3147791Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-20T17:13:14.3153507Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/connect-core-infra/connect-core-infra/cfn-template-resolver
+2026-08-20T17:13:14.3195489Z ##[group]Determining repository object format
+2026-08-20T17:13:14.5890287Z ##[endgroup]
+2026-08-20T17:13:14.6193151Z ##[group]Initializing the repository
+2026-08-20T17:13:14.6211960Z [command]/usr/bin/git init /home/runner/work/connect-core-infra/connect-core-infra/cfn-template-resolver
+2026-08-20T17:13:14.6483213Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-08-20T17:13:14.6527006Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-08-20T17:13:14.6542138Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-08-20T17:13:14.6782099Z hint: call:
+2026-08-20T17:13:14.6791415Z hint:
+2026-08-20T17:13:14.6976972Z hint: 	git config --global init.defaultBranch <name>
+2026-08-20T17:13:14.7132090Z hint:
+2026-08-20T17:13:14.7268200Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-08-20T17:13:14.7269290Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-08-20T17:13:14.7270145Z hint:
+2026-08-20T17:13:14.7271382Z hint: 	git branch -m <name>
+2026-08-20T17:13:14.7272371Z hint:
+2026-08-20T17:13:14.7273689Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-08-20T17:13:14.7275361Z Initialized empty Git repository in /home/runner/work/connect-core-infra/connect-core-infra/cfn-template-resolver/.git/
+2026-08-20T17:13:14.7279262Z [command]/usr/bin/git remote add origin https://github.com/SEC-OIT-ACES/cfn-template-resolver
+2026-08-20T17:13:14.7282697Z ##[endgroup]
+2026-08-20T17:13:14.7284784Z ##[group]Disabling automatic garbage collection
+2026-08-20T17:13:14.7286183Z [command]/usr/bin/git config --local gc.auto 0
+2026-08-20T17:13:14.7291667Z ##[endgroup]
+2026-08-20T17:13:14.7292916Z ##[group]Setting up auth
+2026-08-20T17:13:14.7294179Z Removing SSH command configuration
+2026-08-20T17:13:14.7295687Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-20T17:13:14.7299476Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-20T17:13:14.7304558Z Removing HTTP extra header
+2026-08-20T17:13:14.7305570Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-20T17:13:14.7308431Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-20T17:13:14.7404076Z Removing includeIf entries pointing to credentials config files
+2026-08-20T17:13:14.7407626Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-20T17:13:14.7451984Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-20T17:13:14.7728342Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-0984336a-0ff6-4b9f-851b-6c251fbdc67c.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-08-20T17:13:14.7788664Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cfn-template-resolver/.git.path /home/runner/work/_temp/git-credentials-0984336a-0ff6-4b9f-851b-6c251fbdc67c.config
+2026-08-20T17:13:14.7828400Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cfn-template-resolver/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-0984336a-0ff6-4b9f-851b-6c251fbdc67c.config
+2026-08-20T17:13:14.7871245Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/cfn-template-resolver/.git.path /github/runner_temp/git-credentials-0984336a-0ff6-4b9f-851b-6c251fbdc67c.config
+2026-08-20T17:13:14.7916135Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/cfn-template-resolver/.git/worktrees/*.path /github/runner_temp/git-credentials-0984336a-0ff6-4b9f-851b-6c251fbdc67c.config
+2026-08-20T17:13:14.7945408Z ##[endgroup]
+2026-08-20T17:13:14.7946585Z ##[group]Fetching the repository
+2026-08-20T17:13:14.7955678Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +refs/heads/main*:refs/remotes/origin/main* +refs/tags/main*:refs/tags/main*
+2026-08-20T17:13:15.3751712Z From https://github.com/SEC-OIT-ACES/cfn-template-resolver
+2026-08-20T17:13:15.3753322Z  * [new branch]      main       -> origin/main
+2026-08-20T17:13:15.3758264Z ##[endgroup]
+2026-08-20T17:13:15.3759623Z ##[group]Determining the checkout info
+2026-08-20T17:13:15.3767435Z [command]/usr/bin/git branch --list --remote origin/main
+2026-08-20T17:13:15.3803726Z   origin/main
+2026-08-20T17:13:15.3808489Z ##[endgroup]
+2026-08-20T17:13:15.3814753Z [command]/usr/bin/git sparse-checkout disable
+2026-08-20T17:13:15.3864462Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-08-20T17:13:15.3904984Z ##[group]Checking out the ref
+2026-08-20T17:13:15.3909591Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-08-20T17:13:15.4003787Z Switched to a new branch 'main'
+2026-08-20T17:13:15.4005213Z branch 'main' set up to track 'origin/main'.
+2026-08-20T17:13:15.4009132Z ##[endgroup]
+2026-08-20T17:13:15.4061370Z [command]/usr/bin/git log -1 --format=%H
+2026-08-20T17:13:15.4097359Z b327da6da680d0ab25f55303c61cfc6fced42ea3
+2026-08-20T17:13:15.4109281Z ##[group]Removing auth
+2026-08-20T17:13:15.4110212Z Removing SSH command configuration
+2026-08-20T17:13:15.4115468Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-20T17:13:15.4172465Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-20T17:13:15.4443727Z Removing HTTP extra header
+2026-08-20T17:13:15.4449409Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-20T17:13:15.4492861Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-20T17:13:15.4771017Z Removing includeIf entries pointing to credentials config files
+2026-08-20T17:13:15.4774977Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-20T17:13:15.4812148Z includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cfn-template-resolver/.git.path
+2026-08-20T17:13:15.4822603Z includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cfn-template-resolver/.git/worktrees/*.path
+2026-08-20T17:13:15.4824065Z includeif.gitdir:/github/workspace/cfn-template-resolver/.git.path
+2026-08-20T17:13:15.4829643Z includeif.gitdir:/github/workspace/cfn-template-resolver/.git/worktrees/*.path
+2026-08-20T17:13:15.4833606Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cfn-template-resolver/.git.path
+2026-08-20T17:13:15.4858923Z /home/runner/work/_temp/git-credentials-0984336a-0ff6-4b9f-851b-6c251fbdc67c.config
+2026-08-20T17:13:15.4873234Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cfn-template-resolver/.git.path /home/runner/work/_temp/git-credentials-0984336a-0ff6-4b9f-851b-6c251fbdc67c.config
+2026-08-20T17:13:15.4928718Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cfn-template-resolver/.git/worktrees/*.path
+2026-08-20T17:13:15.4963643Z /home/runner/work/_temp/git-credentials-0984336a-0ff6-4b9f-851b-6c251fbdc67c.config
+2026-08-20T17:13:15.4973055Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/cfn-template-resolver/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-0984336a-0ff6-4b9f-851b-6c251fbdc67c.config
+2026-08-20T17:13:15.5034646Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/cfn-template-resolver/.git.path
+2026-08-20T17:13:15.5057505Z /github/runner_temp/git-credentials-0984336a-0ff6-4b9f-851b-6c251fbdc67c.config
+2026-08-20T17:13:15.5082125Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/cfn-template-resolver/.git.path /github/runner_temp/git-credentials-0984336a-0ff6-4b9f-851b-6c251fbdc67c.config
+2026-08-20T17:13:15.5123613Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/cfn-template-resolver/.git/worktrees/*.path
+2026-08-20T17:13:15.5150334Z /github/runner_temp/git-credentials-0984336a-0ff6-4b9f-851b-6c251fbdc67c.config
+2026-08-20T17:13:15.5161528Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/cfn-template-resolver/.git/worktrees/*.path /github/runner_temp/git-credentials-0984336a-0ff6-4b9f-851b-6c251fbdc67c.config
+2026-08-20T17:13:15.5204221Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-20T17:13:15.5475994Z Removing credentials config '/home/runner/work/_temp/git-credentials-0984336a-0ff6-4b9f-851b-6c251fbdc67c.config'
+2026-08-20T17:13:15.5485811Z ##[endgroup]
+2026-08-20T17:13:15.5804401Z ##[group]Run SEC-OIT-ACES-ACTIONS/target-aws-account@main
+2026-08-20T17:13:15.5805267Z with:
+2026-08-20T17:13:15.5805829Z   aws_account_id: 416153530692
+2026-08-20T17:13:15.5806471Z   target_lifecycle: stg
+2026-08-20T17:13:15.5807082Z   aws_region: us-east-1
+2026-08-20T17:13:15.5807648Z env:
+2026-08-20T17:13:15.5808193Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:15.5808942Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:15.5810094Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:15.5811002Z   AWS_REGION: us-east-1
+2026-08-20T17:13:15.5811741Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:15.5812527Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:15.5813091Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:15.5813847Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:15.5815159Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:15.5816365Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:15.5817108Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:15.5817995Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:15.5819029Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:15.5820275Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:15.5821797Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:15.5822967Z   CLIENT_ID: ***
+2026-08-20T17:13:15.5823785Z   CLIENT_SECRET: ***
+2026-08-20T17:13:15.5824357Z ##[endgroup]
+2026-08-20T17:13:15.5841900Z ##[start-action display=Calculate the length of variable AWS_ACCOUNT_ID;id=set-customer-account-context.__run]
+2026-08-20T17:13:15.5871622Z ##[group]Run aws_account_id=416153530692
+2026-08-20T17:13:15.5872372Z [36;1maws_account_id=416153530692[0m
+2026-08-20T17:13:15.5873110Z [36;1maws_account_id_len=${#aws_account_id}[0m
+2026-08-20T17:13:15.5874010Z [36;1mecho "AWS_ACCOUNT_ID_LEN=$aws_account_id_len"  >> $GITHUB_ENV [0m
+2026-08-20T17:13:15.5930978Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-20T17:13:15.5931777Z env:
+2026-08-20T17:13:15.5932348Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:15.5933088Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:15.5933835Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:15.5934478Z   AWS_REGION: us-east-1
+2026-08-20T17:13:15.5935093Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:15.5935793Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:15.5936306Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:15.5936976Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:15.5938170Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:15.5939271Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:15.5939995Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:15.5941039Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:15.5942046Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:15.5943275Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:15.5944628Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:15.5945818Z   CLIENT_ID: ***
+2026-08-20T17:13:15.5946705Z   CLIENT_SECRET: ***
+2026-08-20T17:13:15.5947323Z ##[endgroup]
+2026-08-20T17:13:15.6057163Z ##[end-action id=set-customer-account-context.__run;outcome=success;conclusion=success;duration_ms=21]
+2026-08-20T17:13:15.6063106Z ##[start-action display=Check if Environment variable AWS_ACCOUNT_ID is configured correctly;id=set-customer-account-context.__run_2]
+2026-08-20T17:13:15.6077675Z ##[end-action id=set-customer-account-context.__run_2;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-08-20T17:13:15.6081054Z ##[start-action display=Check if Environment variable TARGET_LIFECYCLE is configured;id=set-customer-account-context.__run_3]
+2026-08-20T17:13:15.6099381Z ##[end-action id=set-customer-account-context.__run_3;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-08-20T17:13:15.6102731Z ##[start-action display=Set the customer account context [repo%5D;id=set-customer-account-context.customerContext]
+2026-08-20T17:13:15.6186330Z ##[group]Run aws-actions/configure-aws-credentials@v6
+2026-08-20T17:13:15.6186821Z with:
+2026-08-20T17:13:15.6187181Z   retry-max-attempts: 3
+2026-08-20T17:13:15.6187710Z   role-to-assume: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:15.6188349Z   role-session-name: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:15.6188846Z   aws-region: us-east-1
+2026-08-20T17:13:15.6189237Z   audience: sts.amazonaws.com
+2026-08-20T17:13:15.6189638Z env:
+2026-08-20T17:13:15.6190002Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:15.6190472Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:15.6191240Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:15.6191684Z   AWS_REGION: us-east-1
+2026-08-20T17:13:15.6192114Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:15.6192597Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:15.6192960Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:15.6193448Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:15.6194261Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:15.6194957Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:15.6195418Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:15.6195966Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:15.6196579Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:15.6197321Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:15.6198133Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:15.6198855Z   CLIENT_ID: ***
+2026-08-20T17:13:15.6199373Z   CLIENT_SECRET: ***
+2026-08-20T17:13:15.6199748Z   AWS_ACCOUNT_ID_LEN: 12
+2026-08-20T17:13:15.6200133Z ##[endgroup]
+2026-08-20T17:13:15.8715078Z Assuming role with OIDC
+2026-08-20T17:13:16.0416947Z Authenticated as assumedRoleId AROAWBZFO6FCJZDRKVS35:GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:16.1299006Z ##[end-action id=set-customer-account-context.customerContext;outcome=success;conclusion=success;duration_ms=519]
+2026-08-20T17:13:16.1306500Z ##[start-action display=Set the customer account context [org%5D;id=set-customer-account-context.orgContext]
+2026-08-20T17:13:16.1319459Z ##[end-action id=set-customer-account-context.orgContext;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-08-20T17:13:16.1322791Z ##[start-action display=Check OIDC IAM role exists;id=set-customer-account-context.__run_4]
+2026-08-20T17:13:16.1331176Z ##[end-action id=set-customer-account-context.__run_4;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-08-20T17:13:16.1334941Z ##[start-action display=Set environment variable with assume type;id=set-customer-account-context.__run_5]
+2026-08-20T17:13:16.1367717Z ##[group]Run echo "ASSUME_TYPE=repo" >> $GITHUB_ENV
+2026-08-20T17:13:16.1368304Z [36;1mecho "ASSUME_TYPE=repo" >> $GITHUB_ENV[0m
+2026-08-20T17:13:16.1410025Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-20T17:13:16.1410553Z env:
+2026-08-20T17:13:16.1411192Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:16.1411683Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:16.1412219Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:16.1412686Z   AWS_REGION: us-east-1
+2026-08-20T17:13:16.1413396Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:16.1413922Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:16.1414315Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:16.1414799Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:16.1415637Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:16.1416389Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:16.1417024Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:16.1417584Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:16.1418227Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:16.1419567Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:16.1421175Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:16.1421977Z   CLIENT_ID: ***
+2026-08-20T17:13:16.1422497Z   CLIENT_SECRET: ***
+2026-08-20T17:13:16.1422901Z   AWS_ACCOUNT_ID_LEN: 12
+2026-08-20T17:13:16.1423315Z   AWS_DEFAULT_REGION: us-east-1
+2026-08-20T17:13:16.1423759Z   AWS_ACCESS_KEY_ID: ***
+2026-08-20T17:13:16.1424260Z   AWS_SECRET_ACCESS_KEY: ***
+2026-08-20T17:13:16.1429525Z   AWS_SESSION_TOKEN: ***
+2026-08-20T17:13:16.1429912Z ##[endgroup]
+2026-08-20T17:13:16.1507312Z ##[end-action id=set-customer-account-context.__run_5;outcome=success;conclusion=success;duration_ms=17]
+2026-08-20T17:13:16.1512193Z ##[start-action display=Set environment variable with assume type;id=set-customer-account-context.__run_6]
+2026-08-20T17:13:16.1522419Z ##[end-action id=set-customer-account-context.__run_6;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-08-20T17:13:16.1587868Z ##[group]Run SEC-OIT-ACES-ACTIONS/download-cfn-guard-rules@main
+2026-08-20T17:13:16.1588748Z with:
+2026-08-20T17:13:16.1589342Z   bucket_name: aces-cfn-guard-rules-stg
+2026-08-20T17:13:16.1590077Z   download_directory: cfnguard
+2026-08-20T17:13:16.1590915Z env:
+2026-08-20T17:13:16.1591478Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:16.1592213Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:16.1593031Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:16.1593500Z   AWS_REGION: us-east-1
+2026-08-20T17:13:16.1593989Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:16.1594512Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:16.1594919Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:16.1595419Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:16.1596242Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:16.1597021Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:16.1597512Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:16.1598078Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:16.1599043Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:16.1600207Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:16.1601756Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:16.1615608Z   CLIENT_ID: ***
+2026-08-20T17:13:16.1616360Z   CLIENT_SECRET: ***
+2026-08-20T17:13:16.1616771Z   AWS_ACCOUNT_ID_LEN: 12
+2026-08-20T17:13:16.1617212Z   AWS_DEFAULT_REGION: us-east-1
+2026-08-20T17:13:16.1617824Z   AWS_ACCESS_KEY_ID: ***
+2026-08-20T17:13:16.1618564Z   AWS_SECRET_ACCESS_KEY: ***
+2026-08-20T17:13:16.1627869Z   AWS_SESSION_TOKEN: ***
+2026-08-20T17:13:16.1628528Z   ASSUME_TYPE: repo
+2026-08-20T17:13:16.1629140Z ##[endgroup]
+2026-08-20T17:13:16.1636010Z ##[start-action display=Get guard rules from s3;id=download-cfn-guard-rules.__run]
+2026-08-20T17:13:16.1666331Z ##[group]Run mkdir cfnguard
+2026-08-20T17:13:16.1667020Z [36;1mmkdir cfnguard[0m
+2026-08-20T17:13:16.1667837Z [36;1maws s3 sync s3://aces-cfn-guard-rules-stg cfnguard --quiet[0m
+2026-08-20T17:13:16.1720481Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-20T17:13:16.1721368Z env:
+2026-08-20T17:13:16.1721769Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:16.1722273Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:16.1722813Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:16.1723293Z   AWS_REGION: us-east-1
+2026-08-20T17:13:16.1724010Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:16.1724539Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:16.1724932Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:16.1725428Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:16.1726270Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:16.1726985Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:16.1727472Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:16.1728047Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:16.1728697Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:16.1729462Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:16.1730289Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:16.1731297Z   CLIENT_ID: ***
+2026-08-20T17:13:16.1731830Z   CLIENT_SECRET: ***
+2026-08-20T17:13:16.1732237Z   AWS_ACCOUNT_ID_LEN: 12
+2026-08-20T17:13:16.1732663Z   AWS_DEFAULT_REGION: us-east-1
+2026-08-20T17:13:16.1733120Z   AWS_ACCESS_KEY_ID: ***
+2026-08-20T17:13:16.1733882Z   AWS_SECRET_ACCESS_KEY: ***
+2026-08-20T17:13:16.1739172Z   AWS_SESSION_TOKEN: ***
+2026-08-20T17:13:16.1739576Z   ASSUME_TYPE: repo
+2026-08-20T17:13:16.1739982Z ##[endgroup]
+2026-08-20T17:13:31.4346489Z ##[end-action id=download-cfn-guard-rules.__run;outcome=success;conclusion=success;duration_ms=15270]
+2026-08-20T17:13:31.4403300Z ##[group]Run actions/cache/restore@v5
+2026-08-20T17:13:31.4403805Z with:
+2026-08-20T17:13:31.4404295Z   path: ~/.cache/pip
+~/.cache/pypoetry
+/usr/local/bin/cfn-guard
+
+2026-08-20T17:13:31.4404857Z   key: Linux-template-validation-v1
+2026-08-20T17:13:31.4405316Z   enableCrossOsArchive: false
+2026-08-20T17:13:31.4405766Z   fail-on-cache-miss: false
+2026-08-20T17:13:31.4406179Z   lookup-only: false
+2026-08-20T17:13:31.4406573Z env:
+2026-08-20T17:13:31.4406944Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:31.4407402Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:31.4407939Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:31.4408403Z   AWS_REGION: us-east-1
+2026-08-20T17:13:31.4408888Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:31.4409406Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:31.4409791Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:31.4410274Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:31.4411387Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:31.4412120Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:31.4412606Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:31.4413165Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:31.4413792Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:31.4414555Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:31.4415381Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:31.4416093Z   CLIENT_ID: ***
+2026-08-20T17:13:31.4416612Z   CLIENT_SECRET: ***
+2026-08-20T17:13:31.4417008Z   AWS_ACCOUNT_ID_LEN: 12
+2026-08-20T17:13:31.4417416Z   AWS_DEFAULT_REGION: us-east-1
+2026-08-20T17:13:31.4417875Z   AWS_ACCESS_KEY_ID: ***
+2026-08-20T17:13:31.4418379Z   AWS_SECRET_ACCESS_KEY: ***
+2026-08-20T17:13:31.4423864Z   AWS_SESSION_TOKEN: ***
+2026-08-20T17:13:31.4424267Z   ASSUME_TYPE: repo
+2026-08-20T17:13:31.4424652Z ##[endgroup]
+2026-08-20T17:13:31.7362353Z Cache hit for: Linux-template-validation-v1
+2026-08-20T17:13:32.8541375Z Received 104857600 of 123774972 (84.7%), 100.1 MBs/sec
+2026-08-20T17:13:33.0518464Z Received 123774972 of 123774972 (100.0%), 98.6 MBs/sec
+2026-08-20T17:13:33.0520317Z Cache Size: ~118 MB (123774972 B)
+2026-08-20T17:13:33.0570061Z [command]/usr/bin/tar -xf /home/runner/work/_temp/95fe8ac1-4599-4381-b2b1-63faf95ef568/cache.tzst -P -C /home/runner/work/connect-core-infra/connect-core-infra --use-compress-program unzstd
+2026-08-20T17:13:33.5483960Z Cache restored successfully
+2026-08-20T17:13:33.5629794Z Cache restored from key: Linux-template-validation-v1
+2026-08-20T17:13:33.5835444Z ##[group]Run actions/setup-python@v6
+2026-08-20T17:13:33.5835915Z with:
+2026-08-20T17:13:33.5836310Z   python-version: 3.11
+2026-08-20T17:13:33.5836718Z   check-latest: false
+2026-08-20T17:13:33.5840063Z   token: ***
+2026-08-20T17:13:33.5840946Z   update-environment: true
+2026-08-20T17:13:33.5841440Z   allow-prereleases: false
+2026-08-20T17:13:33.5841839Z   freethreaded: false
+2026-08-20T17:13:33.5842226Z env:
+2026-08-20T17:13:33.5842609Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:33.5843092Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:33.5843643Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:33.5844108Z   AWS_REGION: us-east-1
+2026-08-20T17:13:33.5844581Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:33.5845112Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:33.5845499Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:33.5845996Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:33.5846868Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:33.5847579Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:33.5848058Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:33.5848623Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:33.5849257Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:33.5850035Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:33.5851132Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:33.5851845Z   CLIENT_ID: ***
+2026-08-20T17:13:33.5852371Z   CLIENT_SECRET: ***
+2026-08-20T17:13:33.5852774Z   AWS_ACCOUNT_ID_LEN: 12
+2026-08-20T17:13:33.5853186Z   AWS_DEFAULT_REGION: us-east-1
+2026-08-20T17:13:33.5853681Z   AWS_ACCESS_KEY_ID: ***
+2026-08-20T17:13:33.5854191Z   AWS_SECRET_ACCESS_KEY: ***
+2026-08-20T17:13:33.5859453Z   AWS_SESSION_TOKEN: ***
+2026-08-20T17:13:33.5859863Z   ASSUME_TYPE: repo
+2026-08-20T17:13:33.5860254Z ##[endgroup]
+2026-08-20T17:13:33.7264430Z ##[group]Installed versions
+2026-08-20T17:13:33.7357143Z Successfully set up CPython (3.11.15)
+2026-08-20T17:13:33.7358489Z ##[endgroup]
+2026-08-20T17:13:33.7483974Z ##[group]Run chmod +x cloudguard-exceptions-management/utilities/run-cfn-lint.sh
+2026-08-20T17:13:33.7484747Z [36;1mchmod +x cloudguard-exceptions-management/utilities/run-cfn-lint.sh[0m
+2026-08-20T17:13:33.7485646Z [36;1mcloudguard-exceptions-management/utilities/run-cfn-lint.sh "cfn-templates" "cfnlintsummary.md"                   [0m
+2026-08-20T17:13:33.7534296Z shell: /usr/bin/bash -e {0}
+2026-08-20T17:13:33.7534746Z env:
+2026-08-20T17:13:33.7535322Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:13:33.7535845Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:13:33.7536402Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:13:33.7536868Z   AWS_REGION: us-east-1
+2026-08-20T17:13:33.7537341Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:33.7537858Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:13:33.7538252Z   CLONE_BOT_ID: 947806
+2026-08-20T17:13:33.7538750Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:13:33.7539639Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:13:33.7540359Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:13:33.7541051Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:33.7541831Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:13:33.7542485Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:13:33.7543249Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:13:33.7544109Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:13:33.7544845Z   CLIENT_ID: ***
+2026-08-20T17:13:33.7545401Z   CLIENT_SECRET: ***
+2026-08-20T17:13:33.7545811Z   AWS_ACCOUNT_ID_LEN: 12
+2026-08-20T17:13:33.7546239Z   AWS_DEFAULT_REGION: us-east-1
+2026-08-20T17:13:33.7546705Z   AWS_ACCESS_KEY_ID: ***
+2026-08-20T17:13:33.7547213Z   AWS_SECRET_ACCESS_KEY: ***
+2026-08-20T17:13:33.7552734Z   AWS_SESSION_TOKEN: ***
+2026-08-20T17:13:33.7553154Z   ASSUME_TYPE: repo
+2026-08-20T17:13:33.7553629Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:13:33.7554299Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+2026-08-20T17:13:33.7554957Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:13:33.7555549Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:13:33.7556133Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:13:33.7556745Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+2026-08-20T17:13:33.7557271Z ##[endgroup]
+2026-08-20T17:13:33.7758413Z ##[group]Installing CFN Lint
+2026-08-20T17:13:41.9393735Z Collecting cfn-lint==1.42.0
+2026-08-20T17:13:41.9414112Z   Using cached cfn_lint-1.42.0-py3-none-any.whl.metadata (24 kB)
+2026-08-20T17:13:41.9948486Z Collecting pyyaml>5.4 (from cfn-lint==1.42.0)
+2026-08-20T17:13:41.9967596Z   Using cached pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-08-20T17:13:42.0253002Z Collecting aws-sam-translator>=1.97.0 (from cfn-lint==1.42.0)
+2026-08-20T17:13:42.0270016Z   Using cached aws_sam_translator-1.112.0-py3-none-any.whl.metadata (8.6 kB)
+2026-08-20T17:13:42.0507418Z Collecting jsonpatch (from cfn-lint==1.42.0)
+2026-08-20T17:13:42.0525353Z   Using cached jsonpatch-1.33-py2.py3-none-any.whl.metadata (3.0 kB)
+2026-08-20T17:13:42.0809282Z Collecting networkx<4,>=2.4 (from cfn-lint==1.42.0)
+2026-08-20T17:13:42.0825054Z   Using cached networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+2026-08-20T17:13:42.1084056Z Collecting sympy>=1.0.0 (from cfn-lint==1.42.0)
+2026-08-20T17:13:42.1100281Z   Using cached sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+2026-08-20T17:13:42.4302816Z Collecting regex (from cfn-lint==1.42.0)
+2026-08-20T17:13:42.4321770Z   Using cached regex-2026.7.19-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+2026-08-20T17:13:42.4581774Z Collecting typing_extensions (from cfn-lint==1.42.0)
+2026-08-20T17:13:42.4598218Z   Using cached typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+2026-08-20T17:13:42.6369567Z Collecting boto3<2.0.0,>=1.34.0 (from aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:42.6387470Z   Using cached boto3-1.43.75-py3-none-any.whl.metadata (6.6 kB)
+2026-08-20T17:13:42.6664190Z Collecting jsonschema<5,>=4.23 (from aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:42.6680112Z   Using cached jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+2026-08-20T17:13:42.7599603Z Collecting pydantic~=2.13.3 (from aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:42.7617349Z   Using cached pydantic-2.13.4-py3-none-any.whl.metadata (109 kB)
+2026-08-20T17:13:42.9697080Z Collecting botocore<1.44.0,>=1.43.75 (from boto3<2.0.0,>=1.34.0->aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:42.9716110Z   Using cached botocore-1.43.75-py3-none-any.whl.metadata (5.6 kB)
+2026-08-20T17:13:42.9946173Z Collecting jmespath<2.0.0,>=0.7.1 (from boto3<2.0.0,>=1.34.0->aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:42.9962575Z   Using cached jmespath-1.1.0-py3-none-any.whl.metadata (7.6 kB)
+2026-08-20T17:13:43.0198276Z Collecting s3transfer<0.20.0,>=0.19.0 (from boto3<2.0.0,>=1.34.0->aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:43.0217385Z   Using cached s3transfer-0.19.2-py3-none-any.whl.metadata (1.7 kB)
+2026-08-20T17:13:43.0444935Z Collecting python-dateutil<3.0.0,>=2.1 (from botocore<1.44.0,>=1.43.75->boto3<2.0.0,>=1.34.0->aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:43.0461345Z   Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+2026-08-20T17:13:43.0742298Z Collecting urllib3!=2.2.0,<3,>=1.25.4 (from botocore<1.44.0,>=1.43.75->boto3<2.0.0,>=1.34.0->aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:43.0758498Z   Using cached urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+2026-08-20T17:13:43.0985986Z Collecting attrs>=22.2.0 (from jsonschema<5,>=4.23->aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:43.1002138Z   Using cached attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+2026-08-20T17:13:43.1213614Z Collecting jsonschema-specifications>=2023.03.6 (from jsonschema<5,>=4.23->aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:43.1229693Z   Using cached jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+2026-08-20T17:13:43.1488666Z Collecting referencing>=0.28.4 (from jsonschema<5,>=4.23->aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:43.1504993Z   Using cached referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+2026-08-20T17:13:43.4026204Z Collecting rpds-py>=0.25.0 (from jsonschema<5,>=4.23->aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:43.4045296Z   Using cached rpds_py-2026.6.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+2026-08-20T17:13:43.4249153Z Collecting annotated-types>=0.6.0 (from pydantic~=2.13.3->aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:43.4265325Z   Using cached annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+2026-08-20T17:13:43.9954297Z Collecting pydantic-core==2.46.4 (from pydantic~=2.13.3->aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:43.9972277Z   Using cached pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+2026-08-20T17:13:44.0190124Z Collecting typing-inspection>=0.4.2 (from pydantic~=2.13.3->aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:44.0206257Z   Using cached typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+2026-08-20T17:13:44.0426765Z Collecting six>=1.5 (from python-dateutil<3.0.0,>=2.1->botocore<1.44.0,>=1.43.75->boto3<2.0.0,>=1.34.0->aws-sam-translator>=1.97.0->cfn-lint==1.42.0)
+2026-08-20T17:13:44.0443229Z   Using cached six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+2026-08-20T17:13:44.0876382Z Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.0.0->cfn-lint==1.42.0)
+2026-08-20T17:13:44.0892468Z   Using cached mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+2026-08-20T17:13:44.1124951Z Collecting jsonpointer>=1.9 (from jsonpatch->cfn-lint==1.42.0)
+2026-08-20T17:13:44.1141283Z   Using cached jsonpointer-3.1.1-py3-none-any.whl.metadata (2.4 kB)
+2026-08-20T17:13:44.1176984Z Using cached cfn_lint-1.42.0-py3-none-any.whl (5.9 MB)
+2026-08-20T17:13:44.1213399Z Using cached networkx-3.6.1-py3-none-any.whl (2.1 MB)
+2026-08-20T17:13:44.1235558Z Using cached aws_sam_translator-1.112.0-py3-none-any.whl (444 kB)
+2026-08-20T17:13:44.1252252Z Using cached boto3-1.43.75-py3-none-any.whl (140 kB)
+2026-08-20T17:13:44.1267857Z Using cached botocore-1.43.75-py3-none-any.whl (15.7 MB)
+2026-08-20T17:13:44.1336996Z Using cached jmespath-1.1.0-py3-none-any.whl (20 kB)
+2026-08-20T17:13:44.1352747Z Using cached jsonschema-4.26.0-py3-none-any.whl (90 kB)
+2026-08-20T17:13:44.1368790Z Using cached pydantic-2.13.4-py3-none-any.whl (472 kB)
+2026-08-20T17:13:44.1386235Z Using cached pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+2026-08-20T17:13:44.1408508Z Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+2026-08-20T17:13:44.1424841Z Using cached s3transfer-0.19.2-py3-none-any.whl (90 kB)
+2026-08-20T17:13:44.1440427Z Using cached urllib3-2.7.0-py3-none-any.whl (131 kB)
+2026-08-20T17:13:44.1456412Z Using cached annotated_types-0.8.0-py3-none-any.whl (13 kB)
+2026-08-20T17:13:44.1472101Z Using cached attrs-26.1.0-py3-none-any.whl (67 kB)
+2026-08-20T17:13:44.1488101Z Using cached jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+2026-08-20T17:13:44.1504509Z Using cached pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (806 kB)
+2026-08-20T17:13:44.1521983Z Using cached referencing-0.37.0-py3-none-any.whl (26 kB)
+2026-08-20T17:13:44.1537997Z Using cached rpds_py-2026.6.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (371 kB)
+2026-08-20T17:13:44.1554507Z Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+2026-08-20T17:13:44.1570162Z Using cached sympy-1.14.0-py3-none-any.whl (6.3 MB)
+2026-08-20T17:13:44.1606253Z Using cached mpmath-1.3.0-py3-none-any.whl (536 kB)
+2026-08-20T17:13:44.1623446Z Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+2026-08-20T17:13:44.1639315Z Using cached typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+2026-08-20T17:13:44.1654974Z Using cached jsonpatch-1.33-py2.py3-none-any.whl (12 kB)
+2026-08-20T17:13:44.1670158Z Using cached jsonpointer-3.1.1-py3-none-any.whl (7.7 kB)
+2026-08-20T17:13:44.1686259Z Using cached regex-2026.7.19-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (801 kB)
+2026-08-20T17:13:44.9258468Z Installing collected packages: mpmath, urllib3, typing_extensions, sympy, six, rpds-py, regex, pyyaml, networkx, jsonpointer, jmespath, attrs, annotated-types, typing-inspection, referencing, python-dateutil, pydantic-core, jsonpatch, pydantic, jsonschema-specifications, botocore, s3transfer, jsonschema, boto3, aws-sam-translator, cfn-lint
+2026-08-20T17:13:54.8657919Z 
+2026-08-20T17:13:54.8677536Z Successfully installed annotated-types-0.8.0 attrs-26.1.0 aws-sam-translator-1.112.0 boto3-1.43.75 botocore-1.43.75 cfn-lint-1.42.0 jmespath-1.1.0 jsonpatch-1.33 jsonpointer-3.1.1 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 mpmath-1.3.0 networkx-3.6.1 pydantic-2.13.4 pydantic-core-2.46.4 python-dateutil-2.9.0.post0 pyyaml-6.0.3 referencing-0.37.0 regex-2026.7.19 rpds-py-2026.6.3 s3transfer-0.19.2 six-1.17.0 sympy-1.14.0 typing-inspection-0.4.4 typing_extensions-4.16.0 urllib3-2.7.0
+2026-08-20T17:13:55.2320601Z Name: cfn-lint
+2026-08-20T17:13:55.2321889Z Version: 1.42.0
+2026-08-20T17:13:55.2323429Z Summary: Checks CloudFormation templates for practices and behaviour that could potentially be improved
+2026-08-20T17:13:55.2325194Z Home-page: https://github.com/aws-cloudformation/cfn-lint
+2026-08-20T17:13:55.2327235Z Author: Kevin DeJong
+2026-08-20T17:13:55.2328547Z Author-email: kddejong@amazon.com
+2026-08-20T17:13:55.2344690Z License-Expression: MIT-0
+2026-08-20T17:13:55.2345709Z Location: /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages
+2026-08-20T17:13:55.2362436Z Requires: aws-sam-translator, jsonpatch, networkx, pyyaml, regex, sympy, typing_extensions
+2026-08-20T17:13:55.2363622Z Required-by: 
+2026-08-20T17:13:55.2596956Z ##[endgroup]
+2026-08-20T17:13:55.2617997Z ##[group]Starting CFN Lint Validation
+2026-08-20T17:13:55.2655836Z Found 15 template(s) to validate in cfn-templates
+2026-08-20T17:13:55.2657169Z Linting: cfn-templates/vmx3.yaml
+2026-08-20T17:13:57.8217887Z   ✅ No issues found
+2026-08-20T17:13:57.8218805Z Linting: cfn-templates/iam-connect-saml-role.yaml
+2026-08-20T17:13:59.0073552Z   ✅ No issues found
+2026-08-20T17:13:59.0074892Z Linting: cfn-templates/vmx3-policy-builder.yaml
+2026-08-20T17:14:00.3918723Z   ✅ No issues found
+2026-08-20T17:14:00.3920295Z Linting: cfn-templates/connect-instance.yaml
+2026-08-20T17:14:01.7568595Z   ✅ No issues found
+2026-08-20T17:14:01.7569880Z Linting: cfn-templates/ssm-saml-metadata.yaml
+2026-08-20T17:14:02.9397813Z   ✅ No issues found
+2026-08-20T17:14:02.9399161Z Linting: cfn-templates/iam-saml-provider.yaml
+2026-08-20T17:14:04.2017989Z   ✅ No issues found
+2026-08-20T17:14:04.2019313Z Linting: cfn-templates/kinesis-ctr-stream.yaml
+2026-08-20T17:14:05.4857308Z   ✅ No issues found
+2026-08-20T17:14:05.4858749Z Linting: cfn-templates/lambda-acw-contact-attributes.yaml
+2026-08-20T17:14:06.7333614Z   ✅ No issues found
+2026-08-20T17:14:06.7334777Z Linting: cfn-templates/lambda-function.yaml
+2026-08-20T17:14:07.9769493Z   ✅ No issues found
+2026-08-20T17:14:07.9770907Z Linting: cfn-templates/ec2-instance.yaml
+2026-08-20T17:14:09.3501138Z   ✅ No issues found
+2026-08-20T17:14:09.3502646Z Linting: cfn-templates/vmx3-oiea-voicemail-notifier.yaml
+2026-08-20T17:14:10.6029858Z   ✅ No issues found
+2026-08-20T17:14:10.6031378Z Linting: cfn-templates/iam-vmx3-presigner-user.yaml
+2026-08-20T17:14:11.8165827Z   ✅ No issues found
+2026-08-20T17:14:11.8167391Z Linting: cfn-templates/vmx3-cloudfront-signing-key.yaml
+2026-08-20T17:14:13.0074454Z   ✅ No issues found
+2026-08-20T17:14:13.0075673Z Linting: cfn-templates/connect-ctr-streaming-config.yaml
+2026-08-20T17:14:14.2304469Z   ✅ No issues found
+2026-08-20T17:14:14.2305676Z Linting: cfn-templates/ec2-readonly-role.yaml
+2026-08-20T17:14:15.4934449Z   ✅ No issues found
+2026-08-20T17:14:15.4936054Z ##[endgroup]
+2026-08-20T17:14:15.4993647Z ##[group]Run # Check if RESOLVER_VERBOSE_LOG is set in the repo to any non-empty value to enable verbose logging
+2026-08-20T17:14:15.4995249Z [36;1m# Check if RESOLVER_VERBOSE_LOG is set in the repo to any non-empty value to enable verbose logging[0m
+2026-08-20T17:14:15.4996364Z [36;1mRESOLVER_VERBOSE_LOG=[0m
+2026-08-20T17:14:15.4997151Z [36;1mif [[ -n "$RESOLVER_VERBOSE_LOG" ]][0m
+2026-08-20T17:14:15.4997908Z [36;1mthen[0m
+2026-08-20T17:14:15.4998473Z [36;1m    RESOLVER_VERBOSE_LOG="-v"[0m
+2026-08-20T17:14:15.4999199Z [36;1mfi[0m
+2026-08-20T17:14:15.4999788Z [36;1m[0m
+2026-08-20T17:14:15.5000858Z [36;1mchmod +x cloudguard-exceptions-management/utilities/run-cfn-resolver.sh[0m
+2026-08-20T17:14:15.5002261Z [36;1mcloudguard-exceptions-management/utilities/run-cfn-resolver.sh \[0m
+2026-08-20T17:14:15.5003274Z [36;1m  "cfn-templates" \[0m
+2026-08-20T17:14:15.5003978Z [36;1m  "cfn-resolver-results.md" \[0m
+2026-08-20T17:14:15.5004795Z [36;1m  "cfnresolversummary.md" \[0m
+2026-08-20T17:14:15.5005579Z [36;1m  "SEC-OIT-CONNECT/connect-core-infra" \[0m
+2026-08-20T17:14:15.5006400Z [36;1m  "release-queue-notifications" \[0m
+2026-08-20T17:14:15.5007196Z [36;1m  "$CFN_RESOLVER_CSV_EMAIL_LIST" \[0m
+2026-08-20T17:14:15.5008001Z [36;1m  "$RESOLVER_VERBOSE_LOG"[0m
+2026-08-20T17:14:15.5067052Z shell: /usr/bin/bash -e {0}
+2026-08-20T17:14:15.5067710Z env:
+2026-08-20T17:14:15.5068273Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:14:15.5069048Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:14:15.5069879Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:14:15.5070606Z   AWS_REGION: us-east-1
+2026-08-20T17:14:15.5071584Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:14:15.5072387Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:14:15.5073008Z   CLONE_BOT_ID: 947806
+2026-08-20T17:14:15.5073808Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:14:15.5075180Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:14:15.5076380Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:14:15.5077165Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:14:15.5078085Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:14:15.5079143Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:14:15.5080425Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:14:15.5082042Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:14:15.5083224Z   CLIENT_ID: ***
+2026-08-20T17:14:15.5084054Z   CLIENT_SECRET: ***
+2026-08-20T17:14:15.5084684Z   AWS_ACCOUNT_ID_LEN: 12
+2026-08-20T17:14:15.5085658Z   AWS_DEFAULT_REGION: us-east-1
+2026-08-20T17:14:15.5086394Z   AWS_ACCESS_KEY_ID: ***
+2026-08-20T17:14:15.5087199Z   AWS_SECRET_ACCESS_KEY: ***
+2026-08-20T17:14:15.5096712Z   AWS_SESSION_TOKEN: ***
+2026-08-20T17:14:15.5097390Z   ASSUME_TYPE: repo
+2026-08-20T17:14:15.5098102Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:15.5099145Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+2026-08-20T17:14:15.5100169Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:15.5101322Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:15.5102261Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:15.5103170Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+2026-08-20T17:14:15.5103981Z   LINT_ERRORS: 0
+2026-08-20T17:14:15.5104601Z ##[endgroup]
+2026-08-20T17:14:15.5212082Z ##[group]Installing CFN Resolver Dependencies
+2026-08-20T17:14:16.4499350Z Collecting poetry==2.1.2
+2026-08-20T17:14:16.4518706Z   Using cached poetry-2.1.2-py3-none-any.whl.metadata (7.1 kB)
+2026-08-20T17:14:16.4769802Z Collecting build<2.0.0,>=1.2.1 (from poetry==2.1.2)
+2026-08-20T17:14:16.4787938Z   Using cached build-1.5.0-py3-none-any.whl.metadata (5.7 kB)
+2026-08-20T17:14:16.5022431Z Collecting cachecontrol<0.15.0,>=0.14.0 (from cachecontrol[filecache]<0.15.0,>=0.14.0->poetry==2.1.2)
+2026-08-20T17:14:16.5031547Z   Using cached cachecontrol-0.14.4-py3-none-any.whl.metadata (3.1 kB)
+2026-08-20T17:14:16.5261915Z Collecting cleo<3.0.0,>=2.1.0 (from poetry==2.1.2)
+2026-08-20T17:14:16.5291635Z   Using cached cleo-2.1.0-py3-none-any.whl.metadata (12 kB)
+2026-08-20T17:14:16.6632260Z Collecting dulwich<0.23.0,>=0.22.6 (from poetry==2.1.2)
+2026-08-20T17:14:16.6652014Z   Using cached dulwich-0.22.8-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+2026-08-20T17:14:16.6882173Z Collecting fastjsonschema<3.0.0,>=2.18.0 (from poetry==2.1.2)
+2026-08-20T17:14:16.6891773Z   Using cached fastjsonschema-2.22.2-py3-none-any.whl.metadata (2.1 kB)
+2026-08-20T17:14:16.7111894Z Collecting findpython<0.7.0,>=0.6.2 (from poetry==2.1.2)
+2026-08-20T17:14:16.7121858Z   Using cached findpython-0.6.3-py3-none-any.whl.metadata (5.3 kB)
+2026-08-20T17:14:16.7342126Z Collecting installer<0.8.0,>=0.7.0 (from poetry==2.1.2)
+2026-08-20T17:14:16.7355831Z   Using cached installer-0.7.0-py3-none-any.whl.metadata (936 bytes)
+2026-08-20T17:14:16.7662596Z Collecting keyring<26.0.0,>=25.1.0 (from poetry==2.1.2)
+2026-08-20T17:14:16.7682792Z   Using cached keyring-25.7.0-py3-none-any.whl.metadata (21 kB)
+2026-08-20T17:14:16.7942471Z Collecting packaging>=24.0 (from poetry==2.1.2)
+2026-08-20T17:14:16.7953704Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-08-20T17:14:16.8215228Z Collecting pbs-installer<2026.0.0,>=2025.1.6 (from pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry==2.1.2)
+2026-08-20T17:14:16.8231768Z   Using cached pbs_installer-2025.12.17-py3-none-any.whl.metadata (992 bytes)
+2026-08-20T17:14:16.8446674Z Collecting pkginfo<2.0,>=1.12 (from poetry==2.1.2)
+2026-08-20T17:14:16.8463094Z   Using cached pkginfo-1.12.1.2-py3-none-any.whl.metadata (13 kB)
+2026-08-20T17:14:16.8717854Z Collecting platformdirs<5,>=3.0.0 (from poetry==2.1.2)
+2026-08-20T17:14:16.8733997Z   Using cached platformdirs-4.11.3-py3-none-any.whl.metadata (5.5 kB)
+2026-08-20T17:14:16.8971220Z Collecting poetry-core==2.1.2 (from poetry==2.1.2)
+2026-08-20T17:14:16.8988761Z   Using cached poetry_core-2.1.2-py3-none-any.whl.metadata (3.5 kB)
+2026-08-20T17:14:16.9187329Z Collecting pyproject-hooks<2.0.0,>=1.0.0 (from poetry==2.1.2)
+2026-08-20T17:14:16.9203671Z   Using cached pyproject_hooks-1.2.0-py3-none-any.whl.metadata (1.3 kB)
+2026-08-20T17:14:16.9472998Z Collecting requests<3.0,>=2.26 (from poetry==2.1.2)
+2026-08-20T17:14:16.9488778Z   Using cached requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+2026-08-20T17:14:16.9692072Z Collecting requests-toolbelt<2.0.0,>=1.0.0 (from poetry==2.1.2)
+2026-08-20T17:14:16.9708670Z   Using cached requests_toolbelt-1.0.0-py2.py3-none-any.whl.metadata (14 kB)
+2026-08-20T17:14:16.9919144Z Collecting shellingham<2.0,>=1.5 (from poetry==2.1.2)
+2026-08-20T17:14:16.9935391Z   Using cached shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+2026-08-20T17:14:17.0162153Z Collecting tomlkit<1.0.0,>=0.11.4 (from poetry==2.1.2)
+2026-08-20T17:14:17.0178348Z   Using cached tomlkit-0.15.1-py3-none-any.whl.metadata (3.3 kB)
+2026-08-20T17:14:17.0474167Z Collecting trove-classifiers>=2022.5.19 (from poetry==2.1.2)
+2026-08-20T17:14:17.0490807Z   Using cached trove_classifiers-2026.6.1.19-py3-none-any.whl.metadata (2.3 kB)
+2026-08-20T17:14:17.0868002Z Collecting virtualenv<21.0.0,>=20.26.6 (from poetry==2.1.2)
+2026-08-20T17:14:17.0885089Z   Using cached virtualenv-20.39.1-py3-none-any.whl.metadata (3.5 kB)
+2026-08-20T17:14:17.1571932Z Collecting msgpack<2.0.0,>=0.5.2 (from cachecontrol<0.15.0,>=0.14.0->cachecontrol[filecache]<0.15.0,>=0.14.0->poetry==2.1.2)
+2026-08-20T17:14:17.1589799Z   Using cached msgpack-1.2.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
+2026-08-20T17:14:17.1873035Z Collecting filelock>=3.8.0 (from cachecontrol[filecache]<0.15.0,>=0.14.0->poetry==2.1.2)
+2026-08-20T17:14:17.1889098Z   Using cached filelock-3.32.3-py3-none-any.whl.metadata (2.0 kB)
+2026-08-20T17:14:17.2078500Z Collecting crashtest<0.5.0,>=0.4.1 (from cleo<3.0.0,>=2.1.0->poetry==2.1.2)
+2026-08-20T17:14:17.2094630Z   Using cached crashtest-0.4.1-py3-none-any.whl.metadata (1.1 kB)
+2026-08-20T17:14:17.6073722Z Collecting rapidfuzz<4.0.0,>=3.0.0 (from cleo<3.0.0,>=2.1.0->poetry==2.1.2)
+2026-08-20T17:14:17.6091893Z   Using cached rapidfuzz-3.14.5-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (12 kB)
+2026-08-20T17:14:17.6121913Z Requirement already satisfied: urllib3>=1.25 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from dulwich<0.23.0,>=0.22.6->poetry==2.1.2) (2.7.0)
+2026-08-20T17:14:17.6336310Z Collecting SecretStorage>=3.2 (from keyring<26.0.0,>=25.1.0->poetry==2.1.2)
+2026-08-20T17:14:17.6353072Z   Using cached secretstorage-3.5.0-py3-none-any.whl.metadata (4.0 kB)
+2026-08-20T17:14:17.6553854Z Collecting jeepney>=0.4.2 (from keyring<26.0.0,>=25.1.0->poetry==2.1.2)
+2026-08-20T17:14:17.6570012Z   Using cached jeepney-0.9.0-py3-none-any.whl.metadata (1.2 kB)
+2026-08-20T17:14:17.6854506Z Collecting importlib_metadata>=4.11.4 (from keyring<26.0.0,>=25.1.0->poetry==2.1.2)
+2026-08-20T17:14:17.6870925Z   Using cached importlib_metadata-9.0.0-py3-none-any.whl.metadata (4.5 kB)
+2026-08-20T17:14:17.7165481Z Collecting jaraco.classes (from keyring<26.0.0,>=25.1.0->poetry==2.1.2)
+2026-08-20T17:14:17.7181565Z   Using cached jaraco.classes-3.4.0-py3-none-any.whl.metadata (2.6 kB)
+2026-08-20T17:14:17.7418752Z Collecting jaraco.functools (from keyring<26.0.0,>=25.1.0->poetry==2.1.2)
+2026-08-20T17:14:17.7435601Z   Using cached jaraco_functools-4.6.0-py3-none-any.whl.metadata (2.9 kB)
+2026-08-20T17:14:17.7646285Z Collecting jaraco.context (from keyring<26.0.0,>=25.1.0->poetry==2.1.2)
+2026-08-20T17:14:17.7662753Z   Using cached jaraco_context-6.1.2-py3-none-any.whl.metadata (4.2 kB)
+2026-08-20T17:14:17.8154223Z Collecting httpx<1,>=0.27.0 (from pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry==2.1.2)
+2026-08-20T17:14:17.8171473Z   Using cached httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+2026-08-20T17:14:17.8781388Z Collecting zstandard>=0.21.0 (from pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry==2.1.2)
+2026-08-20T17:14:17.8799096Z   Using cached zstandard-0.25.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.3 kB)
+2026-08-20T17:14:17.9055308Z Collecting anyio (from httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry==2.1.2)
+2026-08-20T17:14:17.9071440Z   Using cached anyio-4.14.2-py3-none-any.whl.metadata (4.6 kB)
+2026-08-20T17:14:17.9340387Z Collecting certifi (from httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry==2.1.2)
+2026-08-20T17:14:17.9358054Z   Using cached certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+2026-08-20T17:14:17.9587408Z Collecting httpcore==1.* (from httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry==2.1.2)
+2026-08-20T17:14:17.9603719Z   Using cached httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+2026-08-20T17:14:17.9839704Z Collecting idna (from httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry==2.1.2)
+2026-08-20T17:14:17.9856122Z   Using cached idna-3.19-py3-none-any.whl.metadata (9.2 kB)
+2026-08-20T17:14:18.0063712Z Collecting h11>=0.16 (from httpcore==1.*->httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry==2.1.2)
+2026-08-20T17:14:18.0079612Z   Using cached h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+2026-08-20T17:14:18.1113580Z Collecting charset_normalizer<4,>=2 (from requests<3.0,>=2.26->poetry==2.1.2)
+2026-08-20T17:14:18.1132395Z   Using cached charset_normalizer-3.5.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (45 kB)
+2026-08-20T17:14:18.1436640Z Collecting distlib<1,>=0.3.7 (from virtualenv<21.0.0,>=20.26.6->poetry==2.1.2)
+2026-08-20T17:14:18.1454876Z   Using cached distlib-0.4.3-py2.py3-none-any.whl.metadata (5.3 kB)
+2026-08-20T17:14:18.1739486Z Collecting zipp>=3.20 (from importlib_metadata>=4.11.4->keyring<26.0.0,>=25.1.0->poetry==2.1.2)
+2026-08-20T17:14:18.1760016Z   Using cached zipp-4.1.0-py3-none-any.whl.metadata (3.6 kB)
+2026-08-20T17:14:18.3390267Z Collecting cryptography>=2.0 (from SecretStorage>=3.2->keyring<26.0.0,>=25.1.0->poetry==2.1.2)
+2026-08-20T17:14:18.3408680Z   Using cached cryptography-50.0.0-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (4.3 kB)
+2026-08-20T17:14:18.4631622Z Collecting cffi>=2.0.0 (from cryptography>=2.0->SecretStorage>=3.2->keyring<26.0.0,>=25.1.0->poetry==2.1.2)
+2026-08-20T17:14:18.4649783Z   Using cached cffi-2.1.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)
+2026-08-20T17:14:18.4857906Z Collecting pycparser (from cffi>=2.0.0->cryptography>=2.0->SecretStorage>=3.2->keyring<26.0.0,>=25.1.0->poetry==2.1.2)
+2026-08-20T17:14:18.4874439Z   Using cached pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+2026-08-20T17:14:18.4925948Z Requirement already satisfied: typing_extensions>=4.5 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from anyio->httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry==2.1.2) (4.16.0)
+2026-08-20T17:14:18.5164574Z Collecting more-itertools (from jaraco.classes->keyring<26.0.0,>=25.1.0->poetry==2.1.2)
+2026-08-20T17:14:18.5181347Z   Using cached more_itertools-11.1.0-py3-none-any.whl.metadata (41 kB)
+2026-08-20T17:14:18.5386088Z Collecting backports.tarfile (from jaraco.context->keyring<26.0.0,>=25.1.0->poetry==2.1.2)
+2026-08-20T17:14:18.5402971Z   Using cached backports.tarfile-1.2.0-py3-none-any.whl.metadata (2.0 kB)
+2026-08-20T17:14:18.5459171Z Using cached poetry-2.1.2-py3-none-any.whl (277 kB)
+2026-08-20T17:14:18.5476397Z Using cached poetry_core-2.1.2-py3-none-any.whl (332 kB)
+2026-08-20T17:14:18.5493798Z Using cached build-1.5.0-py3-none-any.whl (26 kB)
+2026-08-20T17:14:18.5509583Z Using cached cachecontrol-0.14.4-py3-none-any.whl (22 kB)
+2026-08-20T17:14:18.5525696Z Using cached cleo-2.1.0-py3-none-any.whl (78 kB)
+2026-08-20T17:14:18.5541839Z Using cached crashtest-0.4.1-py3-none-any.whl (7.6 kB)
+2026-08-20T17:14:18.5557616Z Using cached dulwich-0.22.8-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.0 MB)
+2026-08-20T17:14:18.5576666Z Using cached fastjsonschema-2.22.2-py3-none-any.whl (27 kB)
+2026-08-20T17:14:18.5592365Z Using cached findpython-0.6.3-py3-none-any.whl (20 kB)
+2026-08-20T17:14:18.5608088Z Using cached installer-0.7.0-py3-none-any.whl (453 kB)
+2026-08-20T17:14:18.5625287Z Using cached keyring-25.7.0-py3-none-any.whl (39 kB)
+2026-08-20T17:14:18.5641321Z Using cached msgpack-1.2.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (423 kB)
+2026-08-20T17:14:18.5658389Z Using cached pbs_installer-2025.12.17-py3-none-any.whl (68 kB)
+2026-08-20T17:14:18.5674670Z Using cached httpx-0.28.1-py3-none-any.whl (73 kB)
+2026-08-20T17:14:18.5690359Z Using cached httpcore-1.0.9-py3-none-any.whl (78 kB)
+2026-08-20T17:14:18.5706337Z Using cached pkginfo-1.12.1.2-py3-none-any.whl (32 kB)
+2026-08-20T17:14:18.5723799Z Using cached platformdirs-4.11.3-py3-none-any.whl (23 kB)
+2026-08-20T17:14:18.5739323Z Using cached pyproject_hooks-1.2.0-py3-none-any.whl (10 kB)
+2026-08-20T17:14:18.5755437Z Using cached rapidfuzz-3.14.5-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (3.2 MB)
+2026-08-20T17:14:18.5782360Z Using cached requests-2.34.2-py3-none-any.whl (73 kB)
+2026-08-20T17:14:18.5798741Z Using cached charset_normalizer-3.5.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (262 kB)
+2026-08-20T17:14:18.5815048Z Using cached idna-3.19-py3-none-any.whl (68 kB)
+2026-08-20T17:14:18.5830567Z Using cached requests_toolbelt-1.0.0-py2.py3-none-any.whl (54 kB)
+2026-08-20T17:14:18.5846434Z Using cached shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+2026-08-20T17:14:18.5865907Z Using cached tomlkit-0.15.1-py3-none-any.whl (49 kB)
+2026-08-20T17:14:18.5883128Z Using cached virtualenv-20.39.1-py3-none-any.whl (5.8 MB)
+2026-08-20T17:14:18.5919417Z Using cached distlib-0.4.3-py2.py3-none-any.whl (470 kB)
+2026-08-20T17:14:18.5936823Z Using cached filelock-3.32.3-py3-none-any.whl (98 kB)
+2026-08-20T17:14:18.5952915Z Using cached certifi-2026.7.22-py3-none-any.whl (136 kB)
+2026-08-20T17:14:18.5968862Z Using cached h11-0.16.0-py3-none-any.whl (37 kB)
+2026-08-20T17:14:18.5985148Z Using cached importlib_metadata-9.0.0-py3-none-any.whl (27 kB)
+2026-08-20T17:14:18.6000564Z Using cached jeepney-0.9.0-py3-none-any.whl (49 kB)
+2026-08-20T17:14:18.6016534Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+2026-08-20T17:14:18.6032889Z Using cached secretstorage-3.5.0-py3-none-any.whl (15 kB)
+2026-08-20T17:14:18.6048852Z Using cached cryptography-50.0.0-cp311-abi3-manylinux_2_34_x86_64.whl (4.7 MB)
+2026-08-20T17:14:18.6081577Z Using cached cffi-2.1.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (217 kB)
+2026-08-20T17:14:18.6097714Z Using cached trove_classifiers-2026.6.1.19-py3-none-any.whl (14 kB)
+2026-08-20T17:14:18.6113568Z Using cached zipp-4.1.0-py3-none-any.whl (10 kB)
+2026-08-20T17:14:18.6129634Z Using cached zstandard-0.25.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.6 MB)
+2026-08-20T17:14:18.6164561Z Using cached anyio-4.14.2-py3-none-any.whl (125 kB)
+2026-08-20T17:14:18.6180423Z Using cached jaraco.classes-3.4.0-py3-none-any.whl (6.8 kB)
+2026-08-20T17:14:18.6196297Z Using cached jaraco_context-6.1.2-py3-none-any.whl (7.9 kB)
+2026-08-20T17:14:18.6212076Z Using cached backports.tarfile-1.2.0-py3-none-any.whl (30 kB)
+2026-08-20T17:14:18.6227964Z Using cached jaraco_functools-4.6.0-py3-none-any.whl (11 kB)
+2026-08-20T17:14:18.6243763Z Using cached more_itertools-11.1.0-py3-none-any.whl (72 kB)
+2026-08-20T17:14:18.6259453Z Using cached pycparser-3.0-py3-none-any.whl (48 kB)
+2026-08-20T17:14:18.7941406Z Installing collected packages: trove-classifiers, distlib, zstandard, zipp, tomlkit, shellingham, rapidfuzz, pyproject-hooks, pycparser, poetry-core, platformdirs, pkginfo, pbs-installer, packaging, msgpack, more-itertools, jeepney, installer, idna, h11, filelock, fastjsonschema, dulwich, crashtest, charset_normalizer, certifi, backports.tarfile, virtualenv, requests, jaraco.functools, jaraco.context, jaraco.classes, importlib_metadata, httpcore, findpython, cleo, cffi, build, anyio, requests-toolbelt, httpx, cryptography, cachecontrol, SecretStorage, keyring, poetry
+2026-08-20T17:14:20.9835064Z 
+2026-08-20T17:14:20.9867269Z Successfully installed SecretStorage-3.5.0 anyio-4.14.2 backports.tarfile-1.2.0 build-1.5.0 cachecontrol-0.14.4 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.1 cleo-2.1.0 crashtest-0.4.1 cryptography-50.0.0 distlib-0.4.3 dulwich-0.22.8 fastjsonschema-2.22.2 filelock-3.32.3 findpython-0.6.3 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 idna-3.19 importlib_metadata-9.0.0 installer-0.7.0 jaraco.classes-3.4.0 jaraco.context-6.1.2 jaraco.functools-4.6.0 jeepney-0.9.0 keyring-25.7.0 more-itertools-11.1.0 msgpack-1.2.1 packaging-26.3 pbs-installer-2025.12.17 pkginfo-1.12.1.2 platformdirs-4.11.3 poetry-2.1.2 poetry-core-2.1.2 pycparser-3.0 pyproject-hooks-1.2.0 rapidfuzz-3.14.5 requests-2.34.2 requests-toolbelt-1.0.0 shellingham-1.5.4 tomlkit-0.15.1 trove-classifiers-2026.6.1.19 virtualenv-20.39.1 zipp-4.1.0 zstandard-0.25.0
+2026-08-20T17:14:23.1987334Z Installing dependencies from lock file
+2026-08-20T17:14:23.3115148Z 
+2026-08-20T17:14:23.3116364Z No dependencies to install or update
+2026-08-20T17:14:23.3132835Z 
+2026-08-20T17:14:23.3133898Z Installing the current project: cfn-resolver (0.1.0)
+2026-08-20T17:14:23.5901218Z Name: poetry
+2026-08-20T17:14:23.5902267Z Version: 2.1.2
+2026-08-20T17:14:23.5904095Z Summary: Python dependency management and packaging made easy.
+2026-08-20T17:14:23.5905854Z Home-page: https://python-poetry.org/
+2026-08-20T17:14:23.5907926Z Author: Sébastien Eustace
+2026-08-20T17:14:23.5909244Z Author-email: sebastien@eustace.io
+2026-08-20T17:14:23.5911021Z License: MIT
+2026-08-20T17:14:23.5913902Z Location: /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages
+2026-08-20T17:14:23.5916542Z Requires: build, cachecontrol, cleo, dulwich, fastjsonschema, findpython, installer, keyring, packaging, pbs-installer, pkginfo, platformdirs, poetry-core, pyproject-hooks, requests, requests-toolbelt, shellingham, tomlkit, trove-classifiers, virtualenv
+2026-08-20T17:14:23.5918874Z Required-by: 
+2026-08-20T17:14:23.6219997Z ##[endgroup]
+2026-08-20T17:14:23.6222818Z ##[group]Running CFN Resolver
+2026-08-20T17:14:24.5893426Z [33m17:14:24[0m [35mINFO[0m [1mRunning with options:
+2026-08-20T17:14:24.5894282Z 
+2026-08-20T17:14:24.5894791Z  Template Path: ../cfn-templates
+2026-08-20T17:14:24.5895670Z  Offline Mode: False
+2026-08-20T17:14:24.5896471Z  Verbose Logging: False
+2026-08-20T17:14:24.5897324Z  Results File: ../cfn-resolver-results.md
+2026-08-20T17:14:24.5898362Z  Repository Name: SEC-OIT-CONNECT/connect-core-infra
+2026-08-20T17:14:24.5899384Z  Branch Name: release-queue-notifications
+2026-08-20T17:14:24.5900387Z  Email Recipients: aces.github.issues@sec.gov
+2026-08-20T17:14:24.5901691Z [0m
+2026-08-20T17:14:25.1603307Z [33m17:14:25[0m [35mINFO[0m [1mPath is a directory, resolving all templates within ../cfn-templates[0m
+2026-08-20T17:14:25.1605305Z [33m17:14:25[0m [35mINFO[0m [1mNow processing template: ../cfn-templates/vmx3.yaml[0m
+2026-08-20T17:14:25.2256535Z [33m17:14:25[0m [35mINFO[0m [1mResolved template written to: ../cfn-templates/vmx3-resolved.yaml[0m
+2026-08-20T17:14:25.2265052Z [33m17:14:25[0m [35mSUCCESS[0m [32m[1mComplete![0m
+2026-08-20T17:14:25.2266710Z [33m17:14:25[0m [35mINFO[0m [1mNow processing template: ../cfn-templates/iam-connect-saml-role.yaml[0m
+2026-08-20T17:14:25.2341956Z [33m17:14:25[0m [35mINFO[0m [1mResolved template written to: ../cfn-templates/iam-connect-saml-role-resolved.yaml[0m
+2026-08-20T17:14:25.2343740Z [33m17:14:25[0m [35mSUCCESS[0m [32m[1mComplete![0m
+2026-08-20T17:14:25.2345291Z [33m17:14:25[0m [35mINFO[0m [1mNow processing template: ../cfn-templates/vmx3-policy-builder.yaml[0m
+2026-08-20T17:14:25.2661272Z [33m17:14:25[0m [35mINFO[0m [1mResolved template written to: ../cfn-templates/vmx3-policy-builder-resolved.yaml[0m
+2026-08-20T17:14:25.2663025Z [33m17:14:25[0m [35mSUCCESS[0m [32m[1mComplete![0m
+2026-08-20T17:14:25.2664515Z [33m17:14:25[0m [35mINFO[0m [1mNow processing template: ../cfn-templates/connect-instance.yaml[0m
+2026-08-20T17:14:25.8866826Z [33m17:14:25[0m [35mINFO[0m [1mResolved template written to: ../cfn-templates/connect-instance-resolved.yaml[0m
+2026-08-20T17:14:25.8868510Z [33m17:14:25[0m [35mSUCCESS[0m [32m[1mComplete![0m
+2026-08-20T17:14:25.8870026Z [33m17:14:25[0m [35mINFO[0m [1mNow processing template: ../cfn-templates/ssm-saml-metadata.yaml[0m
+2026-08-20T17:14:25.8905706Z [33m17:14:25[0m [35mINFO[0m [1mResolved template written to: ../cfn-templates/ssm-saml-metadata-resolved.yaml[0m
+2026-08-20T17:14:25.8907781Z [33m17:14:25[0m [35mSUCCESS[0m [32m[1mComplete![0m
+2026-08-20T17:14:25.8909392Z [33m17:14:25[0m [35mINFO[0m [1mNow processing template: ../cfn-templates/iam-saml-provider.yaml[0m
+2026-08-20T17:14:25.8945871Z [33m17:14:25[0m [35mINFO[0m [1mResolved template written to: ../cfn-templates/iam-saml-provider-resolved.yaml[0m
+2026-08-20T17:14:25.8947536Z [33m17:14:25[0m [35mSUCCESS[0m [32m[1mComplete![0m
+2026-08-20T17:14:25.8949063Z [33m17:14:25[0m [35mINFO[0m [1mNow processing template: ../cfn-templates/kinesis-ctr-stream.yaml[0m
+2026-08-20T17:14:25.8987379Z [33m17:14:25[0m [35mINFO[0m [1mResolved template written to: ../cfn-templates/kinesis-ctr-stream-resolved.yaml[0m
+2026-08-20T17:14:25.8989056Z [33m17:14:25[0m [35mSUCCESS[0m [32m[1mComplete![0m
+2026-08-20T17:14:25.8990849Z [33m17:14:25[0m [35mINFO[0m [1mNow processing template: ../cfn-templates/lambda-acw-contact-attributes.yaml[0m
+2026-08-20T17:14:26.3584057Z [33m17:14:26[0m [35mINFO[0m [1mResolved template written to: ../cfn-templates/lambda-acw-contact-attributes-resolved.yaml[0m
+2026-08-20T17:14:26.3586274Z [33m17:14:26[0m [35mSUCCESS[0m [32m[1mComplete![0m
+2026-08-20T17:14:26.3587928Z [33m17:14:26[0m [35mINFO[0m [1mNow processing template: ../cfn-templates/lambda-function.yaml[0m
+2026-08-20T17:14:26.8122017Z [33m17:14:26[0m [35mINFO[0m [1mResolved template written to: ../cfn-templates/lambda-function-resolved.yaml[0m
+2026-08-20T17:14:26.8131920Z [33m17:14:26[0m [35mSUCCESS[0m [32m[1mComplete![0m
+2026-08-20T17:14:26.8133638Z [33m17:14:26[0m [35mINFO[0m [1mNow processing template: ../cfn-templates/ec2-instance.yaml[0m
+2026-08-20T17:14:27.2578520Z [33m17:14:27[0m [35mINFO[0m [1mResolved template written to: ../cfn-templates/ec2-instance-resolved.yaml[0m
+2026-08-20T17:14:27.2580566Z [33m17:14:27[0m [35mSUCCESS[0m [32m[1mComplete![0m
+2026-08-20T17:14:27.2582579Z [33m17:14:27[0m [35mINFO[0m [1mNow processing template: ../cfn-templates/vmx3-oiea-voicemail-notifier.yaml[0m
+2026-08-20T17:14:27.2690397Z [33m17:14:27[0m [35mWARNING[0m [33m[1mFailed to resolve template: ../cfn-templates/vmx3-oiea-voicemail-notifier.yaml[0m
+2026-08-20T17:14:27.2692733Z [33m17:14:27[0m [35mINFO[0m [1mNow processing template: ../cfn-templates/iam-vmx3-presigner-user.yaml[0m
+2026-08-20T17:14:27.2814633Z [33m17:14:27[0m [35mINFO[0m [1mResolved template written to: ../cfn-templates/iam-vmx3-presigner-user-resolved.yaml[0m
+2026-08-20T17:14:27.2816379Z [33m17:14:27[0m [35mSUCCESS[0m [32m[1mComplete![0m
+2026-08-20T17:14:27.2818083Z [33m17:14:27[0m [35mINFO[0m [1mNow processing template: ../cfn-templates/vmx3-cloudfront-signing-key.yaml[0m
+2026-08-20T17:14:27.2871784Z [33m17:14:27[0m [35mINFO[0m [1mResolved template written to: ../cfn-templates/vmx3-cloudfront-signing-key-resolved.yaml[0m
+2026-08-20T17:14:27.2873544Z [33m17:14:27[0m [35mSUCCESS[0m [32m[1mComplete![0m
+2026-08-20T17:14:27.2875354Z [33m17:14:27[0m [35mINFO[0m [1mNow processing template: ../cfn-templates/connect-ctr-streaming-config.yaml[0m
+2026-08-20T17:14:27.2914658Z [33m17:14:27[0m [35mINFO[0m [1mResolved template written to: ../cfn-templates/connect-ctr-streaming-config-resolved.yaml[0m
+2026-08-20T17:14:27.2916438Z [33m17:14:27[0m [35mSUCCESS[0m [32m[1mComplete![0m
+2026-08-20T17:14:27.2918059Z [33m17:14:27[0m [35mINFO[0m [1mNow processing template: ../cfn-templates/ec2-readonly-role.yaml[0m
+2026-08-20T17:14:27.5241850Z [33m17:14:27[0m [35mINFO[0m [1mResolved template written to: ../cfn-templates/ec2-readonly-role-resolved.yaml[0m
+2026-08-20T17:14:27.5243652Z [33m17:14:27[0m [35mSUCCESS[0m [32m[1mComplete![0m
+2026-08-20T17:14:27.5245096Z [33m17:14:27[0m [35mINFO[0m [1m======================================[0m
+2026-08-20T17:14:27.5246606Z [33m17:14:27[0m [35mINFO[0m [1m======== CFN Resolver Summary ========[0m
+2026-08-20T17:14:27.5248454Z [33m17:14:27[0m [35mINFO[0m [1m======================================[0m
+2026-08-20T17:14:27.5249896Z [33m17:14:27[0m [35mINFO[0m [1mSuccessfully resolved: 14 file(s)[0m
+2026-08-20T17:14:27.5251493Z [33m17:14:27[0m [35mINFO[0m [1mFailed to resolve: 1 file(s)[0m
+2026-08-20T17:14:27.5252763Z [33m17:14:27[0m [35mINFO[0m [1mSuccessful files:[0m
+2026-08-20T17:14:27.5254070Z [33m17:14:27[0m [35mINFO[0m [1m  - ../cfn-templates/vmx3.yaml[0m
+2026-08-20T17:14:27.5255528Z [33m17:14:27[0m [35mINFO[0m [1m  - ../cfn-templates/iam-connect-saml-role.yaml[0m
+2026-08-20T17:14:27.5257035Z [33m17:14:27[0m [35mINFO[0m [1m  - ../cfn-templates/vmx3-policy-builder.yaml[0m
+2026-08-20T17:14:27.5258437Z [33m17:14:27[0m [35mINFO[0m [1m  - ../cfn-templates/connect-instance.yaml[0m
+2026-08-20T17:14:27.5259761Z [33m17:14:27[0m [35mINFO[0m [1m  - ../cfn-templates/ssm-saml-metadata.yaml[0m
+2026-08-20T17:14:27.5262087Z [33m17:14:27[0m [35mINFO[0m [1m  - ../cfn-templates/iam-saml-provider.yaml[0m
+2026-08-20T17:14:27.5264431Z [33m17:14:27[0m [35mINFO[0m [1m  - ../cfn-templates/kinesis-ctr-stream.yaml[0m
+2026-08-20T17:14:27.5266942Z [33m17:14:27[0m [35mINFO[0m [1m  - ../cfn-templates/lambda-acw-contact-attributes.yaml[0m
+2026-08-20T17:14:27.5268221Z [33m17:14:27[0m [35mINFO[0m [1m  - ../cfn-templates/lambda-function.yaml[0m
+2026-08-20T17:14:27.5269132Z [33m17:14:27[0m [35mINFO[0m [1m  - ../cfn-templates/ec2-instance.yaml[0m
+2026-08-20T17:14:27.5270095Z [33m17:14:27[0m [35mINFO[0m [1m  - ../cfn-templates/iam-vmx3-presigner-user.yaml[0m
+2026-08-20T17:14:27.5271417Z [33m17:14:27[0m [35mINFO[0m [1m  - ../cfn-templates/vmx3-cloudfront-signing-key.yaml[0m
+2026-08-20T17:14:27.5272830Z [33m17:14:27[0m [35mINFO[0m [1m  - ../cfn-templates/connect-ctr-streaming-config.yaml[0m
+2026-08-20T17:14:27.5273968Z [33m17:14:27[0m [35mINFO[0m [1m  - ../cfn-templates/ec2-readonly-role.yaml[0m
+2026-08-20T17:14:27.5274924Z [33m17:14:27[0m [35mINFO[0m [1mFailed files:[0m
+2026-08-20T17:14:27.5276060Z [33m17:14:27[0m [35mWARNING[0m [33m[1m  - ../cfn-templates/vmx3-oiea-voicemail-notifier.yaml[0m
+2026-08-20T17:14:27.5277446Z [33m17:14:27[0m [35mINFO[0m [1mSending email notification about unresolved templates...[0m
+2026-08-20T17:14:27.8852215Z [33m17:14:27[0m [35mINFO[0m [1m📧 Email notification sent to: aces.github.issues@sec.gov[0m
+2026-08-20T17:14:27.9603342Z ##[endgroup]
+2026-08-20T17:14:27.9604865Z ##[group]Generating CFN Resolver Summary
+2026-08-20T17:14:27.9625310Z ##[endgroup]
+2026-08-20T17:14:27.9641872Z ##[error]Process completed with exit code 1.
+2026-08-20T17:14:27.9706046Z ##[group]Run cd cloudguard-exceptions-management
+2026-08-20T17:14:27.9706735Z [36;1mcd cloudguard-exceptions-management[0m
+2026-08-20T17:14:27.9707241Z [36;1mset +e[0m
+2026-08-20T17:14:27.9707956Z [36;1mpip3 install --index https://nexus-repo.cicd.prdoit-cuse1.aces.sec.gov/repository/pypi-proxy/pypi \[0m
+2026-08-20T17:14:27.9708918Z [36;1m  --index-url https://nexus-repo.cicd.prdoit-cuse1.aces.sec.gov/repository/pypi-proxy/simple \[0m
+2026-08-20T17:14:27.9709946Z [36;1m  --extra-index-url https://nexus-repo.cicd.prdoit-cuse1.aces.sec.gov/repository/ccoe-sharedservices-python-prd/simple \[0m
+2026-08-20T17:14:27.9710985Z [36;1m  -q -r requirements.txt[0m
+2026-08-20T17:14:27.9711458Z [36;1mif [[ $? -ne 0 ]]; [0m
+2026-08-20T17:14:27.9711874Z [36;1mthen[0m
+2026-08-20T17:14:27.9712399Z [36;1m  echo "::warning:: Downloading from Nexus RM PRD failed, trying STG..."[0m
+2026-08-20T17:14:27.9713286Z [36;1m  pip3 install --index https://nexus-repo.cicd.stgoit-cuse1.aces.sec.gov/repository/pypi-proxy/pypi \[0m
+2026-08-20T17:14:27.9714240Z [36;1m    --index-url https://nexus-repo.cicd.stgoit-cuse1.aces.sec.gov/repository/pypi-proxy/simple \[0m
+2026-08-20T17:14:27.9715243Z [36;1m    --extra-index-url https://nexus-repo.cicd.stgoit-cuse1.aces.sec.gov/repository/ccoe-sharedservices-python-prd/simple \[0m
+2026-08-20T17:14:27.9716059Z [36;1m    -q -r requirements.txt[0m
+2026-08-20T17:14:27.9716719Z [36;1mfi[0m
+2026-08-20T17:14:27.9717094Z [36;1mpip3 show em-library[0m
+2026-08-20T17:14:27.9717537Z [36;1mexport PYTHONPATH=$(pwd)[0m
+2026-08-20T17:14:27.9717984Z [36;1mcd ..[0m
+2026-08-20T17:14:27.9718390Z [36;1mEXCEPTIONS_LOG_LEVEL_LOCAL=[0m
+2026-08-20T17:14:27.9718943Z [36;1mEXCEPTIONS_LOG_LEVEL="${EXCEPTIONS_LOG_LEVEL_LOCAL:-info}"[0m
+2026-08-20T17:14:27.9719511Z [36;1mls -lR ./cfnguard | wc -l[0m
+2026-08-20T17:14:27.9719942Z [36;1m[0m
+2026-08-20T17:14:27.9720502Z [36;1mpython3 cloudguard-exceptions-management/template_validation/main.py \[0m
+2026-08-20T17:14:27.9721618Z [36;1m  --api_url https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod \[0m
+2026-08-20T17:14:27.9722344Z [36;1m  --target_account_id 416153530692 \[0m
+2026-08-20T17:14:27.9722866Z [36;1m  --templates_directory ./cfn-templates \[0m
+2026-08-20T17:14:27.9723384Z [36;1m  --rules_directory ./cfnguard \[0m
+2026-08-20T17:14:27.9723881Z [36;1m  --log_level $EXCEPTIONS_LOG_LEVEL \[0m
+2026-08-20T17:14:27.9724365Z [36;1m  --environment prd \[0m
+2026-08-20T17:14:27.9724862Z [36;1m  --results_file_html cfn-guard-results.html \[0m
+2026-08-20T17:14:27.9725499Z [36;1m  --results_file_html_violations cfn-guard-results-violations.html \[0m
+2026-08-20T17:14:27.9726183Z [36;1m  --results_file_html_exceptions cfn-guard-results-exceptions.html \[0m
+2026-08-20T17:14:27.9726789Z [36;1m  --results_file_json cfn-guard-results.json[0m
+2026-08-20T17:14:27.9727301Z [36;1mVALIDATION_EXIT_CODE=$?[0m
+2026-08-20T17:14:27.9727737Z [36;1m[0m
+2026-08-20T17:14:27.9728250Z [36;1m# Get the exit code of the CFN Guard validation script (main.py).  The return[0m
+2026-08-20T17:14:27.9728988Z [36;1m# value is 0 if all validations pass or pass due to exceptions, non-zero if [0m
+2026-08-20T17:14:27.9729599Z [36;1m# any unauthorized failures occur.[0m
+2026-08-20T17:14:27.9730168Z [36;1mecho "VALIDATION_FAILED=$VALIDATION_EXIT_CODE" >> $GITHUB_ENV[0m
+2026-08-20T17:14:27.9730964Z [36;1m[0m
+2026-08-20T17:14:27.9731432Z [36;1m# Copy results files to cfn-templates for artifact upload[0m
+2026-08-20T17:14:27.9732001Z [36;1mif [ -f cfn-guard-results.html ]; then[0m
+2026-08-20T17:14:27.9732527Z [36;1m  cp cfn-guard-results.html cfn-templates/[0m
+2026-08-20T17:14:27.9733084Z [36;1m  echo "✅ Copied HTML results to cfn-templates/"[0m
+2026-08-20T17:14:27.9733604Z [36;1mfi[0m
+2026-08-20T17:14:27.9733975Z [36;1m[0m
+2026-08-20T17:14:27.9734425Z [36;1mif [ -f cfn-guard-results-violations.html ]; then[0m
+2026-08-20T17:14:27.9735229Z [36;1m  cp cfn-guard-results-violations.html cfn-templates/[0m
+2026-08-20T17:14:27.9735880Z [36;1m  echo "✅ Copied HTML violations results to cfn-templates/"[0m
+2026-08-20T17:14:27.9736413Z [36;1mfi[0m
+2026-08-20T17:14:27.9736779Z [36;1m[0m
+2026-08-20T17:14:27.9737207Z [36;1mif [ -f cfn-guard-results-exceptions.html ]; then[0m
+2026-08-20T17:14:27.9737771Z [36;1m  cp cfn-guard-results-exceptions.html cfn-templates/[0m
+2026-08-20T17:14:27.9738377Z [36;1m  echo "✅ Copied HTML exceptions results to cfn-templates/"[0m
+2026-08-20T17:14:27.9738889Z [36;1mfi[0m
+2026-08-20T17:14:27.9739244Z [36;1m[0m
+2026-08-20T17:14:27.9739645Z [36;1mif [ -f cfn-guard-results.json ]; then[0m
+2026-08-20T17:14:27.9740163Z [36;1m  cp cfn-guard-results.json cfn-templates/[0m
+2026-08-20T17:14:27.9740882Z [36;1m  echo "✅ Copied JSON results to cfn-templates/"[0m
+2026-08-20T17:14:27.9741386Z [36;1mfi[0m
+2026-08-20T17:14:27.9741753Z [36;1m[0m
+2026-08-20T17:14:27.9742192Z [36;1m# Write CFN Guard section header to cfnguardsummary.md[0m
+2026-08-20T17:14:27.9742782Z [36;1mecho "<details open>" > cfnguardsummary.md[0m
+2026-08-20T17:14:27.9743476Z [36;1mecho "<summary><h2>🛡️ CFN Guard Validation Results</h2></summary>" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9744144Z [36;1mecho "" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9744595Z [36;1m[0m
+2026-08-20T17:14:27.9744993Z [36;1mif [ $VALIDATION_EXIT_CODE -ne 0 ]; then[0m
+2026-08-20T17:14:27.9745809Z [36;1m  echo "❌ One or more templates failed CFN Guard validation." >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9746440Z [36;1m  echo "" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9747494Z [36;1m  echo "All templates in the cfn-templates folder are validated with CFN Guard. If a template is not intended for deployment, move it to an arch-templates or other folder to bypass validation." >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9748534Z [36;1m  echo "" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9750035Z [36;1m  echo "See Remediation Guides at [AWS Foundational Security Best Practices Controls](https://secoit.sharepoint.com/:u:/r/sites/oit_ccoe/acesfoundation/SitePages/AWS-Foundational-Security-Best-Practices-controls.aspx?csf=1&web=1&e=baEv6b) for any ACES tailored guidance on specific controls." >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9751743Z [36;1m  echo "" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9752217Z [36;1m[0m
+2026-08-20T17:14:27.9752680Z [36;1m  if [ -f cfn-guard-results-violations.html ]; then[0m
+2026-08-20T17:14:27.9753329Z [36;1m    cat cfn-guard-results-violations.html >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9753944Z [36;1m  elif [ -f cfn-guard-results.html ]; then[0m
+2026-08-20T17:14:27.9754501Z [36;1m    cat cfn-guard-results.html >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9755014Z [36;1m  else[0m
+2026-08-20T17:14:27.9755666Z [36;1m    echo "❌ Warning: CFN Guard results file not found!  See validation logs for details." >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9756389Z [36;1m  fi[0m
+2026-08-20T17:14:27.9756765Z [36;1m[0m
+2026-08-20T17:14:27.9757208Z [36;1m  if [ -f cfn-guard-results-exceptions.html ]; then[0m
+2026-08-20T17:14:27.9757768Z [36;1m    echo "<details>" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9758741Z [36;1m    echo "<summary>⚠️ CFN Guard Validation Exceptions - One or more templates had CFN Guard validation exceptions applied. Expand to review details.</summary>" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9759684Z [36;1m    echo "" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9760488Z [36;1m    echo "The following template resources were allowed to pass CFN Guard validation due to active exceptions." >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9761424Z [36;1m    echo "" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9762019Z [36;1m    cat cfn-guard-results-exceptions.html >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9762624Z [36;1m    echo "</details>" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9763115Z [36;1m  fi[0m
+2026-08-20T17:14:27.9763487Z [36;1m[0m
+2026-08-20T17:14:27.9764128Z [36;1m  # Set validation failed flag - used by pipeline summary display[0m
+2026-08-20T17:14:27.9764733Z [36;1m  echo "VALIDATION_FAILED=1" >> $GITHUB_ENV[0m
+2026-08-20T17:14:27.9765201Z [36;1melse[0m
+2026-08-20T17:14:27.9765718Z [36;1m  # Validation exceptions may have allowed success.  If so, a results file[0m
+2026-08-20T17:14:27.9766438Z [36;1m  # exists listing the exceptions.  Show the exceptions results otherwise, [0m
+2026-08-20T17:14:27.9767047Z [36;1m  # show all templates passed.[0m
+2026-08-20T17:14:27.9767701Z [36;1m  if [ -f cfn-guard-results-exceptions.html ] || [ -f cfn-guard-results.html ]; then[0m
+2026-08-20T17:14:27.9768581Z [36;1m    echo "✅ All templates passed CFN Guard validation with validation exceptions." >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9769291Z [36;1m    echo "" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9781749Z [36;1m    echo "<details>" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9783005Z [36;1m    echo "<summary>⚠️ CFN Guard Validation Exceptions - One or more templates had CFN Guard validation exceptions applied. Expand to review details.</summary>" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9783989Z [36;1m    echo "" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9784798Z [36;1m    echo "The following template resources were allowed to pass CFN Guard validation due to active exceptions." >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9785585Z [36;1m    echo "" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9787304Z [36;1m    echo "See Remediation Guides at [AWS Foundational Security Best Practices Controls](https://secoit.sharepoint.com/:u:/r/sites/oit_ccoe/acesfoundation/SitePages/AWS-Foundational-Security-Best-Practices-controls.aspx?csf=1&web=1&e=baEv6b) for any ACES tailored guidance on specific controls." >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9788799Z [36;1m    echo "" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9789343Z [36;1m    if [ -f cfn-guard-results-exceptions.html ]; then[0m
+2026-08-20T17:14:27.9789983Z [36;1m      cat cfn-guard-results-exceptions.html >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9790544Z [36;1m    else[0m
+2026-08-20T17:14:27.9791232Z [36;1m      cat cfn-guard-results.html >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9791737Z [36;1m    fi[0m
+2026-08-20T17:14:27.9792152Z [36;1m    echo "</details>" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9792611Z [36;1m  else[0m
+2026-08-20T17:14:27.9793132Z [36;1m    echo "✅ All templates passed CFN Guard validation!" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9793731Z [36;1m  fi[0m
+2026-08-20T17:14:27.9794090Z [36;1mfi[0m
+2026-08-20T17:14:27.9794493Z [36;1mecho "</details>" >> cfnguardsummary.md[0m
+2026-08-20T17:14:27.9794946Z [36;1m[0m
+2026-08-20T17:14:27.9795423Z [36;1m# Use CFN Guard validation script exit code as the step exit code[0m
+2026-08-20T17:14:27.9795989Z [36;1mexit $VALIDATION_EXIT_CODE[0m
+2026-08-20T17:14:27.9838409Z shell: /usr/bin/bash -e {0}
+2026-08-20T17:14:27.9838837Z env:
+2026-08-20T17:14:27.9839318Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:14:27.9839845Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:14:27.9840395Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:14:27.9841079Z   AWS_REGION: us-east-1
+2026-08-20T17:14:27.9841549Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:14:27.9842071Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:14:27.9842451Z   CLONE_BOT_ID: 947806
+2026-08-20T17:14:27.9842958Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:14:27.9843785Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:14:27.9844493Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:14:27.9844989Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:14:27.9845538Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:14:27.9846177Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:14:27.9847107Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:14:27.9847945Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:14:27.9848683Z   CLIENT_ID: ***
+2026-08-20T17:14:27.9849197Z   CLIENT_SECRET: ***
+2026-08-20T17:14:27.9849581Z   AWS_ACCOUNT_ID_LEN: 12
+2026-08-20T17:14:27.9849988Z   AWS_DEFAULT_REGION: us-east-1
+2026-08-20T17:14:27.9850490Z   AWS_ACCESS_KEY_ID: ***
+2026-08-20T17:14:27.9851182Z   AWS_SECRET_ACCESS_KEY: ***
+2026-08-20T17:14:27.9856403Z   AWS_SESSION_TOKEN: ***
+2026-08-20T17:14:27.9856791Z   ASSUME_TYPE: repo
+2026-08-20T17:14:27.9857236Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:27.9857864Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+2026-08-20T17:14:27.9858469Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:27.9859034Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:27.9859596Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:27.9860142Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+2026-08-20T17:14:27.9860830Z   LINT_ERRORS: 0
+2026-08-20T17:14:27.9861280Z ##[endgroup]
+2026-08-20T17:14:33.6723170Z ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+2026-08-20T17:14:33.6725445Z aws-sam-translator 1.112.0 requires pydantic~=2.13.3, but you have pydantic 1.10.26 which is incompatible.
+2026-08-20T17:14:33.9685690Z Name: em_library
+2026-08-20T17:14:33.9686716Z Version: 1.1.22
+2026-08-20T17:14:33.9687933Z Summary: The shared library code for the Exceptions Management service
+2026-08-20T17:14:33.9689825Z Home-page: https://github.com/SEC-OIT-ACES/exceptions-manager-library
+2026-08-20T17:14:33.9691466Z Author: Mitch Robins
+2026-08-20T17:14:33.9693162Z Author-email: robinsm@sec.gov
+2026-08-20T17:14:33.9694607Z License: 
+2026-08-20T17:14:33.9697000Z Location: /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages
+2026-08-20T17:14:33.9698480Z Requires: loguru, prettytable, pydantic, PyYAML, requests, requests-mock
+2026-08-20T17:14:33.9699707Z Required-by: 
+2026-08-20T17:14:34.0059299Z 594
+2026-08-20T17:14:34.6873349Z [32m2026-08-20 17:14:34.686[0m | [1mINFO    [0m | [36m__main__[0m:[36mmain[0m:[36m202[0m - [1mFound 29 templates to validate.[0m
+2026-08-20T17:14:34.6875583Z [32m2026-08-20 17:14:34.687[0m | [1mINFO    [0m | [36m__main__[0m:[36mmain[0m:[36m215[0m - [1mBeginning validation of templates...[0m
+2026-08-20T17:14:38.3260854Z [32m2026-08-20 17:14:38.325[0m | [31m[1mERROR   [0m | [36mem_library.validation.service[0m:[36mprocess_validation_results[0m:[36m576[0m - [31m[1mViolation detected | template=lambda-function.yaml | rule=LAMBDA_FUNCTION_ENCRYPTED_VARIABLES | resource=rQueueNotificationLambda | details=A Lambda function has unencrypted environment variables[0m
+2026-08-20T17:14:38.3479697Z [32m2026-08-20 17:14:38.347[0m | [41m[1mCRITICAL[0m | [36mem_library.validation.service[0m:[36mprocess_validation_results[0m:[36m629[0m - [41m[1m
+2026-08-20T17:14:38.3481846Z Found CloudFormation guard rule failures without matching exceptions. Checks have failed.[0m
+2026-08-20T17:14:38.3483811Z +------------------------------+------------+-------------------------------------+---------------+--------------------------+-------------------------------------------------------------+-------------------------------------------------------------------------------------+-----------+
+2026-08-20T17:14:38.3486724Z |           Template           | Control ID |              Rule Name              | Informational |         Resource         |                          Violation                          |                                         Fix                                         | Exception |
+2026-08-20T17:14:38.3489814Z +------------------------------+------------+-------------------------------------+---------------+--------------------------+-------------------------------------------------------------+-------------------------------------------------------------------------------------+-----------+
+2026-08-20T17:14:38.3492947Z |    connect-instance.yaml     |    S3.9    |      S3_BUCKET_LOGGING_ENABLED      |      True     |  rConnectStorageBucket   | S3 Bucket Logging needs to be configured to enable logging. | Set the S3 Bucket property LoggingConfiguration to start logging into an S3 bucket. |    True   |
+2026-08-20T17:14:38.3495847Z +------------------------------+------------+-------------------------------------+---------------+--------------------------+-------------------------------------------------------------+-------------------------------------------------------------------------------------+-----------+
+2026-08-20T17:14:38.3498646Z | iam-vmx3-presigner-user.yaml |   IAM.2    |      IAM_NO_INLINE_POLICY_CHECK     |      True     |    VMX3PresignerUser     |        Inline policies are not allowed on IAM Users.        |                Remove the Policies list property from any IAM Users.                |    True   |
+2026-08-20T17:14:38.3501582Z +------------------------------+------------+-------------------------------------+---------------+--------------------------+-------------------------------------------------------------+-------------------------------------------------------------------------------------+-----------+
+2026-08-20T17:14:38.3504792Z |     lambda-function.yaml     |   ENC.12   | LAMBDA_FUNCTION_ENCRYPTED_VARIABLES |     False     | rQueueNotificationLambda |   A Lambda function has unencrypted environment variables   |  Set the KmsKeKeyArn property to a valid value to encrypt the environment variables |   False   |
+2026-08-20T17:14:38.3507779Z +------------------------------+------------+-------------------------------------+---------------+--------------------------+-------------------------------------------------------------+-------------------------------------------------------------------------------------+-----------+
+2026-08-20T17:14:38.4321366Z ✅ Copied HTML results to cfn-templates/
+2026-08-20T17:14:38.4337769Z ✅ Copied HTML violations results to cfn-templates/
+2026-08-20T17:14:38.4354614Z ✅ Copied HTML exceptions results to cfn-templates/
+2026-08-20T17:14:38.4370286Z ✅ Copied JSON results to cfn-templates/
+2026-08-20T17:14:38.4410271Z ##[error]Process completed with exit code 1.
+2026-08-20T17:14:38.4462551Z ##[group]Run # Create announcements section
+2026-08-20T17:14:38.4463125Z [36;1m# Create announcements section[0m
+2026-08-20T17:14:38.4463825Z [36;1mcat cloudguard-exceptions-management/aces-announcements.md >> announcementssummary.md[0m
+2026-08-20T17:14:38.4464479Z [36;1m[0m
+2026-08-20T17:14:38.4464889Z [36;1m# Create header based on validation results[0m
+2026-08-20T17:14:38.4465386Z [36;1mif [ "0" = "1"  ]; then[0m
+2026-08-20T17:14:38.4465931Z [36;1m  echo "## ❌ Pipeline Result: 🚨 Failed 🚨" > headersummary.md[0m
+2026-08-20T17:14:38.4466530Z [36;1m  echo "" >> headersummary.md[0m
+2026-08-20T17:14:38.4466984Z [36;1melse          [0m
+2026-08-20T17:14:38.4467402Z [36;1m  if [ "1" = "1"  ]; then[0m
+2026-08-20T17:14:38.4468071Z [36;1m    SUMMARY_HEADER_RESULT="## ❌ Pipeline Result: 🚨 Blocked for Publishing to Service Catalog 🚨"[0m
+2026-08-20T17:14:38.4468749Z [36;1m    if [ "false" == "true" ]; then[0m
+2026-08-20T17:14:38.4469437Z [36;1m      SUMMARY_HEADER_RESULT="## ✅ Pipeline Result: ⚠️ Publish with Guard Rules Violations ⚠️"[0m
+2026-08-20T17:14:38.4470089Z [36;1m    fi[0m
+2026-08-20T17:14:38.4470593Z [36;1m    echo "$SUMMARY_HEADER_RESULT" > headersummary.md[0m
+2026-08-20T17:14:38.4471416Z [36;1m    echo "" >> headersummary.md[0m
+2026-08-20T17:14:38.4472223Z [36;1m    echo "**Requirement:** Resolved Templates should not fail any CFN Guard Rules - Enforced on STG and PRD" >> headersummary.md[0m
+2026-08-20T17:14:38.4473001Z [36;1m    echo "" >> headersummary.md[0m
+2026-08-20T17:14:38.4473589Z [36;1m    echo "**See details below for failed rules found**" >> headersummary.md[0m
+2026-08-20T17:14:38.4474178Z [36;1m    echo "" >> headersummary.md[0m
+2026-08-20T17:14:38.4474613Z [36;1m  else[0m
+2026-08-20T17:14:38.4475092Z [36;1m    echo "## ✅ Pipeline Result: Approved" > headersummary.md[0m
+2026-08-20T17:14:38.4475661Z [36;1m    echo "" >> headersummary.md[0m
+2026-08-20T17:14:38.4476447Z [36;1m    echo "**Requirement:** Resolved Templates should not fail any CFN Guard Rules - Enforced on STG and PRD" >> headersummary.md[0m
+2026-08-20T17:14:38.4477224Z [36;1m    echo "" >> headersummary.md[0m
+2026-08-20T17:14:38.4477914Z [36;1m    echo "**All resolved templates passed validation - deployment may proceed**" >> headersummary.md[0m
+2026-08-20T17:14:38.4478596Z [36;1m    echo "" >> headersummary.md[0m
+2026-08-20T17:14:38.4479023Z [36;1m  fi[0m
+2026-08-20T17:14:38.4479411Z [36;1mfi[0m
+2026-08-20T17:14:38.4479969Z [36;1m# Combine all summary files into GITHUB_STEP_SUMMARY and validation-summary.md[0m
+2026-08-20T17:14:38.4480616Z [36;1mtouch validation-summary.md[0m
+2026-08-20T17:14:38.4481416Z [36;1m[0m
+2026-08-20T17:14:38.4481801Z [36;1m# Announcements first[0m
+2026-08-20T17:14:38.4482309Z [36;1mif [ -f announcementssummary.md ]; then[0m
+2026-08-20T17:14:38.4482915Z [36;1m  cat announcementssummary.md >> $GITHUB_STEP_SUMMARY[0m
+2026-08-20T17:14:38.4483542Z [36;1m  cat announcementssummary.md >> validation-summary.md[0m
+2026-08-20T17:14:38.4484278Z [36;1mfi[0m
+2026-08-20T17:14:38.4484694Z [36;1m[0m
+2026-08-20T17:14:38.4485081Z [36;1m# Then header[0m
+2026-08-20T17:14:38.4485527Z [36;1mif [ -f headersummary.md ]; then[0m
+2026-08-20T17:14:38.4486065Z [36;1m  cat headersummary.md >> $GITHUB_STEP_SUMMARY[0m
+2026-08-20T17:14:38.4486633Z [36;1m  cat headersummary.md >> validation-summary.md[0m
+2026-08-20T17:14:38.4487131Z [36;1mfi[0m
+2026-08-20T17:14:38.4487498Z [36;1m[0m
+2026-08-20T17:14:38.4487892Z [36;1mif [ -f cfnlintsummary.md ]; then[0m
+2026-08-20T17:14:38.4488407Z [36;1m  cat cfnlintsummary.md >> $GITHUB_STEP_SUMMARY[0m
+2026-08-20T17:14:38.4488963Z [36;1m  cat cfnlintsummary.md >> validation-summary.md[0m
+2026-08-20T17:14:38.4489466Z [36;1mfi[0m
+2026-08-20T17:14:38.4489836Z [36;1m[0m
+2026-08-20T17:14:38.4490242Z [36;1mif [ -f cfnresolversummary.md ]; then[0m
+2026-08-20T17:14:38.4490995Z [36;1m  cat cfnresolversummary.md >> $GITHUB_STEP_SUMMARY[0m
+2026-08-20T17:14:38.4491793Z [36;1m  cat cfnresolversummary.md >> validation-summary.md[0m
+2026-08-20T17:14:38.4492308Z [36;1mfi[0m
+2026-08-20T17:14:38.4492685Z [36;1m[0m
+2026-08-20T17:14:38.4493074Z [36;1mif [ -f cfnguardsummary.md ]; then[0m
+2026-08-20T17:14:38.4493597Z [36;1m  cat cfnguardsummary.md >> $GITHUB_STEP_SUMMARY[0m
+2026-08-20T17:14:38.4494156Z [36;1m  cat cfnguardsummary.md >> validation-summary.md[0m
+2026-08-20T17:14:38.4494652Z [36;1mfi[0m
+2026-08-20T17:14:38.4495013Z [36;1m[0m
+2026-08-20T17:14:38.4495413Z [36;1mif [ -f accountchecksummary.md ]; then[0m
+2026-08-20T17:14:38.4495964Z [36;1m  cat accountchecksummary.md >> $GITHUB_STEP_SUMMARY[0m
+2026-08-20T17:14:38.4496555Z [36;1m  cat accountchecksummary.md >> validation-summary.md[0m
+2026-08-20T17:14:38.4497067Z [36;1mfi[0m
+2026-08-20T17:14:38.4497421Z [36;1m[0m
+2026-08-20T17:14:38.4497837Z [36;1mecho "✅ Summary generated successfully."[0m
+2026-08-20T17:14:38.4539790Z shell: /usr/bin/bash -e {0}
+2026-08-20T17:14:38.4540222Z env:
+2026-08-20T17:14:38.4540857Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:14:38.4541419Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:14:38.4541975Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:14:38.4542433Z   AWS_REGION: us-east-1
+2026-08-20T17:14:38.4542908Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:14:38.4543425Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:14:38.4543818Z   CLONE_BOT_ID: 947806
+2026-08-20T17:14:38.4544315Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:14:38.4545144Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:14:38.4545861Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:14:38.4546341Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:14:38.4546909Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:14:38.4547557Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:14:38.4548335Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:14:38.4549170Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:14:38.4549900Z   CLIENT_ID: ***
+2026-08-20T17:14:38.4550431Z   CLIENT_SECRET: ***
+2026-08-20T17:14:38.4551039Z   AWS_ACCOUNT_ID_LEN: 12
+2026-08-20T17:14:38.4551469Z   AWS_DEFAULT_REGION: us-east-1
+2026-08-20T17:14:38.4551933Z   AWS_ACCESS_KEY_ID: ***
+2026-08-20T17:14:38.4552443Z   AWS_SECRET_ACCESS_KEY: ***
+2026-08-20T17:14:38.4557703Z   AWS_SESSION_TOKEN: ***
+2026-08-20T17:14:38.4558110Z   ASSUME_TYPE: repo
+2026-08-20T17:14:38.4558574Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:38.4559208Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+2026-08-20T17:14:38.4559828Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:38.4560404Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:38.4561487Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:38.4562062Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+2026-08-20T17:14:38.4562580Z   LINT_ERRORS: 0
+2026-08-20T17:14:38.4562963Z   VALIDATION_FAILED: 1
+2026-08-20T17:14:38.4563364Z ##[endgroup]
+2026-08-20T17:14:38.4782924Z ✅ Summary generated successfully.
+2026-08-20T17:14:38.4871498Z ##[group]Run cat cloudguard-exceptions-management/footnotes.md >> "$GITHUB_STEP_SUMMARY"
+2026-08-20T17:14:38.4872366Z [36;1mcat cloudguard-exceptions-management/footnotes.md >> "$GITHUB_STEP_SUMMARY"[0m
+2026-08-20T17:14:38.4873145Z [36;1mcat cloudguard-exceptions-management/footnotes.md >> validation-summary.md[0m
+2026-08-20T17:14:38.4912764Z shell: /usr/bin/bash -e {0}
+2026-08-20T17:14:38.4913188Z env:
+2026-08-20T17:14:38.4913572Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:14:38.4914047Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:14:38.4914606Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:14:38.4915051Z   AWS_REGION: us-east-1
+2026-08-20T17:14:38.4915516Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:14:38.4916024Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:14:38.4916401Z   CLONE_BOT_ID: 947806
+2026-08-20T17:14:38.4916875Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:14:38.4917736Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:14:38.4918443Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:14:38.4918907Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:14:38.4919461Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:14:38.4920089Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:14:38.4921124Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:14:38.4921964Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:14:38.4922675Z   CLIENT_ID: ***
+2026-08-20T17:14:38.4923199Z   CLIENT_SECRET: ***
+2026-08-20T17:14:38.4923595Z   AWS_ACCOUNT_ID_LEN: 12
+2026-08-20T17:14:38.4924000Z   AWS_DEFAULT_REGION: us-east-1
+2026-08-20T17:14:38.4924483Z   AWS_ACCESS_KEY_ID: ***
+2026-08-20T17:14:38.4924987Z   AWS_SECRET_ACCESS_KEY: ***
+2026-08-20T17:14:38.4930208Z   AWS_SESSION_TOKEN: ***
+2026-08-20T17:14:38.4930595Z   ASSUME_TYPE: repo
+2026-08-20T17:14:38.4931249Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:38.4931876Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+2026-08-20T17:14:38.4932479Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:38.4933052Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:38.4933607Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:38.4934162Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+2026-08-20T17:14:38.4934684Z   LINT_ERRORS: 0
+2026-08-20T17:14:38.4935070Z   VALIDATION_FAILED: 1
+2026-08-20T17:14:38.4935462Z ##[endgroup]
+2026-08-20T17:14:38.5698508Z ##[group]Run actions/upload-artifact@v7
+2026-08-20T17:14:38.5698998Z with:
+2026-08-20T17:14:38.5699385Z   name: Validation Summary
+2026-08-20T17:14:38.5699815Z   path: validation-summary.md
+2026-08-20T17:14:38.5700245Z   retention-days: 30
+2026-08-20T17:14:38.5700851Z   if-no-files-found: warn
+2026-08-20T17:14:38.5701459Z   compression-level: 6
+2026-08-20T17:14:38.5701947Z   overwrite: false
+2026-08-20T17:14:38.5702346Z   include-hidden-files: false
+2026-08-20T17:14:38.5702758Z   archive: true
+2026-08-20T17:14:38.5703137Z env:
+2026-08-20T17:14:38.5703503Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:14:38.5703977Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:14:38.5704531Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:14:38.5704989Z   AWS_REGION: us-east-1
+2026-08-20T17:14:38.5705681Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:14:38.5706201Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:14:38.5706590Z   CLONE_BOT_ID: 947806
+2026-08-20T17:14:38.5707117Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:14:38.5707957Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:14:38.5708710Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:14:38.5709202Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:14:38.5709771Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:14:38.5710415Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:14:38.5711444Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:14:38.5712280Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:14:38.5713018Z   CLIENT_ID: ***
+2026-08-20T17:14:38.5713550Z   CLIENT_SECRET: ***
+2026-08-20T17:14:38.5713957Z   AWS_ACCOUNT_ID_LEN: 12
+2026-08-20T17:14:38.5714379Z   AWS_DEFAULT_REGION: us-east-1
+2026-08-20T17:14:38.5714834Z   AWS_ACCESS_KEY_ID: ***
+2026-08-20T17:14:38.5715337Z   AWS_SECRET_ACCESS_KEY: ***
+2026-08-20T17:14:38.5720902Z   AWS_SESSION_TOKEN: ***
+2026-08-20T17:14:38.5721323Z   ASSUME_TYPE: repo
+2026-08-20T17:14:38.5721790Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:38.5722423Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+2026-08-20T17:14:38.5723041Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:38.5723612Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:38.5724177Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:38.5724744Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+2026-08-20T17:14:38.5725257Z   LINT_ERRORS: 0
+2026-08-20T17:14:38.5725654Z   VALIDATION_FAILED: 1
+2026-08-20T17:14:38.5726056Z ##[endgroup]
+2026-08-20T17:14:38.7278480Z With the provided path, there will be 1 file uploaded
+2026-08-20T17:14:38.7282604Z Artifact name is valid!
+2026-08-20T17:14:38.7283582Z Root directory input is valid!
+2026-08-20T17:14:38.9949308Z Uploading artifact: Validation Summary.zip
+2026-08-20T17:14:39.0001992Z Beginning upload of artifact content to blob storage
+2026-08-20T17:14:39.1214782Z Uploaded bytes 4587
+2026-08-20T17:14:39.1503924Z Finished uploading artifact content to blob storage!
+2026-08-20T17:14:39.1507047Z SHA256 digest of uploaded artifact is f8db7eb3ff2d4ecf4d28ab7ae2a0e7582fea8cbcfb9aae035139a4f55d2c2065
+2026-08-20T17:14:39.1508498Z Finalizing artifact upload
+2026-08-20T17:14:39.4213907Z Artifact Validation Summary successfully finalized. Artifact ID 9416824563
+2026-08-20T17:14:39.4215632Z Artifact Validation Summary has been successfully uploaded! Final size is 4587 bytes. Artifact ID is 9416824563
+2026-08-20T17:14:39.4217594Z Artifact download URL: https://github.com/SEC-OIT-CONNECT/connect-core-infra/actions/runs/32396353358/artifacts/9416824563
+2026-08-20T17:14:39.4385821Z ##[group]Run actions/upload-artifact@v7
+2026-08-20T17:14:39.4386617Z with:
+2026-08-20T17:14:39.4387218Z   name: CFN Resolver Templates
+2026-08-20T17:14:39.4387915Z   path: cfn-templates/
+2026-08-20T17:14:39.4388554Z   retention-days: 30
+2026-08-20T17:14:39.4389192Z   if-no-files-found: warn
+2026-08-20T17:14:39.4389866Z   compression-level: 6
+2026-08-20T17:14:39.4390504Z   overwrite: false
+2026-08-20T17:14:39.4391436Z   include-hidden-files: false
+2026-08-20T17:14:39.4392133Z   archive: true
+2026-08-20T17:14:39.4392703Z env:
+2026-08-20T17:14:39.4393266Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:14:39.4393981Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:14:39.4394867Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:14:39.4395614Z   AWS_REGION: us-east-1
+2026-08-20T17:14:39.4396385Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:14:39.4397539Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:14:39.4398161Z   CLONE_BOT_ID: 947806
+2026-08-20T17:14:39.4398988Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:14:39.4400400Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:14:39.4401959Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:14:39.4402779Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:14:39.4403747Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:14:39.4404835Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:14:39.4406126Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:14:39.4407516Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:14:39.4408689Z   CLIENT_ID: ***
+2026-08-20T17:14:39.4409537Z   CLIENT_SECRET: ***
+2026-08-20T17:14:39.4410184Z   AWS_ACCOUNT_ID_LEN: 12
+2026-08-20T17:14:39.4411155Z   AWS_DEFAULT_REGION: us-east-1
+2026-08-20T17:14:39.4411905Z   AWS_ACCESS_KEY_ID: ***
+2026-08-20T17:14:39.4412711Z   AWS_SECRET_ACCESS_KEY: ***
+2026-08-20T17:14:39.4423135Z   AWS_SESSION_TOKEN: ***
+2026-08-20T17:14:39.4423855Z   ASSUME_TYPE: repo
+2026-08-20T17:14:39.4424637Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:39.4425695Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+2026-08-20T17:14:39.4426739Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:39.4427698Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:39.4428643Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:39.4429607Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+2026-08-20T17:14:39.4430435Z   LINT_ERRORS: 0
+2026-08-20T17:14:39.4431254Z   VALIDATION_FAILED: 1
+2026-08-20T17:14:39.4431859Z ##[endgroup]
+2026-08-20T17:14:39.6375492Z With the provided path, there will be 33 files uploaded
+2026-08-20T17:14:39.6376773Z Artifact name is valid!
+2026-08-20T17:14:39.6377440Z Root directory input is valid!
+2026-08-20T17:14:39.8728122Z Uploading artifact: CFN Resolver Templates.zip
+2026-08-20T17:14:39.8778639Z Beginning upload of artifact content to blob storage
+2026-08-20T17:14:40.0839134Z Uploaded bytes 69715
+2026-08-20T17:14:40.1114537Z Finished uploading artifact content to blob storage!
+2026-08-20T17:14:40.1116548Z SHA256 digest of uploaded artifact is 269d9b0695721c8665cc6bae0efd7dbb499c2a1e37aff1c167f2a07f0a158aec
+2026-08-20T17:14:40.1119497Z Finalizing artifact upload
+2026-08-20T17:14:40.3543729Z Artifact CFN Resolver Templates successfully finalized. Artifact ID 9416825058
+2026-08-20T17:14:40.3545388Z Artifact CFN Resolver Templates has been successfully uploaded! Final size is 69715 bytes. Artifact ID is 9416825058
+2026-08-20T17:14:40.3548048Z Artifact download URL: https://github.com/SEC-OIT-CONNECT/connect-core-infra/actions/runs/32396353358/artifacts/9416825058
+2026-08-20T17:14:40.4308002Z ##[group]Run actions/upload-artifact@v7
+2026-08-20T17:14:40.4308498Z with:
+2026-08-20T17:14:40.4308907Z   name: CFN Guard JSON Results
+2026-08-20T17:14:40.4309368Z   path: cfn-guard-results.json
+2026-08-20T17:14:40.4309813Z   retention-days: 30
+2026-08-20T17:14:40.4310240Z   if-no-files-found: warn
+2026-08-20T17:14:40.4310870Z   compression-level: 6
+2026-08-20T17:14:40.4311321Z   overwrite: false
+2026-08-20T17:14:40.4311737Z   include-hidden-files: false
+2026-08-20T17:14:40.4312167Z   archive: true
+2026-08-20T17:14:40.4312563Z env:
+2026-08-20T17:14:40.4312960Z   BREAK_GLASS_REPO_PREFIX: 
+2026-08-20T17:14:40.4313462Z   CFN_RESOLVER_CSV_EMAIL_LIST: aces.github.issues@sec.gov
+2026-08-20T17:14:40.4314025Z   CACHE_VERSION: template-validation-v1
+2026-08-20T17:14:40.4314515Z   AWS_REGION: us-east-1
+2026-08-20T17:14:40.4315014Z   CCOE_ROLE_NAME_TO_ASSUME: ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:14:40.4315550Z   CERTS_DEPLOY_KEY: 
+2026-08-20T17:14:40.4316179Z   CLONE_BOT_ID: 947806
+2026-08-20T17:14:40.4316722Z   DATA_ACCT_ARN: arn:aws:iam::891376964242:role/AWSGitHubPipelineRole
+2026-08-20T17:14:40.4317588Z   EXCEPTIONS_API_URL: https://497atu0ea2-vpce-01ab8044e019e1a3b.execute-api.us-east-1.amazonaws.com/prod
+2026-08-20T17:14:40.4318318Z   EXCEPTIONS_LOG_LEVEL: info
+2026-08-20T17:14:40.4318822Z   ROLE_NAME_TO_ASSUME: ccoe-github-connect-core-infra-stg
+2026-08-20T17:14:40.4319408Z   ROLE_SESSION_NAME: GitHub_to_AWS_via_Federated_Pipeline
+2026-08-20T17:14:40.4320082Z   TARGET_CCOE_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-SEC-OIT-CONNECT-stg
+2026-08-20T17:14:40.4321166Z   TARGET_CUSTOMER_ACCT_ARN: arn:aws:iam::416153530692:role/ccoe-github-connect-core-infra-stg
+2026-08-20T17:14:40.4322035Z   NODE_EXTRA_CA_CERTS: /home/runner/work/connect-core-infra/connect-core-infra/certs/sec_bundle.pem
+2026-08-20T17:14:40.4322785Z   CLIENT_ID: ***
+2026-08-20T17:14:40.4323335Z   CLIENT_SECRET: ***
+2026-08-20T17:14:40.4323767Z   AWS_ACCOUNT_ID_LEN: 12
+2026-08-20T17:14:40.4324218Z   AWS_DEFAULT_REGION: us-east-1
+2026-08-20T17:14:40.4324701Z   AWS_ACCESS_KEY_ID: ***
+2026-08-20T17:14:40.4325221Z   AWS_SECRET_ACCESS_KEY: ***
+2026-08-20T17:14:40.4330532Z   AWS_SESSION_TOKEN: ***
+2026-08-20T17:14:40.4331155Z   ASSUME_TYPE: repo
+2026-08-20T17:14:40.4331666Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:40.4332333Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+2026-08-20T17:14:40.4332984Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:40.4333590Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:40.4334190Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+2026-08-20T17:14:40.4334797Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+2026-08-20T17:14:40.4335332Z   LINT_ERRORS: 0
+2026-08-20T17:14:40.4335741Z   VALIDATION_FAILED: 1
+2026-08-20T17:14:40.4336160Z ##[endgroup]
+2026-08-20T17:14:40.5904611Z With the provided path, there will be 1 file uploaded
+2026-08-20T17:14:40.5908776Z Artifact name is valid!
+2026-08-20T17:14:40.5909768Z Root directory input is valid!
+2026-08-20T17:14:40.8212040Z Uploading artifact: CFN Guard JSON Results.zip
+2026-08-20T17:14:40.8261968Z Beginning upload of artifact content to blob storage
+2026-08-20T17:14:40.9583742Z Uploaded bytes 20285
+2026-08-20T17:14:40.9864616Z Finished uploading artifact content to blob storage!
+2026-08-20T17:14:40.9867723Z SHA256 digest of uploaded artifact is 4dbe8959a0a9c14005bd354ae5fe8f7ca13357eac452191a6c9aeed34d569ed9
+2026-08-20T17:14:40.9869223Z Finalizing artifact upload
+2026-08-20T17:14:41.2323654Z Artifact CFN Guard JSON Results successfully finalized. Artifact ID 9416825506
+2026-08-20T17:14:41.2325300Z Artifact CFN Guard JSON Results has been successfully uploaded! Final size is 20285 bytes. Artifact ID is 9416825506
+2026-08-20T17:14:41.2327485Z Artifact download URL: https://github.com/SEC-OIT-CONNECT/connect-core-infra/actions/runs/32396353358/artifacts/9416825506
+2026-08-20T17:14:41.2574682Z Post job cleanup.
+2026-08-20T17:14:41.2579936Z ##[start-action display=Set the customer account context [repo%5D;id=__75bf031d-c26a-4f0d-81d4-b04a66519bc2.customerContext]
+2026-08-20T17:14:41.2667100Z Post job cleanup.
+2026-08-20T17:14:41.3532183Z ##[end-action id=__75bf031d-c26a-4f0d-81d4-b04a66519bc2.customerContext;outcome=success;conclusion=success;duration_ms=94]
+2026-08-20T17:14:41.3605569Z Post job cleanup.
+2026-08-20T17:14:41.4599127Z [command]/usr/bin/git version
+2026-08-20T17:14:41.4645237Z git version 2.54.0
+2026-08-20T17:14:41.4688655Z Temporarily overriding HOME='/home/runner/work/_temp/7ecb67df-c760-4730-87b9-a14389c3e6d4' before making global git config changes
+2026-08-20T17:14:41.4690572Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-20T17:14:41.4698098Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/connect-core-infra/connect-core-infra/cfn-template-resolver
+2026-08-20T17:14:41.4735830Z Removing SSH command configuration
+2026-08-20T17:14:41.4744054Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-20T17:14:41.4810284Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-20T17:14:41.5077844Z Removing HTTP extra header
+2026-08-20T17:14:41.5085431Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-20T17:14:41.5127169Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-20T17:14:41.5394064Z Removing includeIf entries pointing to credentials config files
+2026-08-20T17:14:41.5401673Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-20T17:14:41.5442116Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-20T17:14:41.6197873Z Post job cleanup.
+2026-08-20T17:14:41.9372852Z Token revoked
+2026-08-20T17:14:41.9831962Z Post job cleanup.
+2026-08-20T17:14:42.0805291Z [command]/usr/bin/git version
+2026-08-20T17:14:42.0850120Z git version 2.54.0
+2026-08-20T17:14:42.0926846Z Temporarily overriding HOME='/home/runner/work/_temp/015309ad-9520-4e2e-b0ea-e98431f6a020' before making global git config changes
+2026-08-20T17:14:42.0929085Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-20T17:14:42.0934189Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/connect-core-infra/connect-core-infra/cloudguard-exceptions-management
+2026-08-20T17:14:42.0973463Z Removing SSH command configuration
+2026-08-20T17:14:42.0981703Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-20T17:14:42.1030550Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-20T17:14:42.1316876Z Removing HTTP extra header
+2026-08-20T17:14:42.1318010Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-20T17:14:42.1353542Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-20T17:14:42.1613735Z Removing includeIf entries pointing to credentials config files
+2026-08-20T17:14:42.1621262Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-20T17:14:42.1662262Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-20T17:14:42.2175432Z Post job cleanup.
+2026-08-20T17:14:42.5442222Z Token revoked
+2026-08-20T17:14:42.5975812Z Post job cleanup.
+2026-08-20T17:14:42.6989915Z [command]/usr/bin/git version
+2026-08-20T17:14:42.7035191Z git version 2.54.0
+2026-08-20T17:14:42.7078829Z Temporarily overriding HOME='/home/runner/work/_temp/4cb4527b-5e8c-426d-b48e-9bb00d6a9e7c' before making global git config changes
+2026-08-20T17:14:42.7081429Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-20T17:14:42.7085471Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/connect-core-infra/connect-core-infra
+2026-08-20T17:14:42.7124618Z Removing SSH command configuration
+2026-08-20T17:14:42.7132753Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-20T17:14:42.7176625Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-20T17:14:42.7451033Z Removing HTTP extra header
+2026-08-20T17:14:42.7458487Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-20T17:14:42.7503830Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-20T17:14:42.7765614Z Removing includeIf entries pointing to credentials config files
+2026-08-20T17:14:42.7774170Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-20T17:14:42.7803708Z includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/.git.path
+2026-08-20T17:14:42.7805139Z includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/.git/worktrees/*.path
+2026-08-20T17:14:42.7811994Z includeif.gitdir:/github/workspace/.git.path
+2026-08-20T17:14:42.7813110Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-08-20T17:14:42.7816567Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/.git.path
+2026-08-20T17:14:42.7844304Z /home/runner/work/_temp/git-credentials-9d041055-2f93-4a13-a91d-c3aebeccd4f9.config
+2026-08-20T17:14:42.7861225Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/.git.path /home/runner/work/_temp/git-credentials-9d041055-2f93-4a13-a91d-c3aebeccd4f9.config
+2026-08-20T17:14:42.7908908Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/.git/worktrees/*.path
+2026-08-20T17:14:42.7927972Z /home/runner/work/_temp/git-credentials-9d041055-2f93-4a13-a91d-c3aebeccd4f9.config
+2026-08-20T17:14:42.7942373Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/connect-core-infra/connect-core-infra/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-9d041055-2f93-4a13-a91d-c3aebeccd4f9.config
+2026-08-20T17:14:42.7981304Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-08-20T17:14:42.8008735Z /github/runner_temp/git-credentials-9d041055-2f93-4a13-a91d-c3aebeccd4f9.config
+2026-08-20T17:14:42.8017895Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-9d041055-2f93-4a13-a91d-c3aebeccd4f9.config
+2026-08-20T17:14:42.8056270Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-08-20T17:14:42.8094782Z /github/runner_temp/git-credentials-9d041055-2f93-4a13-a91d-c3aebeccd4f9.config
+2026-08-20T17:14:42.8133763Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-9d041055-2f93-4a13-a91d-c3aebeccd4f9.config
+2026-08-20T17:14:42.8178270Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-20T17:14:42.8450176Z Removing credentials config '/home/runner/work/_temp/git-credentials-9d041055-2f93-4a13-a91d-c3aebeccd4f9.config'
+2026-08-20T17:14:42.8625389Z Cleaning up orphan processes
