@@ -1,0 +1,862 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "Enable flow logging",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": -1364.8,
+      "y": -420.8
+    },
+    "ActionMetadata": {
+      "***End Call***": {
+        "position": {
+          "x": 2609.6,
+          "y": 544
+        },
+        "isFriendlyName": true
+      },
+      "38f6add1-8e12-4dcb-aa74-f3214db9e057": {
+        "position": {
+          "x": 2202.4,
+          "y": 756
+        }
+      },
+      "Voicemail Timer Loop": {
+        "position": {
+          "x": 1756.8,
+          "y": 402.4
+        },
+        "isFriendlyName": true
+      },
+      "Voicemail complete messaging.": {
+        "position": {
+          "x": 2316.8,
+          "y": 454.4
+        },
+        "isFriendlyName": true
+      },
+      "Wait for caller to record.": {
+        "position": {
+          "x": 2023.2,
+          "y": 296
+        },
+        "isFriendlyName": true,
+        "conditionMetadata": []
+      },
+      "Error messaging.": {
+        "position": {
+          "x": 1948,
+          "y": 670.4
+        },
+        "isFriendlyName": true
+      },
+      "Clear vmx3_flag": {
+        "position": {
+          "x": 1636.8,
+          "y": 672
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Play initial voicemail greeting": {
+        "position": {
+          "x": 370.4,
+          "y": 405.6
+        },
+        "isFriendlyName": true
+      },
+      "Play the start recording beep using SSML": {
+        "position": {
+          "x": 1534.4,
+          "y": 403.2
+        },
+        "isFriendlyName": true
+      },
+      "Set VMX Agent Whisper": {
+        "position": {
+          "x": 131.2,
+          "y": 404.8
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "EventHooks": {
+            "AgentWhisper": {
+              "useDynamic": true
+            }
+          }
+        },
+        "useDynamic": true,
+        "customerOrAgent": false
+      },
+      "Enable flow logging": {
+        "position": {
+          "x": -1229.6,
+          "y": -396.8
+        },
+        "isFriendlyName": true
+      },
+      "f4ceddee-8244-4491-b369-e794e501a2c2": {
+        "position": {
+          "x": -1222.4,
+          "y": -239.2
+        },
+        "parameters": {
+          "LambdaFunctionARN": {
+            "displayName": "connect-helpdeskqueue-QueueAlert"
+          }
+        },
+        "dynamicMetadata": {
+          "alertType": false
+        }
+      },
+      "b1754405-98f0-4bd9-8cb3-97fc24f78b62": {
+        "position": {
+          "x": -1213.6,
+          "y": -26.4
+        },
+        "parameters": {
+          "TextToSpeechVoice": {
+            "languageCode": "en-US"
+          }
+        },
+        "overrideConsoleVoice": true
+      },
+      "8f88648d-557a-4f10-aa5e-fa42f68fb14c": {
+        "position": {
+          "x": -398.4,
+          "y": -302.4
+        },
+        "parameters": {
+          "Attributes": {
+            "CustomerPositionInQueue": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicParams": [
+          "CustomerPositionInQueue"
+        ]
+      },
+      "2ad91b54-f544-4c62-90cc-411a240f5aca": {
+        "position": {
+          "x": -150.4,
+          "y": -306.4
+        }
+      },
+      "1ef0b695-56e2-4b5c-91db-97ce7770056d": {
+        "position": {
+          "x": -1259.2,
+          "y": 179.2
+        },
+        "parameters": {
+          "QueueId": {
+            "displayName": "Help Desk"
+          }
+        },
+        "queue": {
+          "id": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/queue/e603c9f5-533d-4d48-99c8-af5c98aff6c1",
+          "text": "Help Desk"
+        }
+      },
+      "b524b9f7-ef85-400f-8b38-c79aeabcf19f": {
+        "position": {
+          "x": -938.4,
+          "y": -275.2
+        },
+        "parameters": {
+          "Messages": [
+            null,
+            {
+              "PromptId": {
+                "displayName": "InQueue_HoldMusic"
+              }
+            }
+          ],
+          "InterruptFrequencySeconds": {
+            "unit": 60
+          }
+        },
+        "audio": [
+          {
+            "id": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/prompt/6f2752a0-11b3-4fb9-a499-0482c079f647",
+            "text": "InQueue_HoldMusic",
+            "type": "Prompt"
+          }
+        ],
+        "timeoutUnit": {
+          "value": "min"
+        }
+      },
+      "Set VMX3 tag": {
+        "position": {
+          "x": 1310.4,
+          "y": 401.6
+        },
+        "isFriendlyName": true
+      },
+      "Enable Automated Interaction Recording": {
+        "position": {
+          "x": 609.6,
+          "y": 408.8
+        },
+        "isFriendlyName": true
+      },
+      "Was the vmx3_flag already set?": {
+        "position": {
+          "x": 1312.8,
+          "y": 670.4
+        },
+        "isFriendlyName": true,
+        "conditions": [],
+        "conditionMetadata": [
+          {
+            "id": "c2100330-8dd3-4d4a-8693-0a17a677cf41",
+            "operator": {
+              "name": "Is greater than",
+              "value": "GreaterThan",
+              "shortDisplay": ">"
+            },
+            "value": "0"
+          }
+        ]
+      },
+      "Set the vmx3_flag attribute for processing": {
+        "position": {
+          "x": 1078.4,
+          "y": 406.4
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "Attributes": {
+            "vmx3_timestamp": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicParams": [
+          "vmx3_timestamp"
+        ]
+      },
+      "Set recording timestamp": {
+        "position": {
+          "x": 852.8,
+          "y": 413.6
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "LambdaFunctionARN": {
+            "displayName": "VMX3-VoicemailTimestamper-voip-connect-customer-218627316675"
+          }
+        },
+        "dynamicMetadata": {}
+      },
+      "21eedfeb-dd4f-4e70-875f-a1d9b5d25ea4": {
+        "position": {
+          "x": -681.6,
+          "y": -293.6
+        },
+        "parameters": {
+          "QueueId": {
+            "displayName": "Help Desk"
+          }
+        },
+        "queue": {
+          "id": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/queue/e603c9f5-533d-4d48-99c8-af5c98aff6c1",
+          "text": "Help Desk"
+        }
+      },
+      "Set VMX Customer Whisper": {
+        "position": {
+          "x": -97.6,
+          "y": 405.6
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "EventHooks": {
+            "CustomerWhisper": {
+              "useDynamic": true
+            }
+          }
+        },
+        "useDynamic": true,
+        "customerOrAgent": true
+      },
+      "d35df646-334b-4b6e-8fd5-24929b88fe5d": {
+        "position": {
+          "x": 109.6,
+          "y": 58.4
+        }
+      },
+      "9b698979-5ef5-40ac-8379-a79896603f04": {
+        "position": {
+          "x": 70.4,
+          "y": -317.6
+        },
+        "parameters": {
+          "Text": {
+            "useDynamic": true
+          }
+        },
+        "useDynamic": true
+      },
+      "9f329848-b7c4-4de2-8caa-926b28fe0938": {
+        "position": {
+          "x": 296.8,
+          "y": -333.6
+        },
+        "parameters": {
+          "LambdaFunctionARN": {
+            "displayName": "connect-helpdeskqueue-QueueAlert"
+          }
+        },
+        "dynamicMetadata": {}
+      }
+    },
+    "Annotations": [
+      {
+        "type": "default",
+        "id": "06091a8d-ac23-4eb1-abc0-b9cafab33eb7",
+        "content": "Provides an example voicemail experience for customers already in queue. This flow module handles the initialization of Automated Interaction Recording, configuration of the minimum flags required to process the voicemail, and provides the customer experience. This module can be invoked from any normal contact flow.\n\nThe following attributes MUST have been defined previously:\n\nvmx3_mode\nvmx3_from\nvmx3_lang\nvmx3_queue_arn",
+        "actionId": "",
+        "isFolded": false,
+        "position": {
+          "x": -693,
+          "y": 216
+        },
+        "size": {
+          "height": 295,
+          "width": 300
+        }
+      },
+      {
+        "type": "default",
+        "id": "77dfa086-5e8b-4f8c-a3d1-417c965b92ec",
+        "content": "Setting max time for a voicemail may require two changes:\n\n1. Change the timeout for the Get customer input block. Max time is 180 seconds (3 min)\n2. If you need more than 3 minutes, adjust the number of loops in the voicemail timer loop. ",
+        "actionId": "",
+        "isFolded": false,
+        "position": {
+          "x": 2483,
+          "y": 43
+        },
+        "size": {
+          "height": 295,
+          "width": 300
+        }
+      }
+    ],
+    "name": "HelpDesk_4357_InQueue_Opt2",
+    "description": "Help Desk Opt 2 in-queue voicemail experience.",
+    "type": "customerQueue",
+    "status": "published",
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {},
+      "Identifier": "***End Call***",
+      "Type": "DisconnectParticipant",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {},
+      "Identifier": "38f6add1-8e12-4dcb-aa74-f3214db9e057",
+      "Type": "EndFlowExecution",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "LoopCount": "1"
+      },
+      "Identifier": "Voicemail Timer Loop",
+      "Type": "Loop",
+      "Transitions": {
+        "NextAction": "Voicemail complete messaging.",
+        "Conditions": [
+          {
+            "NextAction": "Wait for caller to record.",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "ContinueLooping"
+              ]
+            }
+          },
+          {
+            "NextAction": "Voicemail complete messaging.",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "DoneLooping"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Text": "Your voicemail has been saved. Goodbye."
+      },
+      "Identifier": "Voicemail complete messaging.",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "***End Call***",
+        "Errors": [
+          {
+            "NextAction": "***End Call***",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "StoreInput": "False",
+        "InputTimeLimitSeconds": "60",
+        "SSML": "<speak>\n<break time=\"5s\"/>\n</speak>"
+      },
+      "Identifier": "Wait for caller to record.",
+      "Type": "GetParticipantInput",
+      "Transitions": {
+        "NextAction": "Voicemail complete messaging.",
+        "Errors": [
+          {
+            "NextAction": "Voicemail Timer Loop",
+            "ErrorType": "InputTimeLimitExceeded"
+          },
+          {
+            "NextAction": "Voicemail complete messaging.",
+            "ErrorType": "NoMatchingCondition"
+          },
+          {
+            "NextAction": "Error messaging.",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Text": "The voicemail system has encountered an error. We are placing you in queue."
+      },
+      "Identifier": "Error messaging.",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "38f6add1-8e12-4dcb-aa74-f3214db9e057",
+        "Errors": [
+          {
+            "NextAction": "38f6add1-8e12-4dcb-aa74-f3214db9e057",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "vmx3_flag": "0"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Clear vmx3_flag",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Error messaging.",
+        "Errors": [
+          {
+            "NextAction": "Error messaging.",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Text": "We will begin to record your message after the tone. When finished, you may hang up. Your voicemail will be saved and delivered to a representative."
+      },
+      "Identifier": "Play initial voicemail greeting",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "Enable Automated Interaction Recording",
+        "Errors": [
+          {
+            "NextAction": "Enable Automated Interaction Recording",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SSML": "<speak>\n  <say-as interpret-as=\"expletive\">beep</say-as>\n</speak>"
+      },
+      "Identifier": "Play the start recording beep using SSML",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "Voicemail Timer Loop",
+        "Errors": [
+          {
+            "NextAction": "Voicemail Timer Loop",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "EventHooks": {
+          "AgentWhisper": "$.FlowAttributes.vmx3_agent_whisper"
+        },
+        "EventHooksConfiguration": {
+          "AgentWhisper": {
+            "DisableExecution": "false"
+          }
+        }
+      },
+      "Identifier": "Set VMX Agent Whisper",
+      "Type": "UpdateContactEventHooks",
+      "Transitions": {
+        "NextAction": "Play initial voicemail greeting",
+        "Errors": [
+          {
+            "NextAction": "Play initial voicemail greeting",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "FlowLoggingBehavior": "Enabled"
+      },
+      "Identifier": "Enable flow logging",
+      "Type": "UpdateFlowLoggingBehavior",
+      "Transitions": {
+        "NextAction": "f4ceddee-8244-4491-b369-e794e501a2c2"
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:us-east-1:218627316675:function:connect-helpdeskqueue-QueueAlert",
+        "InvocationTimeLimitSeconds": "5",
+        "InvocationType": "SYNCHRONOUS",
+        "LambdaInvocationAttributes": {
+          "alertType": "EnteredQueue"
+        },
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "f4ceddee-8244-4491-b369-e794e501a2c2",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "b1754405-98f0-4bd9-8cb3-97fc24f78b62",
+        "Errors": [
+          {
+            "NextAction": "b1754405-98f0-4bd9-8cb3-97fc24f78b62",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "TextToSpeechVoice": "Danielle",
+        "TextToSpeechEngine": "Generative",
+        "TextToSpeechStyle": "None"
+      },
+      "Identifier": "b1754405-98f0-4bd9-8cb3-97fc24f78b62",
+      "Type": "UpdateContactTextToSpeechVoice",
+      "Transitions": {
+        "NextAction": "1ef0b695-56e2-4b5c-91db-97ce7770056d",
+        "Errors": [
+          {
+            "NextAction": "1ef0b695-56e2-4b5c-91db-97ce7770056d",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "CustomerPositionInQueue": "$.Metrics.Queue.Size"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "8f88648d-557a-4f10-aa5e-fa42f68fb14c",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "2ad91b54-f544-4c62-90cc-411a240f5aca",
+        "Errors": [
+          {
+            "NextAction": "2ad91b54-f544-4c62-90cc-411a240f5aca",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "Text": "Your position in queue is"
+      },
+      "Identifier": "2ad91b54-f544-4c62-90cc-411a240f5aca",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "9b698979-5ef5-40ac-8379-a79896603f04",
+        "Errors": [
+          {
+            "NextAction": "9b698979-5ef5-40ac-8379-a79896603f04",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "QueueId": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/queue/e603c9f5-533d-4d48-99c8-af5c98aff6c1"
+      },
+      "Identifier": "1ef0b695-56e2-4b5c-91db-97ce7770056d",
+      "Type": "GetMetricData",
+      "Transitions": {
+        "NextAction": "b524b9f7-ef85-400f-8b38-c79aeabcf19f",
+        "Errors": [
+          {
+            "NextAction": "b524b9f7-ef85-400f-8b38-c79aeabcf19f",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Messages": [
+          {
+            "Text": "All agents remain busy assisting other callers, please stay on the line and your call will be answered in the order it was received."
+          },
+          {
+            "PromptId": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/prompt/6f2752a0-11b3-4fb9-a499-0482c079f647"
+          }
+        ],
+        "InterruptFrequencySeconds": "60",
+        "ContinueMessagingDuringInterrupt": "false"
+      },
+      "Identifier": "b524b9f7-ef85-400f-8b38-c79aeabcf19f",
+      "Type": "MessageParticipantIteratively",
+      "Transitions": {
+        "NextAction": "Set VMX Customer Whisper",
+        "Conditions": [
+          {
+            "NextAction": "21eedfeb-dd4f-4e70-875f-a1d9b5d25ea4",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "MessagesInterrupted"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "Set VMX Customer Whisper",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Tags": {
+          "function": "vmx3"
+        }
+      },
+      "Identifier": "Set VMX3 tag",
+      "Type": "TagContact",
+      "Transitions": {
+        "NextAction": "Play the start recording beep using SSML",
+        "Errors": [
+          {
+            "NextAction": "Play the start recording beep using SSML",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "RecordingBehavior": {
+          "RecordedParticipants": [],
+          "IVRRecordingBehavior": "Enabled"
+        }
+      },
+      "Identifier": "Enable Automated Interaction Recording",
+      "Type": "UpdateContactRecordingBehavior",
+      "Transitions": {
+        "NextAction": "Set recording timestamp"
+      }
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.Attributes.vmx3_flag"
+      },
+      "Identifier": "Was the vmx3_flag already set?",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "Error messaging.",
+        "Conditions": [
+          {
+            "NextAction": "Clear vmx3_flag",
+            "Condition": {
+              "Operator": "NumberGreaterThan",
+              "Operands": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "Error messaging.",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "vmx3_flag": "1",
+          "vmx3_timestamp": "$.External.vmx3_timestamp"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Set the vmx3_flag attribute for processing",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Set VMX3 tag",
+        "Errors": [
+          {
+            "NextAction": "Was the vmx3_flag already set?",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:us-east-1:218627316675:function:VMX3-VoicemailTimestamper-voip-connect-customer-218627316675",
+        "InvocationTimeLimitSeconds": "3",
+        "InvocationType": "SYNCHRONOUS",
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "Set recording timestamp",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "Set the vmx3_flag attribute for processing",
+        "Errors": [
+          {
+            "NextAction": "Was the vmx3_flag already set?",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "QueueId": "arn:aws:connect:us-east-1:218627316675:instance/dbce764c-30e3-433e-acfe-001fabb84d7f/queue/e603c9f5-533d-4d48-99c8-af5c98aff6c1",
+        "GetContactMetric": "True"
+      },
+      "Identifier": "21eedfeb-dd4f-4e70-875f-a1d9b5d25ea4",
+      "Type": "GetMetricData",
+      "Transitions": {
+        "NextAction": "8f88648d-557a-4f10-aa5e-fa42f68fb14c",
+        "Errors": [
+          {
+            "NextAction": "8f88648d-557a-4f10-aa5e-fa42f68fb14c",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "EventHooks": {
+          "CustomerWhisper": "$.FlowAttributes.vmx3_customer_whisper"
+        },
+        "EventHooksConfiguration": {
+          "CustomerWhisper": {
+            "DisableExecution": "false"
+          }
+        }
+      },
+      "Identifier": "Set VMX Customer Whisper",
+      "Type": "UpdateContactEventHooks",
+      "Transitions": {
+        "NextAction": "Set VMX Agent Whisper",
+        "Errors": [
+          {
+            "NextAction": "Set VMX Agent Whisper",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "Text": "Transfering to Voicemail"
+      },
+      "Identifier": "d35df646-334b-4b6e-8fd5-24929b88fe5d",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "Set VMX Customer Whisper",
+        "Errors": [
+          {
+            "NextAction": "Set VMX Customer Whisper",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "Text": "$.Attributes.CustomerPositionInQueue"
+      },
+      "Identifier": "9b698979-5ef5-40ac-8379-a79896603f04",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "9f329848-b7c4-4de2-8caa-926b28fe0938",
+        "Errors": [
+          {
+            "NextAction": "9f329848-b7c4-4de2-8caa-926b28fe0938",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:us-east-1:218627316675:function:connect-helpdeskqueue-QueueAlert",
+        "InvocationTimeLimitSeconds": "3",
+        "InvocationType": "SYNCHRONOUS",
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "9f329848-b7c4-4de2-8caa-926b28fe0938",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "d35df646-334b-4b6e-8fd5-24929b88fe5d",
+        "Errors": [
+          {
+            "NextAction": "d35df646-334b-4b6e-8fd5-24929b88fe5d",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    }
+  ]
+}
